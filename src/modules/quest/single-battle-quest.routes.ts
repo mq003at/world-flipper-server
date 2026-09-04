@@ -1,6 +1,6 @@
 import type { FastifyPluginAsync } from "fastify";
 import type { Clock } from "../../infrastructure/clock/clock";
-import { createDataHeaders } from "../../protocol/worldflipper/data-headers";
+import { createDataHeaders, unixSeconds } from "../../protocol/worldflipper/data-headers";
 import {
     parseFinishQuestRequest,
     parseStartQuestRequest,
@@ -16,14 +16,18 @@ export function createSingleBattleQuestRoutes(
     return async (fastify) => {
         fastify.post("/start", async (request, reply) => {
             const input = parseStartQuestRequest(request.body);
-            service.start(input);
+            const start = service.start(input);
             const headers = createDataHeaders(clock, { viewer_id: input.viewerId });
 
             reply.header("content-type", "application/x-msgpack");
             return {
                 data_headers: headers,
                 data: {
-                    user_info: { last_main_quest_id: input.questId },
+                    user_info: {
+                        last_main_quest_id: input.questId,
+                        stamina: start.stamina,
+                        stamina_heal_time: unixSeconds(start.staminaHealTime),
+                    },
                     category_id: input.category,
                     is_multi: "single",
                     start_time: headers.servertime,

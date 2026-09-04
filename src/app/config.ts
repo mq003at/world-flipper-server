@@ -7,6 +7,8 @@ export interface AppConfig {
     cdnDir: string;
     assetManifestDir: string;
     masterDataDir: string;
+    liveContentDir?: string;
+    seasonStartAtOverride?: string;
     logger: boolean;
 }
 
@@ -33,6 +35,8 @@ export function loadConfig(env: NodeJS.ProcessEnv = process.env): AppConfig {
             "content/asset-lists",
         ),
         masterDataDir: resolveLocalPath(env.MASTER_DATA_DIR, "content/master"),
+        liveContentDir: resolveLocalPath(env.LIVE_CONTENT_DIR, "content/live"),
+        ...(env.SEASON_START_AT?.trim() ? { seasonStartAtOverride: env.SEASON_START_AT.trim() } : {}),
         logger: env.LOG_LEVEL !== "silent",
     };
 }

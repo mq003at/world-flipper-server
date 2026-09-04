@@ -1,0 +1,29 @@
+[
+  {
+    "id": 900001,
+    "period": "daily",
+    "eventType": "player.login",
+    "target": 1,
+    "progressMode": "count",
+    "rewards": [{ "type": 3, "count": 50 }],
+    "rewardPolicy": "time-gated"
+  },
+  {
+    "id": 900002,
+    "period": "daily",
+    "eventType": "quest.completed",
+    "target": 3,
+    "progressMode": "count",
+    "rewards": [{ "type": 4, "count": 1000 }],
+    "rewardPolicy": "time-gated"
+  },
+  {
+    "id": 900003,
+    "period": "weekly",
+    "eventType": "gacha.drawn",
+    "target": 20,
+    "progressMode": "sum",
+    "rewards": [{ "type": 3, "count": 150 }],
+    "rewardPolicy": "time-gated"
+  }
+]

@@ -72,7 +72,10 @@ export class RewardService {
     }
 
     grant(playerId: number, rewards: readonly Reward[]): RewardGrantResult {
-        return this.repository.transaction(() => {
+        return this.repository.transaction(() => this.grantWithinTransaction(playerId, rewards));
+    }
+
+    grantWithinTransaction(playerId: number, rewards: readonly Reward[]): RewardGrantResult {
             const walletBefore = this.repository.getWallet(playerId);
             if (!walletBefore) throw new InvariantError("Player does not exist.");
 
@@ -141,7 +144,6 @@ export class RewardService {
                 equipment,
                 items,
             };
-        });
     }
 
     private addItem(playerId: number, itemId: number, amount: number): number {

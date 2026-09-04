@@ -14,6 +14,13 @@ export interface ActiveQuest {
     startedAt: Date;
 }
 
+
+export interface QuestStartResult {
+    stamina: number;
+    staminaHealTime: Date;
+    staminaCost: number;
+}
+
 export interface QuestPlayerState {
     playerId: number;
     stamina: number;

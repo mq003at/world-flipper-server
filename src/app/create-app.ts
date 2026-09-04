@@ -1,3 +1,4 @@
+import path from "node:path";
 import Fastify, { type FastifyInstance } from "fastify";
 import type { AppConfig } from "./config";
 import { registerErrorHandler } from "./plugins/error-handler";
@@ -15,6 +16,14 @@ import type { Clock } from "../infrastructure/clock/clock";
 import { SystemClock } from "../infrastructure/clock/system-clock";
 import { createDatabase, type DatabaseConnection } from "../infrastructure/database/database";
 import { CryptoRandomSource } from "../infrastructure/random/crypto-random-source";
+import { SeasonEconomyPolicy } from "../live/economy/season-economy.policy";
+import { JsonQuestStaminaCostCatalog } from "../live/economy/json-quest-stamina-cost.catalog";
+import { InProcessGameplayEventBus } from "../live/gameplay-events/in-process-gameplay-event-bus";
+import { JsonScheduleCatalog } from "../live/schedule/json-schedule-catalog";
+import { ScheduleService } from "../live/schedule/schedule.service";
+import { LifecyclePeriods } from "../live/time/lifecycle-periods";
+import { loadSeasonConfig } from "../live/time/json-season-config";
+import { SeasonTimeline } from "../live/time/season-timeline";
 import type { RandomSource } from "../infrastructure/random/random-source";
 import { CryptoTokenGenerator, type TokenGenerator } from "../infrastructure/security/token-generator";
 import { createAssetRoutes } from "../modules/asset/asset.routes";
@@ -28,6 +37,10 @@ import { infodeskRoutes } from "../modules/bootstrap/infodesk.routes";
 import { createIdentityRoutes } from "../modules/identity/identity.routes";
 import { SqliteIdentityRepository } from "../modules/identity/identity.repository.sqlite";
 import { IdentityService } from "../modules/identity/identity.service";
+import { JsonMissionCatalog } from "../modules/mission/json-mission.catalog";
+import { SqliteMissionRepository } from "../modules/mission/mission.repository.sqlite";
+import { createMissionRoutes } from "../modules/mission/mission.routes";
+import { MissionService } from "../modules/mission/mission.service";
 import { SqlitePlayerRepository } from "../modules/player/player.repository.sqlite";
 import { PlayerService } from "../modules/player/player.service";
 import { SqlitePaymentRepository } from "../modules/payment/payment.repository.sqlite";
@@ -66,10 +79,22 @@ export async function createApp(
     const tokens = dependencies.tokens ?? new CryptoTokenGenerator();
     const random = dependencies.random ?? new CryptoRandomSource();
 
+    const liveContentDir = config.liveContentDir ?? path.resolve(process.cwd(), "content/live");
+    const seasonConfig = loadSeasonConfig(liveContentDir, config.seasonStartAtOverride);
+    const seasonTimeline = new SeasonTimeline(seasonConfig);
+    const lifecycle = new LifecyclePeriods(
+        seasonConfig.dailyResetHourUtc,
+        seasonConfig.weekStartsOnUtcDay,
+    );
+    const economy = new SeasonEconomyPolicy(seasonConfig, seasonTimeline);
+    const schedule = new ScheduleService(new JsonScheduleCatalog(liveContentDir), seasonTimeline);
+    const gameplayEvents = new InProcessGameplayEventBus();
+    const staminaCosts = new JsonQuestStaminaCostCatalog(liveContentDir);
+
     const identityRepository = new SqliteIdentityRepository(database);
     const identityService = new IdentityService(identityRepository, clock, tokens);
     const playerRepository = new SqlitePlayerRepository(database);
-    const playerService = new PlayerService(playerRepository, clock);
+    const playerService = new PlayerService(playerRepository, clock, lifecycle);
     const tutorialRepository = new SqliteTutorialRepository(database);
     const tutorialService = new TutorialService(
         identityService,
@@ -95,6 +120,20 @@ export async function createApp(
     const characterCatalog = new JsonCharacterCatalog(config.masterDataDir);
     const rewardRepository = new SqliteRewardRepository(database);
     const rewardService = new RewardService(rewardRepository, characterCatalog, clock);
+    const missionCatalog = new JsonMissionCatalog(liveContentDir);
+    const missionRepository = new SqliteMissionRepository(database);
+    const missionService = new MissionService(
+        identityService,
+        playerService,
+        missionRepository,
+        missionCatalog,
+        rewardService,
+        clock,
+        lifecycle,
+        schedule,
+        economy,
+    );
+    gameplayEvents.subscribe((event) => missionService.handleGameplayEvent(event));
     const gachaCatalog = new JsonGachaCatalog(config.masterDataDir);
     const gachaRepository = new SqliteGachaRepository(database);
     const gachaService = new GachaService(
@@ -104,6 +143,7 @@ export async function createApp(
         gachaCatalog,
         rewardService,
         random,
+        gameplayEvents,
     );
     const questCatalog = new JsonQuestCatalog(config.masterDataDir);
     const questRepository = new SqliteQuestRepository(database);
@@ -116,6 +156,9 @@ export async function createApp(
         characterCatalog,
         clock,
         random,
+        staminaCosts,
+        economy,
+        gameplayEvents,
     );
     const shopCatalog = new JsonShopCatalog(config.masterDataDir);
     const shopRepository = new SqliteShopRepository(database);
@@ -126,6 +169,7 @@ export async function createApp(
         shopCatalog,
         rewardService,
         clock,
+        gameplayEvents,
     );
     const paymentRepository = new SqlitePaymentRepository(database);
     const paymentService = new PaymentService(
@@ -139,6 +183,7 @@ export async function createApp(
         identityService,
         playerService,
         assetVersionProvider,
+        gameplayEvents,
     );
 
     registerProtocolCodec(app);
@@ -166,6 +211,9 @@ export async function createApp(
     await app.register(createStoryQuestRoutes(questService, clock), {
         prefix: "/latest/api/index.php/story_quest",
     });
+    await app.register(createMissionRoutes(missionService, clock), {
+        prefix: "/latest/api/index.php/mission",
+    });
     await app.register(createShopRoutes(shopService, clock), {
         prefix: "/latest/api/index.php/shop",
     });
@@ -173,6 +221,28 @@ export async function createApp(
         prefix: "/latest/api/index.php/payment",
     });
     await app.register(createStaticContentPlugin({ cdnDir: config.cdnDir }));
+
+    app.get("/live/status", async () => {
+        const now = clock.now();
+        const position = seasonTimeline.position(now);
+        return {
+            now: now.toISOString(),
+            seasonStartsAt: seasonTimeline.seasonStartsAt.toISOString(),
+            seasonEndsAt: seasonTimeline.seasonEndsAt.toISOString(),
+            seasonDay: position.seasonDay,
+            progress: position.progress,
+            sourceTime: position.sourceTime.toISOString(),
+            compressionRatio: seasonTimeline.compressionRatio,
+            dailyPeriod: lifecycle.dailyKey(now),
+            weeklyPeriod: lifecycle.weeklyKey(now),
+            activeSchedule: {
+                gacha: schedule.getActive("gacha", now).map((entry) => entry.id),
+                shop: schedule.getActive("shop", now).map((entry) => entry.id),
+                event: schedule.getActive("event", now).map((entry) => entry.id),
+                mission: schedule.getActive("mission", now).map((entry) => entry.id),
+            },
+        };
+    });
 
     app.get("/healthz", async () => ({ status: "ok" }));
 

@@ -1,4 +1,5 @@
 import type { Clock } from "../../infrastructure/clock/clock";
+import { LifecyclePeriods } from "../../live/time/lifecycle-periods";
 import { InvariantError } from "../../shared/errors/application-error";
 import { PlayerFactory } from "./player.factory";
 import type { Player, PlayerSnapshot } from "./player.models";
@@ -6,26 +7,13 @@ import type { PlayerRepository } from "./player.repository";
 
 const EXP_POOL_MAX = 100_000;
 
-function isLaterUtcCalendarDay(current: Date, previous: Date): boolean {
-    const currentKey = Date.UTC(
-        current.getUTCFullYear(),
-        current.getUTCMonth(),
-        current.getUTCDate(),
-    );
-    const previousKey = Date.UTC(
-        previous.getUTCFullYear(),
-        previous.getUTCMonth(),
-        previous.getUTCDate(),
-    );
-    return currentKey > previousKey;
-}
-
 export class PlayerService {
     private readonly factory: PlayerFactory;
 
     constructor(
         private readonly repository: PlayerRepository,
         private readonly clock: Clock,
+        private readonly lifecycle: LifecyclePeriods = new LifecyclePeriods(0, 1),
     ) {
         this.factory = new PlayerFactory(clock);
     }
@@ -56,7 +44,7 @@ export class PlayerService {
     }
 
     private applyLoginMaintenance(player: Player, now: Date): void {
-        const dailyReset = isLaterUtcCalendarDay(now, player.lastLoginTime);
+        const dailyReset = this.lifecycle.dailyKey(now) !== this.lifecycle.dailyKey(player.lastLoginTime);
 
         this.repository.updateLoginState(player.id, {
             lastLoginTime: now,

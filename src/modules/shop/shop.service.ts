@@ -6,6 +6,7 @@ import {
     type ShopItemDefinition,
 } from "../../content/master-data/shop-catalog";
 import type { Clock } from "../../infrastructure/clock/clock";
+import { NOOP_GAMEPLAY_EVENT_SINK, type GameplayEventSink } from "../../live/gameplay-events/gameplay-event-sink";
 import { InvalidRequestError, InvariantError } from "../../shared/errors/application-error";
 import type { IdentityService } from "../identity/identity.service";
 import type { PlayerService } from "../player/player.service";
@@ -42,6 +43,7 @@ export class ShopService {
         private readonly catalog: ShopCatalog,
         private readonly rewardService: RewardService,
         private readonly clock: Clock,
+        private readonly gameplayEvents: GameplayEventSink = NOOP_GAMEPLAY_EVENT_SINK,
     ) {}
 
     getSalesList(input: GetSalesListRequest): ShopSale[] {
@@ -103,7 +105,7 @@ export class ShopService {
         const item = this.catalog.findItem(input.shopType, input.shopItemId);
         if (!item) throw new InvalidRequestError("Shop item with specified id does not exist.");
         const now = this.clock.now();
-        return this.repository.transaction(() => {
+        const result = this.repository.transaction(() => {
             const before = this.repository.getPlayerState(player.id);
             if (!before) throw new InvariantError("No players bound to account.");
             const previousPurchase = this.normalizePurchaseState(
@@ -155,6 +157,14 @@ export class ShopService {
                 purchase,
             };
         });
+        this.gameplayEvents.publish({
+            type: "shop.purchased",
+            playerId: player.id,
+            shopType: input.shopType,
+            shopItemId: input.shopItemId,
+            quantity: amount,
+        });
+        return result;
     }
 
     private consumeUserCost(

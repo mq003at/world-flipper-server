@@ -1,4 +1,5 @@
 import type { AssetVersionProvider } from "../../content/cdn/asset-version";
+import { NOOP_GAMEPLAY_EVENT_SINK, type GameplayEventSink } from "../../live/gameplay-events/gameplay-event-sink";
 import type { IdentityService } from "../identity/identity.service";
 import type { PlayerSnapshot } from "../player/player.models";
 import type { PlayerService } from "../player/player.service";
@@ -18,6 +19,7 @@ export class GameBootstrapService {
         private readonly identity: IdentityService,
         private readonly players: PlayerService,
         private readonly assetVersions: AssetVersionProvider,
+        private readonly gameplayEvents: GameplayEventSink = NOOP_GAMEPLAY_EVENT_SINK,
     ) {}
 
     signup(zat: string): SignupResult {
@@ -34,10 +36,12 @@ export class GameBootstrapService {
         const zatSession = this.identity.requireZat(zat);
         this.identity.requireViewer(viewerId, zatSession.accountId);
 
+        const snapshot = this.players.loadForAccount(zatSession.accountId);
+        this.gameplayEvents.publish({ type: "player.login", playerId: snapshot.player.id });
         return {
             viewerId,
             availableAssetVersion: this.assetVersions.getAvailableAssetVersion(),
-            snapshot: this.players.loadForAccount(zatSession.accountId),
+            snapshot,
         };
     }
 }

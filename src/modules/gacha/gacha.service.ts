@@ -1,5 +1,6 @@
 import { GachaType, type GachaCatalog, type GachaDefinition } from "../../content/master-data/gacha-catalog";
 import type { RandomSource } from "../../infrastructure/random/random-source";
+import { NOOP_GAMEPLAY_EVENT_SINK, type GameplayEventSink } from "../../live/gameplay-events/gameplay-event-sink";
 import { InvalidRequestError, InvariantError } from "../../shared/errors/application-error";
 import type { IdentityService } from "../identity/identity.service";
 import type { PlayerService } from "../player/player.service";
@@ -64,13 +65,14 @@ export class GachaService {
         private readonly catalog: GachaCatalog,
         private readonly rewardService: RewardService,
         private readonly random: RandomSource,
+        private readonly gameplayEvents: GameplayEventSink = NOOP_GAMEPLAY_EVENT_SINK,
     ) {}
 
     execute(input: ExecuteGachaRequest): ExecuteGachaResult {
         const player = this.requirePlayer(input.viewerId);
         const gacha = this.requireGacha(input.gachaId);
 
-        return this.repository.transaction(() => {
+        const result = this.repository.transaction(() => {
             let wallet = this.repository.getWallet(player.id);
             if (!wallet) throw new InvariantError("No player bound to account.");
 
@@ -138,6 +140,13 @@ export class GachaService {
                 campaigns: payment.campaigns,
             };
         });
+        this.gameplayEvents.publish({
+            type: "gacha.drawn",
+            playerId: player.id,
+            gachaId: gacha.id,
+            pullCount: result.characterDraws.length + result.equipmentDraws.length,
+        });
+        return result;
     }
 
     exchangeCharacter(input: ExchangeCharacterRequest): ExchangeCharacterResult {

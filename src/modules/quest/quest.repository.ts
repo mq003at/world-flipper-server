@@ -5,6 +5,7 @@ import type { QuestCategory } from "../../content/master-data/quest-catalog";
 export interface QuestRepository {
     getPlayerState(playerId: number): QuestPlayerState | null;
     updatePartySlot(playerId: number, partySlot: number): void;
+    updateStamina(playerId: number, stamina: number): void;
     updateBattleState(
         playerId: number,
         changes: {

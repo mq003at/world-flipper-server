@@ -65,6 +65,11 @@ export class SqliteQuestRepository implements QuestRepository {
             .run(partySlot, playerId);
     }
 
+    updateStamina(playerId: number, stamina: number): void {
+        this.database.prepare("UPDATE players SET stamina = ? WHERE id = ?")
+            .run(stamina, playerId);
+    }
+
     updateBattleState(
         playerId: number,
         changes: {

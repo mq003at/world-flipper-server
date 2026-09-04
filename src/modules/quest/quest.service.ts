@@ -5,6 +5,9 @@ import {
     QuestCategory,
 } from "../../content/master-data/quest-catalog";
 import type { Clock } from "../../infrastructure/clock/clock";
+import { NOOP_GAMEPLAY_EVENT_SINK, type GameplayEventSink } from "../../live/gameplay-events/gameplay-event-sink";
+import type { QuestStaminaCostCatalog } from "../../live/economy/quest-stamina-cost.catalog";
+import type { SeasonEconomyPolicy } from "../../live/economy/season-economy.policy";
 import { InvalidRequestError, InvariantError } from "../../shared/errors/application-error";
 import type { IdentityService } from "../identity/identity.service";
 import type { PlayerService } from "../player/player.service";
@@ -20,6 +23,7 @@ import type {
     ActiveQuest,
     BattleFinishResult,
     QuestPlayerState,
+    QuestStartResult,
     StoryFinishResult,
 } from "./quest.models";
 import type { QuestRepository } from "./quest.repository";
@@ -49,17 +53,38 @@ export class QuestService {
         characterCatalog: CharacterCatalog,
         private readonly clock: Clock,
         random: RandomSource,
+        private readonly staminaCosts: QuestStaminaCostCatalog,
+        private readonly economy: SeasonEconomyPolicy,
+        private readonly gameplayEvents: GameplayEventSink = NOOP_GAMEPLAY_EVENT_SINK,
     ) {
         this.characterExpService = new CharacterExpService(repository, characterCatalog, clock);
         this.scoreRewardService = new ScoreRewardService(catalog, rewardService, random);
     }
 
-    start(input: StartQuestRequest): void {
+    start(input: StartQuestRequest): QuestStartResult {
         const player = this.requirePlayer(input.viewerId);
         const quest = this.catalog.findQuest(input.category, input.questId);
         if (!quest || quest.kind !== "battle") throw new InvalidRequestError("Quest doesn't exist.");
 
-        this.repository.transaction(() => {
+        return this.repository.transaction(() => {
+            const state = this.requirePlayerState(player.id);
+            const existing = this.repository.getActiveQuest(player.id);
+            if (existing
+                && existing.playId === input.playId
+                && existing.questId === input.questId
+                && existing.category === input.category) {
+                return { stamina: state.stamina, staminaHealTime: state.staminaHealTime, staminaCost: 0 };
+            }
+            const baseStaminaCost = this.staminaCosts.findBaseCost(input.category, input.questId);
+            const staminaCost = baseStaminaCost === null
+                ? 0
+                : this.economy.resolveStaminaCost(baseStaminaCost);
+            if (state.stamina < staminaCost) {
+                throw new InvalidRequestError("Not enough stamina.");
+            }
+            const stamina = state.stamina - staminaCost;
+            if (staminaCost > 0) this.repository.updateStamina(player.id, stamina);
+
             const activeQuest: ActiveQuest = {
                 playerId: player.id,
                 questId: input.questId,
@@ -75,6 +100,7 @@ export class QuestService {
             if (quest.fixedParty === undefined) {
                 this.repository.updatePartySlot(player.id, input.partyId);
             }
+            return { stamina, staminaHealTime: state.staminaHealTime, staminaCost };
         });
     }
 
@@ -113,7 +139,7 @@ export class QuestService {
             throw new InvalidRequestError("Invalid quest ID provided.");
         }
 
-        return this.repository.transaction(() => {
+        const result = this.repository.transaction(() => {
             const progress = this.repository.getQuestProgress(player.id, input.category, input.questId);
             const alreadyFinished = progress?.finished ?? false;
             if (alreadyFinished) {
@@ -145,6 +171,17 @@ export class QuestService {
                 grant,
             };
         });
+        if (!result.alreadyFinished) {
+            this.gameplayEvents.publish({
+                type: "quest.completed",
+                playerId: player.id,
+                questId: input.questId,
+                category: input.category,
+                clearRank: 0,
+                story: true,
+            });
+        }
+        return result;
     }
 
     finishBattle(input: FinishQuestRequest): BattleFinishResult {
@@ -155,7 +192,7 @@ export class QuestService {
         const quest = this.catalog.findQuest(active.category, active.questId);
         if (!quest || quest.kind !== "battle") throw new InvalidRequestError("Quest doesn't exist.");
 
-        return this.repository.transaction(() => {
+        const result = this.repository.transaction(() => {
             const playerBefore = this.requirePlayerState(player.id);
             const progress = this.repository.getQuestProgress(player.id, active.category, active.questId);
             const clearRank = calculateClearRank(quest, input.elapsedTimeMs);
@@ -236,6 +273,17 @@ export class QuestService {
                 scoreRewards,
             };
         });
+        if (input.isAccomplished) {
+            this.gameplayEvents.publish({
+                type: "quest.completed",
+                playerId: player.id,
+                questId: active.questId,
+                category: active.category,
+                clearRank: result.clearRank,
+                story: false,
+            });
+        }
+        return result;
     }
 
     private requirePlayer(viewerId: number): { id: number } {
