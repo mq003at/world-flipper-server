@@ -8,6 +8,7 @@ import { CdnAssetVersionProvider } from "../content/cdn/asset-version";
 import { JsonAssetManifestRepository } from "../content/cdn/json-asset-manifest.repository";
 import { ModRegistry } from "../content/cdn/mod-registry";
 import { JsonCharacterCatalog } from "../content/master-data/json-character-catalog";
+import { JsonGachaCatalog } from "../content/master-data/json-gacha-catalog";
 import { JsonQuestCatalog } from "../content/master-data/json-quest-catalog";
 import type { Clock } from "../infrastructure/clock/clock";
 import { SystemClock } from "../infrastructure/clock/system-clock";
@@ -18,6 +19,9 @@ import { CryptoTokenGenerator, type TokenGenerator } from "../infrastructure/sec
 import { createAssetRoutes } from "../modules/asset/asset.routes";
 import { AssetService } from "../modules/asset/asset.service";
 import { createGameBootstrapRoutes } from "../modules/bootstrap/game-bootstrap.routes";
+import { createGachaRoutes } from "../modules/gacha/gacha.routes";
+import { SqliteGachaRepository } from "../modules/gacha/gacha.repository.sqlite";
+import { GachaService } from "../modules/gacha/gacha.service";
 import { GameBootstrapService } from "../modules/bootstrap/game-bootstrap.service";
 import { infodeskRoutes } from "../modules/bootstrap/infodesk.routes";
 import { createIdentityRoutes } from "../modules/identity/identity.routes";
@@ -84,6 +88,16 @@ export async function createApp(
     const characterCatalog = new JsonCharacterCatalog(config.masterDataDir);
     const rewardRepository = new SqliteRewardRepository(database);
     const rewardService = new RewardService(rewardRepository, characterCatalog, clock);
+    const gachaCatalog = new JsonGachaCatalog(config.masterDataDir);
+    const gachaRepository = new SqliteGachaRepository(database);
+    const gachaService = new GachaService(
+        identityService,
+        playerService,
+        gachaRepository,
+        gachaCatalog,
+        rewardService,
+        random,
+    );
     const questCatalog = new JsonQuestCatalog(config.masterDataDir);
     const questRepository = new SqliteQuestRepository(database);
     const questService = new QuestService(
@@ -118,6 +132,9 @@ export async function createApp(
     });
     await app.register(createTutorialRoutes(tutorialService, clock), {
         prefix: "/latest/api/index.php/tutorial",
+    });
+    await app.register(createGachaRoutes(gachaService, clock), {
+        prefix: "/latest/api/index.php/gacha",
     });
     await app.register(createSingleBattleQuestRoutes(questService, clock), {
         prefix: "/latest/api/index.php/single_battle_quest",
