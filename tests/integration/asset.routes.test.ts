@@ -36,6 +36,7 @@ test("asset version_info and get_path expose the captured EN Android contract", 
         databasePath: ":memory:",
         cdnDir,
         assetManifestDir: path.resolve(process.cwd(), "content/asset-lists"),
+    masterDataDir: path.resolve(process.cwd(), "content/master"),
         logger: false,
     };
     const database = createDatabase(":memory:");

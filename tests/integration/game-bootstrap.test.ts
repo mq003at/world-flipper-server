@@ -40,6 +40,7 @@ const config: AppConfig = {
     databasePath: ":memory:",
     cdnDir: path.join(tmpdir(), "world-flipper-test-cdn"),
     assetManifestDir: path.resolve(process.cwd(), "content/asset-lists"),
+    masterDataDir: path.resolve(process.cwd(), "content/master"),
     logger: false,
 };
 
