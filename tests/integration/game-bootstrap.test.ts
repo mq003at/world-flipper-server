@@ -39,6 +39,7 @@ const config: AppConfig = {
     port: 8000,
     databasePath: ":memory:",
     cdnDir: path.join(tmpdir(), "world-flipper-test-cdn"),
+    assetManifestDir: path.resolve(process.cwd(), "content/asset-lists"),
     logger: false,
 };
 

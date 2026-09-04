@@ -5,6 +5,7 @@ export interface AppConfig {
     port: number;
     databasePath: string;
     cdnDir: string;
+    assetManifestDir: string;
     logger: boolean;
 }
 
@@ -26,6 +27,10 @@ export function loadConfig(env: NodeJS.ProcessEnv = process.env): AppConfig {
         port: parsePort(env.LISTEN_PORT),
         databasePath: resolveLocalPath(env.DATABASE_PATH, "var/database/world-flipper.db"),
         cdnDir: resolveLocalPath(env.CDN_DIR, ".cdn"),
+        assetManifestDir: resolveLocalPath(
+            env.ASSET_MANIFEST_DIR,
+            "content/asset-lists",
+        ),
         logger: env.LOG_LEVEL !== "silent",
     };
 }

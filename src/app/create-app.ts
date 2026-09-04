@@ -3,11 +3,16 @@ import type { AppConfig } from "./config";
 import { errorHandlerPlugin } from "./plugins/error-handler";
 import { protocolCodecPlugin } from "./plugins/protocol-codec";
 import { createStaticContentPlugin } from "./plugins/static-content";
+import { CdnAvailabilityService } from "../content/cdn/cdn-availability.service";
 import { CdnAssetVersionProvider } from "../content/cdn/asset-version";
+import { JsonAssetManifestRepository } from "../content/cdn/json-asset-manifest.repository";
+import { ModRegistry } from "../content/cdn/mod-registry";
 import type { Clock } from "../infrastructure/clock/clock";
 import { SystemClock } from "../infrastructure/clock/system-clock";
 import { createDatabase, type DatabaseConnection } from "../infrastructure/database/database";
 import { CryptoTokenGenerator, type TokenGenerator } from "../infrastructure/security/token-generator";
+import { createAssetRoutes } from "../modules/asset/asset.routes";
+import { AssetService } from "../modules/asset/asset.service";
 import { createGameBootstrapRoutes } from "../modules/bootstrap/game-bootstrap.routes";
 import { GameBootstrapService } from "../modules/bootstrap/game-bootstrap.service";
 import { infodeskRoutes } from "../modules/bootstrap/infodesk.routes";
@@ -38,7 +43,19 @@ export async function createApp(
     const identityService = new IdentityService(identityRepository, clock, tokens);
     const playerRepository = new SqlitePlayerRepository(database);
     const playerService = new PlayerService(playerRepository, clock);
-    const assetVersionProvider = new CdnAssetVersionProvider(config.cdnDir);
+
+    const modRegistry = new ModRegistry(config.cdnDir);
+    modRegistry.initialize();
+    const assetVersionProvider = new CdnAssetVersionProvider(modRegistry);
+    const assetManifestRepository = new JsonAssetManifestRepository(config.assetManifestDir);
+    const cdnAvailability = new CdnAvailabilityService(config.cdnDir);
+    const assetService = new AssetService(
+        assetManifestRepository,
+        cdnAvailability,
+        assetVersionProvider,
+        modRegistry,
+    );
+
     const gameBootstrapService = new GameBootstrapService(
         identityService,
         playerService,
@@ -58,6 +75,10 @@ export async function createApp(
 
     await app.register(createGameBootstrapRoutes(gameBootstrapService, clock), {
         prefix: "/latest/api/index.php",
+    });
+
+    await app.register(createAssetRoutes(assetService, clock), {
+        prefix: "/latest/api/index.php/asset",
     });
 
     await app.register(createStaticContentPlugin({ cdnDir: config.cdnDir }));
