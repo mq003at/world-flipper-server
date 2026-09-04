@@ -34,6 +34,12 @@ world-flipper-server/
 │   │   │   └── identity.presenter.ts
 │   │   │
 │   │   ├── player/
+│   │   │   ├── player.models.ts
+│   │   │   ├── player.service.ts
+│   │   │   ├── player.repository.ts
+│   │   │   ├── player.repository.sqlite.ts
+│   │   │   ├── player.factory.ts
+│   │   │   └── player.presenter.ts
 │   │   ├── tutorial/
 │   │   ├── character/
 │   │   ├── equipment/

@@ -18,6 +18,7 @@ export interface IdentityRepository {
     updateAccount(accountId: number, changes: Partial<Omit<Account, "id">>): Account;
 
     findSession(token: string): Session | null;
+    findSessionsByType(accountId: number, type: SessionType): Session[];
     insertSession(session: Session): Session;
     deleteSession(token: string): void;
     deleteSessionsByType(accountId: number, type: SessionType): void;

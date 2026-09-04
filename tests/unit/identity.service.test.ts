@@ -47,6 +47,12 @@ class MemoryIdentityRepository implements IdentityRepository {
         return this.sessions.get(token) ?? null;
     }
 
+    findSessionsByType(accountId: number, type: SessionType): Session[] {
+        return [...this.sessions.values()].filter(
+            (session) => session.accountId === accountId && session.type === type,
+        );
+    }
+
     insertSession(session: Session): Session {
         this.sessions.set(session.token, session);
         return session;

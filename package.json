@@ -1,6 +1,6 @@
 {
   "name": "world-flipper-server",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "description": "A clean-room server reimplementation for the global version of World Flipper.",
   "main": "dist/main.js",

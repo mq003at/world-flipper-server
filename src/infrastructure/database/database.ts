@@ -2,6 +2,7 @@ import BetterSqlite3, { type Database as BetterSqlite3Database } from "better-sq
 import { mkdirSync } from "node:fs";
 import path from "node:path";
 import { identityMigration } from "./migrations/001-identity";
+import { playerBootstrapMigration } from "./migrations/002-player-bootstrap";
 
 export type DatabaseConnection = BetterSqlite3Database;
 
@@ -11,7 +12,7 @@ interface Migration {
     up(database: DatabaseConnection): void;
 }
 
-const migrations: Migration[] = [identityMigration];
+const migrations: Migration[] = [identityMigration, playerBootstrapMigration];
 
 function ensureParentDirectory(databasePath: string): void {
     if (databasePath === ":memory:") return;

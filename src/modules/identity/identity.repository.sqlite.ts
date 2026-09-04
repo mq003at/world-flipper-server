@@ -141,6 +141,19 @@ export class SqliteIdentityRepository implements IdentityRepository {
         return row ? mapSession(row) : null;
     }
 
+    findSessionsByType(accountId: number, type: SessionType): Session[] {
+        const rows = this.database
+            .prepare(`
+                SELECT token, account_id, expires, type
+                FROM sessions
+                WHERE account_id = ? AND type = ?
+                ORDER BY rowid
+            `)
+            .all(accountId, type) as SessionRow[];
+
+        return rows.map(mapSession);
+    }
+
     insertSession(session: Session): Session {
         this.database
             .prepare(`

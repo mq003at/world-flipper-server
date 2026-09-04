@@ -3,14 +3,19 @@ import type { AppConfig } from "./config";
 import { errorHandlerPlugin } from "./plugins/error-handler";
 import { protocolCodecPlugin } from "./plugins/protocol-codec";
 import { createStaticContentPlugin } from "./plugins/static-content";
+import { CdnAssetVersionProvider } from "../content/cdn/asset-version";
 import type { Clock } from "../infrastructure/clock/clock";
 import { SystemClock } from "../infrastructure/clock/system-clock";
 import { createDatabase, type DatabaseConnection } from "../infrastructure/database/database";
 import { CryptoTokenGenerator, type TokenGenerator } from "../infrastructure/security/token-generator";
+import { createGameBootstrapRoutes } from "../modules/bootstrap/game-bootstrap.routes";
+import { GameBootstrapService } from "../modules/bootstrap/game-bootstrap.service";
 import { infodeskRoutes } from "../modules/bootstrap/infodesk.routes";
 import { createIdentityRoutes } from "../modules/identity/identity.routes";
 import { SqliteIdentityRepository } from "../modules/identity/identity.repository.sqlite";
 import { IdentityService } from "../modules/identity/identity.service";
+import { SqlitePlayerRepository } from "../modules/player/player.repository.sqlite";
+import { PlayerService } from "../modules/player/player.service";
 
 export interface AppDependencies {
     clock?: Clock;
@@ -31,6 +36,14 @@ export async function createApp(
 
     const identityRepository = new SqliteIdentityRepository(database);
     const identityService = new IdentityService(identityRepository, clock, tokens);
+    const playerRepository = new SqlitePlayerRepository(database);
+    const playerService = new PlayerService(playerRepository, clock);
+    const assetVersionProvider = new CdnAssetVersionProvider(config.cdnDir);
+    const gameBootstrapService = new GameBootstrapService(
+        identityService,
+        playerService,
+        assetVersionProvider,
+    );
 
     await app.register(protocolCodecPlugin);
     await app.register(errorHandlerPlugin);
@@ -41,6 +54,10 @@ export async function createApp(
 
     await app.register(infodeskRoutes, {
         prefix: "/infodesk",
+    });
+
+    await app.register(createGameBootstrapRoutes(gameBootstrapService, clock), {
+        prefix: "/latest/api/index.php",
     });
 
     await app.register(createStaticContentPlugin({ cdnDir: config.cdnDir }));

@@ -83,6 +83,42 @@ export class IdentityService {
         });
     }
 
+    requireZat(token: string): Session {
+        const session = this.getUsableSession(token);
+        if (session === null || session.type !== SessionType.ZAT) {
+            throw new InvalidCredentialsError("Invalid zat provided.");
+        }
+        return session;
+    }
+
+    requireViewer(viewerId: number, accountId: number): Session {
+        const session = this.repository.findSession(String(viewerId));
+        if (
+            session === null ||
+            session.type !== SessionType.VIEWER ||
+            session.accountId !== accountId
+        ) {
+            throw new InvalidCredentialsError("Invalid viewer ID provided.");
+        }
+        return session;
+    }
+
+    getOrCreateViewerSession(accountId: number): Session {
+        const existing = this.repository.findSessionsByType(accountId, SessionType.VIEWER)[0];
+        if (existing) return existing;
+
+        const session: Session = {
+            token: String(this.tokens.createViewerId()),
+            accountId,
+            type: SessionType.VIEWER,
+            // Viewer sessions intentionally do not expire. Keep a timestamp only
+            // because the legacy schema requires one.
+            expires: this.clock.now(),
+        };
+
+        return this.repository.insertSession(session);
+    }
+
     loginWithZat(request: ZatLoginRequest): LoginWithZatResult {
         return this.repository.transaction(() => {
             let session = this.getUsableSession(request.zat);
