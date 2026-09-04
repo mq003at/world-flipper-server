@@ -1,0 +1,26 @@
+[
+  {
+    "id": "season-launch-gift",
+    "sourceKey": "season-1-launch-gift",
+    "title": "Season Launch Gift",
+    "body": "Welcome to the accelerated season.",
+    "rewards": [
+      { "type": 3, "count": 1500 },
+      { "type": 4, "count": 100000 }
+    ],
+    "rewardPolicy": "content-bound",
+    "deliveryWindow": "after-release",
+    "expiresAfterHours": 336
+  },
+  {
+    "id": "event-1-opening",
+    "sourceKey": "event-1-opening",
+    "title": "Event Open",
+    "body": "A new event is now available.",
+    "rewards": [{ "type": 0, "id": 30101, "count": 100 }],
+    "rewardPolicy": "content-bound",
+    "scheduleId": "event:story:1",
+    "deliveryWindow": "active",
+    "expiresAfterHours": 168
+  }
+]

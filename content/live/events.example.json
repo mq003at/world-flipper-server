@@ -1,0 +1,15 @@
+[
+  {
+    "id": "story-event-1",
+    "kind": "story",
+    "eventId": 1,
+    "scheduleId": "event:story:1",
+    "questRanges": [
+      { "category": 10, "minQuestId": 100001000, "maxQuestId": 100001999 }
+    ],
+    "shopBindings": [
+      { "eventType": 10, "eventId": 1 }
+    ],
+    "boxGachaIds": [1]
+  }
+]

@@ -57,6 +57,9 @@ export interface BattleQuestDefinition {
     manaReward: number;
     poolExpReward: number;
     fixedParty?: number;
+    rushEventId?: number;
+    rushEventFolderId?: number;
+    rushEventRound?: number;
 }
 
 export type QuestDefinition = StoryQuestDefinition | BattleQuestDefinition;

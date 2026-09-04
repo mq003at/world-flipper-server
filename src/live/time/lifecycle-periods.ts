@@ -17,6 +17,11 @@ export class LifecyclePeriods {
         return dateKey(shifted);
     }
 
+    monthlyKey(now: Date): string {
+        const shifted = new Date(now.getTime() - this.dailyResetHourUtc * 60 * 60 * 1000);
+        return `month:${shifted.getUTCFullYear()}-${String(shifted.getUTCMonth() + 1).padStart(2, "0")}`;
+    }
+
     weeklyKey(now: Date): string {
         const shifted = new Date(now.getTime() - this.dailyResetHourUtc * 60 * 60 * 1000);
         const day = shifted.getUTCDay();

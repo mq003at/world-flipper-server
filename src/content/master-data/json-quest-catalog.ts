@@ -28,6 +28,9 @@ interface RawQuest {
     manaReward?: number;
     poolExpReward?: number;
     fixedParty?: number;
+    rushEventId?: number;
+    rushEventFolderId?: number;
+    rushEventRound?: number;
 }
 
 type RawQuestMap = Record<string, RawQuest>;
@@ -50,10 +53,20 @@ const QUEST_FILES: Partial<Record<QuestCategory, string>> = {
     [QuestCategory.CHARACTER]: "character_quest.json",
     [QuestCategory.EX]: "ex_quest.json",
     [QuestCategory.DAILY_WEEK_EVENT]: "daily_week_event_quest.json",
+    [QuestCategory.ADVENT_EVENT_SINGLE]: "advent_event_quest.json",
     [QuestCategory.STORY_EVENT_SINGLE]: "story_event_single_quest.json",
     [QuestCategory.DAILY_EXP_MANA_EVENT]: "daily_exp_mana_event_quest.json",
+    [QuestCategory.CHALLENGE_DUNGEON_EVENT]: "challenge_dungeon_event_quest.json",
     [QuestCategory.WORLD_STORY_EVENT]: "world_story_event_quest.json",
     [QuestCategory.WORLD_STORY_EVENT_BOSS_BATTLE]: "world_story_event_boss_battle_quest.json",
+    [QuestCategory.TOWER_DUNGEON_EVENT]: "tower_dungeon_event_quest.json",
+    [QuestCategory.EXPERT_SINGLE_EVENT]: "expert_single_event_quest.json",
+    [QuestCategory.CARNIVAL_EVENT]: "carnival_event_quest.json",
+    [QuestCategory.RANKING_EVENT_SINGLE]: "ranking_event_single_quest.json",
+    [QuestCategory.RAID_EVENT]: "raid_event_quest.json",
+    [QuestCategory.RUSH_EVENT]: "rush_event_quest.json",
+    [QuestCategory.SOLO_TIME_ATTACK_EVENT]: "solo_time_attack_event_quest.json",
+    [QuestCategory.SCORE_ATTACK_EVENT]: "score_attack_event_quest.json",
 };
 
 function readJson<T>(masterDataDir: string, fileName: string): T {
@@ -136,6 +149,9 @@ export class JsonQuestCatalog implements QuestCatalog {
                     manaReward: raw.manaReward ?? 0,
                     poolExpReward: raw.poolExpReward ?? 0,
                     ...(raw.fixedParty === undefined ? {} : { fixedParty: raw.fixedParty }),
+                    ...(raw.rushEventId === undefined ? {} : { rushEventId: raw.rushEventId }),
+                    ...(raw.rushEventFolderId === undefined ? {} : { rushEventFolderId: raw.rushEventFolderId }),
+                    ...(raw.rushEventRound === undefined ? {} : { rushEventRound: raw.rushEventRound }),
                 };
                 questMap.set(id, quest);
             }

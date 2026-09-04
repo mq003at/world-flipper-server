@@ -1,5 +1,7 @@
 import { GachaType, type GachaCatalog, type GachaDefinition } from "../../content/master-data/gacha-catalog";
 import type { RandomSource } from "../../infrastructure/random/random-source";
+import type { Clock } from "../../infrastructure/clock/clock";
+import type { GachaAvailabilityPolicy } from "./gacha-availability.policy";
 import { NOOP_GAMEPLAY_EVENT_SINK, type GameplayEventSink } from "../../live/gameplay-events/gameplay-event-sink";
 import { InvalidRequestError, InvariantError } from "../../shared/errors/application-error";
 import type { IdentityService } from "../identity/identity.service";
@@ -66,6 +68,8 @@ export class GachaService {
         private readonly rewardService: RewardService,
         private readonly random: RandomSource,
         private readonly gameplayEvents: GameplayEventSink = NOOP_GAMEPLAY_EVENT_SINK,
+        private readonly clock?: Clock,
+        private readonly availability?: GachaAvailabilityPolicy,
     ) {}
 
     execute(input: ExecuteGachaRequest): ExecuteGachaResult {
@@ -317,6 +321,7 @@ export class GachaService {
     private requireGacha(gachaId: number): GachaDefinition {
         const gacha = this.catalog.findById(gachaId);
         if (!gacha) throw new InvalidRequestError("Gacha doesn't exist.");
+        if (this.clock && this.availability) this.availability.assertAvailable(gacha, this.clock.now());
         return gacha;
     }
 }

@@ -6,6 +6,8 @@ import {
     type ShopItemDefinition,
 } from "../../content/master-data/shop-catalog";
 import type { Clock } from "../../infrastructure/clock/clock";
+import { LifecyclePeriods } from "../../live/time/lifecycle-periods";
+import type { ShopAvailabilityPolicy } from "./shop-availability.policy";
 import { NOOP_GAMEPLAY_EVENT_SINK, type GameplayEventSink } from "../../live/gameplay-events/gameplay-event-sink";
 import { InvalidRequestError, InvariantError } from "../../shared/errors/application-error";
 import type { IdentityService } from "../identity/identity.service";
@@ -15,20 +17,6 @@ import type { RewardService } from "../reward/reward.service";
 import type { BuyShopItemRequest, GetSalesListRequest } from "./shop.contracts";
 import type { ShopBuyResult, ShopPlayerState, ShopPurchaseState, ShopSale } from "./shop.models";
 import type { ShopRepository } from "./shop.repository";
-
-// Original shop dates are retained in master data, but Phase 3 deliberately does not
-// enforce the 2021-2024 Global schedule. Phase 4 ScheduleService becomes the
-// authoritative availability policy for the compressed seasonal timeline.
-
-function utcDayKey(date: Date): string {
-    return `${date.getUTCFullYear()}-${String(date.getUTCMonth() + 1).padStart(2, "0")}-${String(
-        date.getUTCDate(),
-    ).padStart(2, "0")}`;
-}
-
-function utcMonthKey(date: Date): string {
-    return `${date.getUTCFullYear()}-${String(date.getUTCMonth() + 1).padStart(2, "0")}`;
-}
 
 function requirePositiveInteger(value: number, message: string): number {
     if (!Number.isSafeInteger(value) || value <= 0) throw new InvalidRequestError(message);
@@ -44,6 +32,8 @@ export class ShopService {
         private readonly rewardService: RewardService,
         private readonly clock: Clock,
         private readonly gameplayEvents: GameplayEventSink = NOOP_GAMEPLAY_EVENT_SINK,
+        private readonly events?: ShopAvailabilityPolicy,
+        private readonly lifecycle: LifecyclePeriods = new LifecyclePeriods(0, 1),
     ) {}
 
     getSalesList(input: GetSalesListRequest): ShopSale[] {
@@ -66,6 +56,7 @@ export class ShopService {
         }
         for (const event of input.eventList) {
             for (const eventId of event.eventIds) {
+                if (this.events && !this.events.isEventShopAvailable(event.eventType, eventId, now)) continue;
                 for (const item of this.catalog.getEventItems(event.eventType, eventId)) {
                     candidates.set(`${ShopType.EVENT_ITEM}:${item.id}`, {
                         shopType: ShopType.EVENT_ITEM,
@@ -77,6 +68,7 @@ export class ShopService {
 
         const sales: ShopSale[] = [];
         for (const candidate of candidates.values()) {
+            if (this.events?.isItemAvailable && !this.events.isItemAvailable(candidate.shopType, candidate.item, now)) continue;
             const purchase = this.normalizePurchaseState(
                 player.id,
                 candidate.shopType,
@@ -105,6 +97,15 @@ export class ShopService {
         const item = this.catalog.findItem(input.shopType, input.shopItemId);
         if (!item) throw new InvalidRequestError("Shop item with specified id does not exist.");
         const now = this.clock.now();
+        if (this.events?.isItemAvailable && !this.events.isItemAvailable(input.shopType, item, now)) {
+            throw new InvalidRequestError("Shop item is not active.");
+        }
+        if (input.shopType === ShopType.EVENT_ITEM && this.events) {
+            const reference = this.catalog.findEventReferenceForItem(input.shopItemId);
+            if (!reference || !this.events.isEventShopAvailable(reference.eventType, reference.eventId, now)) {
+                throw new InvalidRequestError("Event shop is not active.");
+            }
+        }
         const result = this.repository.transaction(() => {
             const before = this.repository.getPlayerState(player.id);
             if (!before) throw new InvariantError("No players bound to account.");
@@ -239,8 +240,8 @@ export class ShopService {
         existing: ShopPurchaseState | null,
         now: Date,
     ): ShopPurchaseState {
-        const dayKey = utcDayKey(now);
-        const monthKey = utcMonthKey(now);
+        const dayKey = this.lifecycle.dailyKey(now);
+        const monthKey = this.lifecycle.monthlyKey(now);
         return {
             playerId,
             shopType,

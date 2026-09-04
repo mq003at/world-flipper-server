@@ -107,6 +107,7 @@ export interface BattleFinishResult {
     clearGrant: RewardGrantResult | null;
     sPlusGrant: RewardGrantResult | null;
     scoreRewards: ScoreRewardResult;
+    extension?: import("./quest-finish.extension").QuestFinishExtensionResult | null;
 }
 
 export type QuestProgress = PlayerQuestProgress;

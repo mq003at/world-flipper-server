@@ -1,30 +1,17 @@
 import type {
-    FastifyInstance,
-    FastifyPluginAsync,
-    FastifyRequest,
+  FastifyInstance,
+  FastifyPluginAsync,
+  FastifyRequest,
 } from "fastify";
-import type { ContentTypeParserDoneFunction } from "fastify/types/content-type-parser";
 import {
-    decodeBase64MessagePack,
-    encodeBase64MessagePack,
-    parseJsonBody,
+  decodeBase64MessagePack,
+  encodeBase64MessagePack,
+  parseJsonBody,
 } from "../../protocol/worldflipper/codec";
 
-function parseJson(
-    _request: FastifyRequest,
-    body: string,
-    done: ContentTypeParserDoneFunction,
-): void {
-    try {
-        done(null, parseJsonBody(body));
-    } catch (error) {
-        done(error as Error, undefined);
-    }
-}
-
 function isKakaoJsonCompatibilityPath(request: FastifyRequest): boolean {
-    const url = request.raw.url ?? "";
-    return url.startsWith("/openapi/") || url.startsWith("/infodesk/");
+  const url = request.raw.url ?? "";
+  return url.startsWith("/openapi/") || url.startsWith("/infodesk/");
 }
 
 /**
@@ -33,43 +20,48 @@ function isKakaoJsonCompatibilityPath(request: FastifyRequest): boolean {
  * Fastify plugin would encapsulate the parsers/hooks away from sibling routes.
  */
 export function registerProtocolCodec(fastify: FastifyInstance): void {
-    fastify.addHook("onSend", async (_request, reply, payload) => {
-        const contentType = String(reply.getHeader("content-type") ?? "");
-        if (!contentType.startsWith("application/x-msgpack")) return payload;
+  fastify.addHook("onSend", async (_request, reply, payload) => {
+    const contentType = String(reply.getHeader("content-type") ?? "");
+    if (!contentType.startsWith("application/x-msgpack")) return payload;
 
-        try {
-            return encodeBase64MessagePack(payload);
-        } catch {
-            return payload;
-        }
-    });
+    try {
+      return encodeBase64MessagePack(payload);
+    } catch {
+      return payload;
+    }
+  });
 
-    fastify.addContentTypeParser(
-        "application/x-www-form-urlencoded",
-        { parseAs: "string" },
-        (request, body, done) => {
-            if (isKakaoJsonCompatibilityPath(request)) {
-                parseJson(request, body, done);
-                return;
-            }
+  if (fastify.hasContentTypeParser("application/x-www-form-urlencoded")) {
+    fastify.removeContentTypeParser("application/x-www-form-urlencoded");
+  }
 
-            try {
-                done(null, decodeBase64MessagePack(body));
-            } catch (error) {
-                done(error as Error, undefined);
-            }
-        },
-    );
+  fastify.addContentTypeParser(
+    "application/x-www-form-urlencoded",
+    { parseAs: "string" },
+    async (request: FastifyRequest, body: string) => {
+      if (isKakaoJsonCompatibilityPath(request)) {
+        return parseJsonBody(body);
+      }
 
-    fastify.addContentTypeParser(
-        "application/json",
-        { parseAs: "string" },
-        parseJson,
-    );
+      return decodeBase64MessagePack(body);
+    },
+  );
+
+  if (fastify.hasContentTypeParser("application/json")) {
+    fastify.removeContentTypeParser("application/json");
+  }
+
+  fastify.addContentTypeParser(
+    "application/json",
+    { parseAs: "string" },
+    async (_request: FastifyRequest, body: string) => {
+      return parseJsonBody(body);
+    },
+  );
 }
 
 // Kept for compatibility with any external imports, but createApp intentionally
 // uses registerProtocolCodec(app) so the behavior is global rather than encapsulated.
 export const protocolCodecPlugin: FastifyPluginAsync = async (fastify) => {
-    registerProtocolCodec(fastify);
+  registerProtocolCodec(fastify);
 };

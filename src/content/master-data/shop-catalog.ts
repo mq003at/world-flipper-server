@@ -58,6 +58,7 @@ export interface EventShopReference {
 
 export interface ShopCatalog {
     findItem(shopType: ShopType, itemId: number): ShopItemDefinition | null;
+    findEventReferenceForItem(itemId: number): EventShopReference | null;
     getGenericItems(shopType: ShopType): ShopItemDefinition[];
     getBossCoinItems(categoryId: number): ShopItemDefinition[];
     getEventItems(eventType: number, eventId: number): ShopItemDefinition[];

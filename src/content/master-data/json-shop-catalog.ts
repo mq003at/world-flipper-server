@@ -124,6 +124,11 @@ export class JsonShopCatalog implements ShopCatalog {
         }
     }
 
+    findEventReferenceForItem(itemId: number): EventShopReference | null {
+        const idMap = this.load<Record<string, EventShopReference>>("event_item_shop_id_map.json");
+        return idMap[String(itemId)] ?? null;
+    }
+
     getGenericItems(shopType: ShopType): ShopItemDefinition[] {
         const file = this.genericFile(shopType);
         if (!file) return [];

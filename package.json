@@ -9,7 +9,9 @@
     "build": "tsc -p tsconfig.json",
     "start": "node --env-file=.env dist/main.js",
     "typecheck": "tsc -p tsconfig.json --noEmit",
-    "test": "tsx --test tests/**/*.test.ts"
+    "test": "tsx --test tests/**/*.test.ts",
+    "player:export": "tsx tools/player-save.ts export",
+    "player:import": "tsx tools/player-save.ts import"
   },
   "engines": {
     "node": ">=20.0.0"

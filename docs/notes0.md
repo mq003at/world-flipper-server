@@ -97,3 +97,33 @@ Admin UI  ────────── separate adapter
 ----
 
 Cần test mitproxy để check xem có mua beads qua GGPlay Billing không
+
+
+-----
+4A — Server Clock
+      +
+      Schedule foundation
+
+4B — Mission system
+      +
+      gameplay event hooks
+
+4C — Mail system
+
+4D — Event framework
+      +
+      simple/story events
+      +
+      box gacha
+
+4E — Complex events
+      rush / ranking / raid / etc.
+
+4F — Daily/weekly lifecycle
+      +
+      schedule integration toàn hệ thống
+      +
+      gacha/shop activation
+-----
+
+Sau commit này, về architecture thì Phase 4 đã đóng. Phần tiếp theo không còn là “live-service engine” nữa mà là content operations/compiler: lấy lịch Global thật → compress vào 90 ngày → populate schedule/missions/mail/events. 

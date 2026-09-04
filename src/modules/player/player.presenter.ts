@@ -5,6 +5,7 @@ import type { PlayerPartyGroup, PlayerSnapshot } from "./player.models";
 export interface PresentPlayerOptions {
     viewerId: number;
     availableAssetVersion: string;
+    mailArrived?: boolean;
 }
 
 function presentPartyGroups(groups: Record<string, PlayerPartyGroup>): Record<string, unknown> {
@@ -223,7 +224,7 @@ export function presentPlayerSnapshot(
             quest_id: quest.questId,
             odds_id: quest.oddsId,
         })),
-        mail_arrived: false,
+        mail_arrived: options.mailArrived ?? false,
         user_periodic_reward_point_list: snapshot.periodicRewardPointList,
         all_active_mission_list: snapshot.allActiveMissionList,
         cleared_collect_item_event_mission_list: [],

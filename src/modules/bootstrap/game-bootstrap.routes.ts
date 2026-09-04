@@ -62,6 +62,7 @@ export function createGameBootstrapRoutes(
                 data: presentPlayerSnapshot(result.snapshot, {
                     viewerId: result.viewerId,
                     availableAssetVersion: result.availableAssetVersion,
+                    mailArrived: result.mailArrived,
                 }),
             };
         });

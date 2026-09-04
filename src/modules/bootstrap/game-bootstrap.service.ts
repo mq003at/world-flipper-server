@@ -12,6 +12,11 @@ export interface LoadResult {
     viewerId: number;
     availableAssetVersion: string;
     snapshot: PlayerSnapshot;
+    mailArrived: boolean;
+}
+
+export interface MailArrivalReader {
+    hasArrivedForPlayer(playerId: number): boolean;
 }
 
 export class GameBootstrapService {
@@ -20,6 +25,7 @@ export class GameBootstrapService {
         private readonly players: PlayerService,
         private readonly assetVersions: AssetVersionProvider,
         private readonly gameplayEvents: GameplayEventSink = NOOP_GAMEPLAY_EVENT_SINK,
+        private readonly mailArrival?: MailArrivalReader,
     ) {}
 
     signup(zat: string): SignupResult {
@@ -42,6 +48,7 @@ export class GameBootstrapService {
             viewerId,
             availableAssetVersion: this.assetVersions.getAvailableAssetVersion(),
             snapshot,
+            mailArrived: this.mailArrival?.hasArrivedForPlayer(snapshot.player.id) ?? false,
         };
     }
 }

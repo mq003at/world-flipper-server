@@ -25,6 +25,27 @@ export class ScheduleService {
             && now.getTime() < entry.activeUntil.getTime();
     }
 
+    /** True after the content release instant, even after its active window closes. */
+    isReleased(id: string, now: Date): boolean {
+        const entry = this.compiled.get(id);
+        return entry !== undefined && now.getTime() >= entry.releaseAt.getTime();
+    }
+
+    /** Active window plus the configured post-close grace period. */
+    isWithinGrace(id: string, now: Date): boolean {
+        const entry = this.compiled.get(id);
+        return entry !== undefined
+            && now.getTime() >= entry.releaseAt.getTime()
+            && now.getTime() < entry.graceUntil.getTime();
+    }
+
+
+    getForContent(kind: ScheduleKind, contentId: string): CompiledScheduleEntry[] {
+        return [...this.compiled.values()].filter(
+            (entry) => entry.kind === kind && entry.contentId === contentId,
+        );
+    }
+
     getActive(kind: ScheduleKind, now: Date): CompiledScheduleEntry[] {
         return [...this.compiled.values()].filter(
             (entry) => entry.kind === kind

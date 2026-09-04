@@ -47,7 +47,8 @@ export function presentStoryFinish(result: StoryFinishResult): unknown {
 
 export function presentBattleFinish(result: BattleFinishResult): Record<string, unknown> {
     const scoreGrant = result.scoreRewards.grant;
-    const grants = [result.clearGrant, result.sPlusGrant, scoreGrant];
+    const extensionGrant = result.extension?.grant ?? null;
+    const grants = [result.clearGrant, result.sPlusGrant, scoreGrant, extensionGrant];
     return {
         user_info: {
             free_mana: result.player.freeMana,
@@ -86,6 +87,6 @@ export function presentBattleFinish(result: BattleFinishResult): Record<string, 
         is_multi: "single",
         quest_name: "",
         item_list: mergeItems(...grants),
-        rush_event: null,
+        rush_event: result.extension?.rushEvent ?? null,
     };
 }

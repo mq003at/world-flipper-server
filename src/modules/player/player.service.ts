@@ -1,5 +1,6 @@
 import type { Clock } from "../../infrastructure/clock/clock";
 import { LifecyclePeriods } from "../../live/time/lifecycle-periods";
+import type { PlayerLifecycleCoordinator } from "../../live/lifecycle/player-lifecycle.service";
 import { InvariantError } from "../../shared/errors/application-error";
 import { PlayerFactory } from "./player.factory";
 import type { Player, PlayerSnapshot } from "./player.models";
@@ -14,6 +15,7 @@ export class PlayerService {
         private readonly repository: PlayerRepository,
         private readonly clock: Clock,
         private readonly lifecycle: LifecyclePeriods = new LifecyclePeriods(0, 1),
+        private readonly lifecycleCoordinator?: PlayerLifecycleCoordinator,
     ) {
         this.factory = new PlayerFactory(clock);
     }
@@ -28,6 +30,7 @@ export class PlayerService {
     requireForAccount(accountId: number): Player {
         const player = this.repository.findByAccountId(accountId);
         if (!player) throw new InvariantError("No player bound to account.");
+        this.lifecycleCoordinator?.ensureCurrent(player.id, this.clock.now());
         return player;
     }
 
@@ -36,6 +39,7 @@ export class PlayerService {
         if (!player) throw new InvariantError("No players bound to account.");
 
         const now = this.clock.now();
+        this.lifecycleCoordinator?.ensureCurrent(player.id, now);
         this.applyLoginMaintenance(player, now);
 
         const snapshot = this.repository.loadSnapshot(player.id);
@@ -44,19 +48,22 @@ export class PlayerService {
     }
 
     private applyLoginMaintenance(player: Player, now: Date): void {
-        const dailyReset = this.lifecycle.dailyKey(now) !== this.lifecycle.dailyKey(player.lastLoginTime);
-
-        this.repository.updateLoginState(player.id, {
-            lastLoginTime: now,
-            ...(dailyReset
-                ? {
-                      boostPoint: 3,
-                      bossBoostPoint: 3,
-                      resetDailyGacha: true,
-                      resetGachaCampaigns: true,
-                  }
-                : {}),
-        });
+        if (this.lifecycleCoordinator) {
+            this.repository.updateLoginState(player.id, { lastLoginTime: now });
+        } else {
+            const dailyReset = this.lifecycle.dailyKey(now) !== this.lifecycle.dailyKey(player.lastLoginTime);
+            this.repository.updateLoginState(player.id, {
+                lastLoginTime: now,
+                ...(dailyReset
+                    ? {
+                          boostPoint: 3,
+                          bossBoostPoint: 3,
+                          resetDailyGacha: true,
+                          resetGachaCampaigns: true,
+                      }
+                    : {}),
+            });
+        }
 
         const elapsedSeconds = Math.max(
             0,

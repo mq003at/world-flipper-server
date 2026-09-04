@@ -29,6 +29,8 @@ import type {
 import type { QuestRepository } from "./quest.repository";
 import { ScoreRewardService } from "./score-reward.service";
 import type { RandomSource } from "../../infrastructure/random/random-source";
+import type { QuestAvailabilityPolicy } from "./quest-availability.policy";
+import { NOOP_QUEST_FINISH_EXTENSION, type QuestFinishExtension } from "./quest-finish.extension";
 
 const CONTINUE_VMONEY_COST = 50;
 
@@ -56,6 +58,8 @@ export class QuestService {
         private readonly staminaCosts: QuestStaminaCostCatalog,
         private readonly economy: SeasonEconomyPolicy,
         private readonly gameplayEvents: GameplayEventSink = NOOP_GAMEPLAY_EVENT_SINK,
+        private readonly events?: QuestAvailabilityPolicy,
+        private readonly finishExtension: QuestFinishExtension = NOOP_QUEST_FINISH_EXTENSION,
     ) {
         this.characterExpService = new CharacterExpService(repository, characterCatalog, clock);
         this.scoreRewardService = new ScoreRewardService(catalog, rewardService, random);
@@ -63,6 +67,7 @@ export class QuestService {
 
     start(input: StartQuestRequest): QuestStartResult {
         const player = this.requirePlayer(input.viewerId);
+        this.events?.assertQuestStartAvailable(input.category, input.questId, this.clock.now());
         const quest = this.catalog.findQuest(input.category, input.questId);
         if (!quest || quest.kind !== "battle") throw new InvalidRequestError("Quest doesn't exist.");
 
@@ -134,6 +139,7 @@ export class QuestService {
 
     finishStory(input: StoryFinishRequest): StoryFinishResult {
         const player = this.requirePlayer(input.viewerId);
+        this.events?.assertQuestStartAvailable(input.category, input.questId, this.clock.now());
         const quest = this.catalog.findQuest(input.category, input.questId);
         if (!quest || quest.kind !== "story") {
             throw new InvalidRequestError("Invalid quest ID provided.");
@@ -188,6 +194,7 @@ export class QuestService {
         const player = this.requirePlayer(input.viewerId);
         const active = this.repository.getActiveQuest(player.id);
         if (!active) throw new InvalidRequestError("No active quest to finish.");
+        this.events?.assertQuestFinishAvailable(active.category, active.questId, this.clock.now());
 
         const quest = this.catalog.findQuest(active.category, active.questId);
         if (!quest || quest.kind !== "battle") throw new InvalidRequestError("Quest doesn't exist.");
@@ -253,6 +260,17 @@ export class QuestService {
                 quest.fixedParty !== undefined,
             );
 
+            const extension = this.finishExtension.afterCoreFinish({
+                playerId: player.id,
+                viewerId: input.viewerId,
+                category: active.category,
+                questId: active.questId,
+                quest,
+                elapsedTimeMs: input.elapsedTimeMs,
+                isAccomplished: input.isAccomplished,
+                statistics: input.statistics,
+            });
+
             // Active battle survives server restarts during play, but finishing it consumes it.
             this.repository.deleteActiveQuest(player.id);
             const playerAfter = this.requirePlayerState(player.id);
@@ -271,6 +289,7 @@ export class QuestService {
                 clearGrant,
                 sPlusGrant,
                 scoreRewards,
+                extension,
             };
         });
         if (input.isAccomplished) {

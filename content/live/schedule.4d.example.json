@@ -1,0 +1,19 @@
+[
+  {
+    "id": "event:story:1",
+    "kind": "event",
+    "contentId": "story-event-1",
+    "sourceStartAt": "2021-09-08T00:00:00Z",
+    "sourceEndAt": "2021-09-22T00:00:00Z",
+    "minimumPlayableDurationHours": 120,
+    "graceHours": 24
+  },
+  {
+    "id": "mail:event:story:1",
+    "kind": "mail",
+    "contentId": "event-1-opening-mail",
+    "sourceStartAt": "2021-09-08T00:00:00Z",
+    "sourceEndAt": "2021-09-22T00:00:00Z",
+    "minimumPlayableDurationHours": 120
+  }
+]

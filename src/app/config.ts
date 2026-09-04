@@ -9,6 +9,7 @@ export interface AppConfig {
     masterDataDir: string;
     liveContentDir?: string;
     seasonStartAtOverride?: string;
+    playerDataImportEnabled?: boolean;
     logger: boolean;
 }
 
@@ -37,6 +38,7 @@ export function loadConfig(env: NodeJS.ProcessEnv = process.env): AppConfig {
         masterDataDir: resolveLocalPath(env.MASTER_DATA_DIR, "content/master"),
         liveContentDir: resolveLocalPath(env.LIVE_CONTENT_DIR, "content/live"),
         ...(env.SEASON_START_AT?.trim() ? { seasonStartAtOverride: env.SEASON_START_AT.trim() } : {}),
+        playerDataImportEnabled: env.PLAYER_DATA_IMPORT_ENABLED?.trim().toLowerCase() === "true",
         logger: env.LOG_LEVEL !== "silent",
     };
 }
