@@ -1,28 +1,12 @@
-# ============================================================
 # Dependencies
-# ============================================================
 node_modules/
 
-# ============================================================
 # Build output
-# ============================================================
-out/
 dist/
-build/
+*.tsbuildinfo
 
-# Generated Tailwind output
-web/public/tailwind.css
-
-# ============================================================
-# World Flipper CDN
-# Large copyrighted/runtime game assets.
-# Never commit these.
-# ============================================================
-.cdn/
-
-# ============================================================
-# Runtime database / player saves
-# ============================================================
+# Runtime state
+var/
 .database/
 *.db
 *.db-shm
@@ -30,58 +14,29 @@ web/public/tailwind.css
 *.sqlite
 *.sqlite3
 
-# ============================================================
-# mitmproxy
-# Binary installation + generated certificates/private keys
-# ============================================================
-.mitmproxy/
-.mitmproxy-data/
+# Game CDN / copyrighted runtime assets
+.cdn/
 
-# ============================================================
-# Environment / local configuration
-# ============================================================
+# Local proxy binaries/certificates
+.mitmproxy/
+
+# Environment
 .env
 .env.local
 .env.*.local
-
-# Keep example configuration
 !.env.example
 
-# ============================================================
-# Logs / temporary files
-# ============================================================
+# Logs / coverage / temporary files
 *.log
 logs/
+coverage/
+.cache/
 tmp/
 temp/
-.cache/
 
-# ============================================================
-# Test coverage
-# ============================================================
-coverage/
-.nyc_output/
-
-# ============================================================
-# OS
-# ============================================================
+# IDE / OS
+.vscode/
+.idea/
 .DS_Store
 Thumbs.db
 desktop.ini
-
-# ============================================================
-# IDE / Editor
-# ============================================================
-.vscode/
-.idea/
-*.suo
-*.user
-*.userosscache
-*.sln.docstates
-
-# ============================================================
-# Misc
-# ============================================================
-*.swp
-*.swo
-*.bak

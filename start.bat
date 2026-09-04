@@ -62,7 +62,7 @@ if not "%CANRUN%" == "true" (
 )
 
 :: Start Node.js
-start cmd.exe /k "cd /d "%BASEPATH%" && npm install && npx tsc && npm run dev"
+start cmd.exe /k "cd /d "%BASEPATH%" && npx tsc && npm run dev"
 
 :: Start MITMproxy
 start cmd.exe /k "%MITMPROXYCOMMAND%"
