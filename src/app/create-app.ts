@@ -10,6 +10,7 @@ import { ModRegistry } from "../content/cdn/mod-registry";
 import { JsonCharacterCatalog } from "../content/master-data/json-character-catalog";
 import { JsonGachaCatalog } from "../content/master-data/json-gacha-catalog";
 import { JsonQuestCatalog } from "../content/master-data/json-quest-catalog";
+import { JsonShopCatalog } from "../content/master-data/json-shop-catalog";
 import type { Clock } from "../infrastructure/clock/clock";
 import { SystemClock } from "../infrastructure/clock/system-clock";
 import { createDatabase, type DatabaseConnection } from "../infrastructure/database/database";
@@ -29,8 +30,14 @@ import { SqliteIdentityRepository } from "../modules/identity/identity.repositor
 import { IdentityService } from "../modules/identity/identity.service";
 import { SqlitePlayerRepository } from "../modules/player/player.repository.sqlite";
 import { PlayerService } from "../modules/player/player.service";
+import { SqlitePaymentRepository } from "../modules/payment/payment.repository.sqlite";
+import { createPaymentRoutes } from "../modules/payment/payment.routes";
+import { PaymentService } from "../modules/payment/payment.service";
 import { SqliteRewardRepository } from "../modules/reward/reward.repository.sqlite";
 import { RewardService } from "../modules/reward/reward.service";
+import { SqliteShopRepository } from "../modules/shop/shop.repository.sqlite";
+import { createShopRoutes } from "../modules/shop/shop.routes";
+import { ShopService } from "../modules/shop/shop.service";
 import { SqliteQuestRepository } from "../modules/quest/quest.repository.sqlite";
 import { QuestService } from "../modules/quest/quest.service";
 import { createSingleBattleQuestRoutes } from "../modules/quest/single-battle-quest.routes";
@@ -110,6 +117,23 @@ export async function createApp(
         clock,
         random,
     );
+    const shopCatalog = new JsonShopCatalog(config.masterDataDir);
+    const shopRepository = new SqliteShopRepository(database);
+    const shopService = new ShopService(
+        identityService,
+        playerService,
+        shopRepository,
+        shopCatalog,
+        rewardService,
+        clock,
+    );
+    const paymentRepository = new SqlitePaymentRepository(database);
+    const paymentService = new PaymentService(
+        identityService,
+        playerService,
+        paymentRepository,
+        clock,
+    );
 
     const gameBootstrapService = new GameBootstrapService(
         identityService,
@@ -141,6 +165,12 @@ export async function createApp(
     });
     await app.register(createStoryQuestRoutes(questService, clock), {
         prefix: "/latest/api/index.php/story_quest",
+    });
+    await app.register(createShopRoutes(shopService, clock), {
+        prefix: "/latest/api/index.php/shop",
+    });
+    await app.register(createPaymentRoutes(paymentService, clock), {
+        prefix: "/latest/api/index.php/payment",
     });
     await app.register(createStaticContentPlugin({ cdnDir: config.cdnDir }));
 

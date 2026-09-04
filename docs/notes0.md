@@ -92,3 +92,8 @@ Binary CDN ───────── separate delivery plane
 Admin UI  ────────── separate adapter
 
 Đó là architecture tôi nghĩ đủ sạch để chúng ta có thể kéo project từ “local emulator” sang private live-service server sau này mà không phải đập đi xây lại lần nữa.
+
+
+----
+
+Cần test mitproxy để check xem có mua beads qua GGPlay Billing không

@@ -4,6 +4,7 @@ import path from "node:path";
 import { identityMigration } from "./migrations/001-identity";
 import { playerBootstrapMigration } from "./migrations/002-player-bootstrap";
 import { questProgressionMigration } from "./migrations/003-quest-progression";
+import { shopPaymentMigration } from "./migrations/004-shop-payment";
 
 export type DatabaseConnection = BetterSqlite3Database;
 
@@ -17,6 +18,7 @@ const migrations: Migration[] = [
     identityMigration,
     playerBootstrapMigration,
     questProgressionMigration,
+    shopPaymentMigration,
 ];
 
 function ensureParentDirectory(databasePath: string): void {
