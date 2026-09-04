@@ -6,6 +6,7 @@ export interface AppConfig {
     databasePath: string;
     cdnDir: string;
     assetManifestDir: string;
+    masterDataDir: string;
     logger: boolean;
 }
 
@@ -31,6 +32,7 @@ export function loadConfig(env: NodeJS.ProcessEnv = process.env): AppConfig {
             env.ASSET_MANIFEST_DIR,
             "content/asset-lists",
         ),
+        masterDataDir: resolveLocalPath(env.MASTER_DATA_DIR, "content/master"),
         logger: env.LOG_LEVEL !== "silent",
     };
 }
