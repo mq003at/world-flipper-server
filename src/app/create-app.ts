@@ -92,6 +92,7 @@ import { DEFAULT_TUTORIAL_CONFIG } from "../modules/tutorial/tutorial.config";
 import { SqliteTutorialRepository } from "../modules/tutorial/tutorial.repository.sqlite";
 import { createTutorialRoutes } from "../modules/tutorial/tutorial.routes";
 import { TutorialService } from "../modules/tutorial/tutorial.service";
+import { createReproduceRoutes } from "../protocol/worldflipper/reproduce.routes";
 
 export interface AppDependencies {
     clock?: Clock;
@@ -145,14 +146,6 @@ export async function createApp(
     );
     gameplayEvents.subscribe((event) => eventService.handleGameplayEvent(event));
     const tutorialRepository = new SqliteTutorialRepository(database);
-    const tutorialService = new TutorialService(
-        identityService,
-        playerService,
-        tutorialRepository,
-        clock,
-        random,
-        DEFAULT_TUTORIAL_CONFIG,
-    );
 
     const modRegistry = new ModRegistry(config.cdnDir);
     modRegistry.initialize();
@@ -196,6 +189,16 @@ export async function createApp(
     );
     gameplayEvents.subscribe((event) => missionService.handleGameplayEvent(event));
     const gachaCatalog = new JsonGachaCatalog(config.masterDataDir);
+    const tutorialService = new TutorialService(
+        identityService,
+        playerService,
+        tutorialRepository,
+        gachaCatalog,
+        rewardService,
+        clock,
+        random,
+        DEFAULT_TUTORIAL_CONFIG,
+    );
     const gachaRepository = new SqliteGachaRepository(database);
     const gachaAvailability = new SeasonalGachaAvailabilityPolicy(seasonalWindows, schedule);
     const gachaService = new GachaService(
@@ -357,6 +360,9 @@ export async function createApp(
     });
     await app.register(createPaymentRoutes(paymentService, clock), {
         prefix: "/latest/api/index.php/payment",
+    });
+    await app.register(createReproduceRoutes(clock), {
+        prefix: "/latest/api/index.php/reproduce",
     });
     await app.register(createStaticContentPlugin({ cdnDir: config.cdnDir }));
 

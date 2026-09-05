@@ -1,8 +1,11 @@
+import type { GachaCatalog, GachaDefinition } from "../../content/master-data/gacha-catalog";
 import type { Clock } from "../../infrastructure/clock/clock";
 import type { RandomSource } from "../../infrastructure/random/random-source";
 import { InvalidRequestError } from "../../shared/errors/application-error";
 import type { IdentityService } from "../identity/identity.service";
 import type { PlayerService } from "../player/player.service";
+import { RewardType } from "../reward/reward.models";
+import type { RewardService } from "../reward/reward.service";
 import type { TutorialConfig } from "./tutorial.config";
 import type {
     FinishTutorialTriggerRequest,
@@ -16,6 +19,8 @@ export class TutorialService {
         private readonly identity: IdentityService,
         private readonly players: PlayerService,
         private readonly repository: TutorialRepository,
+        private readonly gachaCatalog: GachaCatalog,
+        private readonly rewardService: RewardService,
         private readonly clock: Clock,
         private readonly random: RandomSource,
         private readonly config: TutorialConfig,
@@ -45,6 +50,7 @@ export class TutorialService {
         }
 
         const responseStep = storedNextStep + (request.skip ? 11 : 0);
+        const tutorialGacha = this.resolveTutorialGacha(responseStep, request.gachaId);
         const now = this.clock.now();
 
         return this.repository.transaction(() => {
@@ -54,21 +60,36 @@ export class TutorialService {
                 ...(request.name === undefined ? {} : { name: request.name }),
             });
 
-            if (responseStep === 15 && request.gachaId !== undefined) {
+            if (tutorialGacha !== null && request.gachaId !== undefined) {
                 const pool = this.config.tutorialGachaCharacterIds;
                 const selectedCharacterId = pool[this.random.nextInt(0, pool.length)];
                 if (selectedCharacterId === undefined) {
                     throw new InvalidRequestError("Tutorial gacha pool is empty.");
                 }
 
-                const granted = this.repository.grantCharacter(
-                    player.id,
-                    selectedCharacterId,
-                    now,
-                    2,
-                );
-                const freeVmoney = player.freeVmoney - this.config.tutorialGachaSingleCost;
+                const grant = this.rewardService.grantWithinTransaction(player.id, [
+                    {
+                        type: RewardType.CHARACTER,
+                        id: selectedCharacterId,
+                    },
+                ]);
+                const granted = grant.characters[0];
+                if (!granted) {
+                    throw new InvalidRequestError("Tutorial gacha character could not be granted.");
+                }
+
+                // Legacy tutorial gacha consumes the single-pull cost from the
+                // gacha definition supplied by the client. Do not hard-code 150:
+                // different regional/master snapshots can carry a different cost.
+                const freeVmoney = player.freeVmoney - tutorialGacha.singleCost;
                 this.repository.setFreeVmoney(player.id, freeVmoney);
+
+                const itemList: Record<string, number> = {};
+                if (granted.duplicateItem !== undefined) {
+                    // Legacy rewardPlayerGachaDrawResultSync returns the amount
+                    // awarded by this draw, not the player's final item balance.
+                    itemList[String(granted.duplicateItem.id)] = granted.duplicateItem.count;
+                }
 
                 return {
                     kind: "gacha",
@@ -78,6 +99,7 @@ export class TutorialService {
                     gachaId: request.gachaId,
                     freeVmoney,
                     granted,
+                    itemList,
                     movieId: this.config.tutorialGachaMovieId,
                     seed: this.config.tutorialGachaSeed,
                 };
@@ -110,5 +132,18 @@ export class TutorialService {
                 now,
             };
         });
+    }
+
+    private resolveTutorialGacha(
+        responseStep: number,
+        gachaId: number | undefined,
+    ): GachaDefinition | null {
+        if (responseStep !== 15 || gachaId === undefined) return null;
+
+        const gacha = this.gachaCatalog.findById(gachaId);
+        if (!gacha) {
+            throw new InvalidRequestError(`Gacha with id '${gachaId}' does not exist.`);
+        }
+        return gacha;
     }
 }

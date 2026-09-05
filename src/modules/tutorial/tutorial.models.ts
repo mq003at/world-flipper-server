@@ -1,3 +1,4 @@
+import type { GrantedCharacter } from "../reward/reward.models";
 import type { GrantedTutorialCharacter } from "./tutorial.repository";
 
 export interface TutorialBaseResult {
@@ -14,7 +15,8 @@ export interface TutorialGachaResult {
     now: Date;
     gachaId: number;
     freeVmoney: number;
-    granted: GrantedTutorialCharacter;
+    granted: GrantedCharacter;
+    itemList: Record<string, number>;
     movieId: string;
     seed: number;
 }
