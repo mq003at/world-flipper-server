@@ -90,6 +90,31 @@ function mapPlayer(raw: RawPlayerRow): Player {
 export class SqliteTutorialRepository implements TutorialRepository {
     constructor(private readonly database: DatabaseConnection) {}
 
+    getUpdateResult(playerId: number, completedStep: number): string | null {
+        const row = this.database
+            .prepare(`
+                SELECT result_json
+                FROM tutorial_update_results
+                WHERE player_id = ? AND completed_step = ?
+            `)
+            .get(playerId, completedStep) as { result_json: string } | undefined;
+        return row?.result_json ?? null;
+    }
+
+    saveUpdateResult(
+        playerId: number,
+        completedStep: number,
+        resultJson: string,
+        createdAt: Date,
+    ): void {
+        this.database.prepare(`
+            INSERT INTO tutorial_update_results (
+                player_id, completed_step, result_json, created_at
+            ) VALUES (?, ?, ?, ?)
+            ON CONFLICT(player_id, completed_step) DO NOTHING
+        `).run(playerId, completedStep, resultJson, createdAt.toISOString());
+    }
+
     getTriggeredTutorialIds(playerId: number): number[] {
         const rows = this.database
             .prepare("SELECT id FROM players_triggered_tutorials WHERE player_id = ? ORDER BY id")

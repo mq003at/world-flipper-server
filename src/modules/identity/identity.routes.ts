@@ -1,3 +1,4 @@
+import { randomUUID } from "node:crypto";
 import type { FastifyPluginAsync, FastifyRequest } from "fastify";
 import type { Clock } from "../../infrastructure/clock/clock";
 import {
@@ -21,6 +22,25 @@ function parsePlayerIdHeader(request: FastifyRequest): number | undefined {
     const parsed = Number.parseInt(first, 10);
     if (Number.isNaN(parsed)) throw new InvalidRequestError("Invalid playerId provided.");
     return parsed;
+}
+
+interface StartingPopupsRequest {
+    appId?: string | number;
+    playerId?: string | number;
+}
+
+function presentStartingPopups(body: unknown): {
+    promotions: never[];
+    appId: string;
+    playerId: string;
+} {
+    const request = (body ?? {}) as StartingPopupsRequest;
+
+    return {
+        promotions: [],
+        appId: request.appId === undefined ? "" : String(request.appId),
+        playerId: request.playerId === undefined ? "" : String(request.playerId),
+    };
 }
 
 export function createIdentityRoutes(
@@ -48,8 +68,26 @@ export function createIdentityRoutes(
 
         fastify.post("/v3/player/heartbeat", async () => ({}));
 
-        // Seen in current Global client traffic; legacy Starpoint did not implement it.
-        fastify.post("/v3/promotion/checkUrlPromotion", async () => ({}));
+        // Kakao SDK compatibility endpoints captured from the Global client.
+        fastify.post("/v3/log/writeSdkBasicLog", async () => ({
+            logId: randomUUID(),
+        }));
+
+        fastify.post("/v3/log/writeRoundLog", async () => ({
+            logId: randomUUID(),
+        }));
+
+        fastify.post("/v3/promotion/checkUrlPromotion", async () => ({
+            result: "NO_PROMOTION",
+        }));
+
+        fastify.post("/v3/promotion/getStartingPopups", async (request) =>
+            presentStartingPopups(request.body),
+        );
+
+        fastify.post("/v3/promotion/popup/getList", async () => ({
+            popups: [],
+        }));
 
         fastify.post("/v4/auth/loginDevice", async (request) => {
             const input = parseAuthLoginDeviceRequest(request.body);

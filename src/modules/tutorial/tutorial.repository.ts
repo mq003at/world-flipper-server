@@ -13,6 +13,13 @@ export interface GrantedTutorialCharacter {
 }
 
 export interface TutorialRepository {
+    getUpdateResult(playerId: number, completedStep: number): string | null;
+    saveUpdateResult(
+        playerId: number,
+        completedStep: number,
+        resultJson: string,
+        createdAt: Date,
+    ): void;
     getTriggeredTutorialIds(playerId: number): number[];
     addTriggeredTutorialIds(playerId: number, tutorialIds: number[]): void;
     updateProgress(playerId: number, update: TutorialProgressUpdate): Player;

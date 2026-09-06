@@ -88,6 +88,15 @@ import { SqliteQuestRepository } from "../modules/quest/quest.repository.sqlite"
 import { QuestService } from "../modules/quest/quest.service";
 import { createSingleBattleQuestRoutes } from "../modules/quest/single-battle-quest.routes";
 import { createStoryQuestRoutes } from "../modules/quest/story-quest.routes";
+import { createAttentionRoutes } from "../modules/compatibility/attention.routes";
+import { createEncyclopediaRoutes } from "../modules/compatibility/encyclopedia.routes";
+import {
+    createOptionRoutes,
+    createPartyGroupRoutes,
+    createPartyRoutes,
+} from "../modules/player-customization/player-customization.routes";
+import { SqlitePlayerCustomizationRepository } from "../modules/player-customization/player-customization.repository.sqlite";
+import { PlayerCustomizationService } from "../modules/player-customization/player-customization.service";
 import { DEFAULT_TUTORIAL_CONFIG } from "../modules/tutorial/tutorial.config";
 import { SqliteTutorialRepository } from "../modules/tutorial/tutorial.repository.sqlite";
 import { createTutorialRoutes } from "../modules/tutorial/tutorial.routes";
@@ -134,6 +143,12 @@ export async function createApp(
     const playerLifecycleRepository = new SqlitePlayerLifecycleRepository(database);
     const playerLifecycleService = new PlayerLifecycleService(playerLifecycleRepository, lifecycle, clock);
     const playerService = new PlayerService(playerRepository, clock, lifecycle, playerLifecycleService);
+    const playerCustomizationRepository = new SqlitePlayerCustomizationRepository(database);
+    const playerCustomizationService = new PlayerCustomizationService(
+        identityService,
+        playerService,
+        playerCustomizationRepository,
+    );
     const playerDataRepository = new SqlitePlayerDataRepository(database);
     const playerDataService = new PlayerDataService(playerDataRepository, clock);
     const eventRepository = new SqliteEventRepository(database);
@@ -322,6 +337,21 @@ export async function createApp(
     await app.register(createTutorialRoutes(tutorialService, clock), {
         prefix: "/latest/api/index.php/tutorial",
     });
+    await app.register(createOptionRoutes(playerCustomizationService, clock), {
+        prefix: "/latest/api/index.php/option",
+    });
+    await app.register(createPartyRoutes(playerCustomizationService, clock), {
+        prefix: "/latest/api/index.php/party",
+    });
+    await app.register(createPartyGroupRoutes(playerCustomizationService, clock), {
+        prefix: "/latest/api/index.php/party_group",
+    });
+    await app.register(createAttentionRoutes(identityService, playerService, clock), {
+        prefix: "/latest/api/index.php/attention",
+    });
+    await app.register(createEncyclopediaRoutes(identityService, clock), {
+        prefix: "/latest/api/index.php/encyclopedia",
+    });
     await app.register(createGachaRoutes(gachaService, clock), {
         prefix: "/latest/api/index.php/gacha",
     });
@@ -346,11 +376,17 @@ export async function createApp(
     await app.register(createRushEventRoutes(rushEventService, clock), {
         prefix: "/latest/api/index.php/rush_event",
     });
+    await app.register(createRushEventRoutes(rushEventService, clock), {
+        prefix: "/latest/api/index.php/event/rush",
+    });
     await app.register(createRankingEventRoutes(rankingEventService, clock), {
         prefix: "/latest/api/index.php/ranking_event",
     });
     await app.register(createRaidEventRoutes(raidEventService, clock), {
         prefix: "/latest/api/index.php/raid_event",
+    });
+    await app.register(createRaidEventRoutes(raidEventService, clock), {
+        prefix: "/latest/api/index.php/event/raid",
     });
     await app.register(createMultiBattleQuestRoutes(identityService, clock), {
         prefix: "/latest/api/index.php/multi_battle_quest",

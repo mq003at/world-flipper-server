@@ -9,7 +9,7 @@
     "build": "tsc -p tsconfig.json",
     "start": "node --env-file=.env dist/main.js",
     "typecheck": "tsc -p tsconfig.json --noEmit",
-    "test": "tsx --test tests/**/*.test.ts",
+    "test": "node --import tsx --test tests/**/*.test.ts",
     "player:export": "tsx tools/player-save.ts export",
     "player:import": "tsx tools/player-save.ts import"
   },

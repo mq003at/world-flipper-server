@@ -124,11 +124,17 @@ export function presentPlayerSnapshot(
     const questProgress: Record<string, unknown> = {};
     for (const [section, list] of Object.entries(snapshot.questProgress)) {
         questProgress[section] = list.map((progress) => ({
-            best_elapsed_time_ms: progress.bestElapsedTimeMs,
-            clear_rank: progress.clearRank,
-            finished: progress.finished,
-            high_score: progress.highScore,
             quest_id: progress.questId,
+            finished: progress.finished,
+            ...(progress.highScore === undefined
+                ? {}
+                : { high_score: progress.highScore }),
+            ...(progress.clearRank === undefined
+                ? {}
+                : { clear_rank: progress.clearRank }),
+            ...(progress.bestElapsedTimeMs === undefined
+                ? {}
+                : { best_elapsed_time_ms: progress.bestElapsedTimeMs }),
         }));
     }
 
@@ -213,7 +219,9 @@ export function presentPlayerSnapshot(
             gacha_id: info.gachaId,
             is_daily_first: info.isDailyFirst,
             is_account_first: info.isAccountFirst,
-            gacha_exchange_point: info.gachaExchangePoint,
+            ...(info.gachaExchangePoint === undefined
+                ? {}
+                : { gacha_exchange_point: info.gachaExchangePoint }),
         })),
         available_asset_version: options.availableAssetVersion,
         should_prompt_takeover_registration: false,

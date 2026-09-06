@@ -14,6 +14,18 @@ import type {
 import type { TutorialUpdateResult } from "./tutorial.models";
 import type { TutorialRepository } from "./tutorial.repository";
 
+function deserializeTutorialResult(value: string): TutorialUpdateResult {
+    return JSON.parse(value, (key, entry: unknown) => {
+        if (
+            (key === "now" || key === "joinTime" || key === "updateTime") &&
+            typeof entry === "string"
+        ) {
+            return new Date(entry);
+        }
+        return entry;
+    }) as TutorialUpdateResult;
+}
+
 export class TutorialService {
     constructor(
         private readonly identity: IdentityService,
@@ -38,6 +50,8 @@ export class TutorialService {
     updateStep(request: UpdateTutorialStepRequest): TutorialUpdateResult {
         const viewer = this.identity.requireViewerSession(request.viewerId);
         const player = this.players.requireForAccount(viewer.accountId);
+        const cached = this.repository.getUpdateResult(player.id, request.completedStep);
+        if (cached !== null) return deserializeTutorialResult(cached);
         const triggeredTutorialIds = this.repository.getTriggeredTutorialIds(player.id);
 
         if (triggeredTutorialIds.includes(this.config.completionTriggerId)) {
@@ -91,7 +105,7 @@ export class TutorialService {
                     itemList[String(granted.duplicateItem.id)] = granted.duplicateItem.count;
                 }
 
-                return {
+                const result: TutorialUpdateResult = {
                     kind: "gacha",
                     viewerId: request.viewerId,
                     step: responseStep,
@@ -103,6 +117,13 @@ export class TutorialService {
                     movieId: this.config.tutorialGachaMovieId,
                     seed: this.config.tutorialGachaSeed,
                 };
+                this.repository.saveUpdateResult(
+                    player.id,
+                    request.completedStep,
+                    JSON.stringify(result),
+                    now,
+                );
+                return result;
             }
 
             if (responseStep === 16) {
@@ -115,7 +136,7 @@ export class TutorialService {
                     2,
                 );
 
-                return {
+                const result: TutorialUpdateResult = {
                     kind: "free-character",
                     viewerId: request.viewerId,
                     step: responseStep,
@@ -123,14 +144,28 @@ export class TutorialService {
                     freeVmoney,
                     granted,
                 };
+                this.repository.saveUpdateResult(
+                    player.id,
+                    request.completedStep,
+                    JSON.stringify(result),
+                    now,
+                );
+                return result;
             }
 
-            return {
+            const result: TutorialUpdateResult = {
                 kind: "basic",
                 viewerId: request.viewerId,
                 step: responseStep,
                 now,
             };
+            this.repository.saveUpdateResult(
+                player.id,
+                request.completedStep,
+                JSON.stringify(result),
+                now,
+            );
+            return result;
         });
     }
 
