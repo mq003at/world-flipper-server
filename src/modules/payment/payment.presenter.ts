@@ -3,8 +3,6 @@ import type { PaymentPack, PaymentPurchaseResult } from "./payment.models";
 export function presentPaymentItemList(packs: readonly PaymentPack[]): Record<string, unknown> {
     return {
         payment_item_list: packs.map((pack) => ({
-            // Multiple aliases are intentional. The captured Global server response at EoS
-            // was empty, so the exact populated-object schema is not available in Starpoint.
             payment_item_id: pack.id,
             item_id: pack.id,
             product_id: pack.productId,
@@ -15,7 +13,12 @@ export function presentPaymentItemList(packs: readonly PaymentPack[]): Record<st
             free_vmoney: 0,
             price: 0,
             price_string: "FREE",
+            formatted_price: "FREE",
             currency: "USD",
+            currency_code: "USD",
+            is_free: 1,
+            free_flag: 1,
+            payment_type: 0,
             stock_quantity: -1,
         })),
     };

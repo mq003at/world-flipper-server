@@ -16,9 +16,9 @@ import { JsonGachaCatalog } from "../content/master-data/json-gacha-catalog";
 import { JsonQuestCatalog } from "../content/master-data/json-quest-catalog";
 import { JsonShopCatalog } from "../content/master-data/json-shop-catalog";
 import type { Clock } from "../infrastructure/clock/clock";
+import { FixedClock } from "../infrastructure/clock/fixed-clock";
 import { SystemClock } from "../infrastructure/clock/system-clock";
 import { AdjustableSystemClock } from "../infrastructure/clock/adjustable-system-clock";
-import { FixedClock } from "../infrastructure/clock/fixed-clock";
 import { createDatabase, type DatabaseConnection } from "../infrastructure/database/database";
 import { CryptoRandomSource } from "../infrastructure/random/crypto-random-source";
 import { SeasonEconomyPolicy } from "../live/economy/season-economy.policy";
@@ -215,8 +215,9 @@ export async function createApp(
     gameplayEvents.subscribe((event) => missionService.handleGameplayEvent(event));
     const gachaCatalog = new JsonGachaCatalog(config.masterDataDir);
     const gachaRotationConfig = loadGachaRotationConfig(liveContentDir);
-    // Runtime scheduling stays on the real clock. Only wire responses use a time
-    // inside the frozen shell window so the unmodified client keeps Portal open.
+    // The final client filters the reusable gacha shells against servertime.
+    // Keep only the client protocol clock inside their captured master window;
+    // schedules, rotations and transactions continue to use the runtime clock.
     const clientClock = new FixedClock(new Date(gachaRotationConfig.clientShellTime));
     const seasonalGachaRepository = new SqliteSeasonalGachaRepository(database);
     const seasonalGachaService = new SeasonalGachaService(

@@ -1,7 +1,10 @@
 import path from "node:path";
 import { loadConfig } from "../src/app/config";
 import { createDatabase } from "../src/infrastructure/database/database";
-import { MAX_STAMINA } from "../src/modules/stamina/infinite-stamina.policy";
+import {
+    FULL_STAMINA_HEAL_TIME,
+    MAX_STAMINA,
+} from "../src/modules/stamina/infinite-stamina.policy";
 
 function positiveInteger(raw: string, name: string): number {
     const value = Number(raw);
@@ -33,13 +36,20 @@ function main(): void {
     const args = parseArguments();
     const database = createDatabase(args.databasePath);
     try {
+        const healTime = FULL_STAMINA_HEAL_TIME.toISOString();
         const result = args.playerId === undefined
-            ? database.prepare("UPDATE players SET stamina = ? WHERE stamina <> ?").run(MAX_STAMINA, MAX_STAMINA)
-            : database.prepare("UPDATE players SET stamina = ? WHERE id = ?").run(MAX_STAMINA, args.playerId);
+            ? database.prepare(`
+                UPDATE players
+                SET stamina = ?, stamina_heal_time = ?
+                WHERE stamina <> ? OR stamina_heal_time <> ?
+            `).run(MAX_STAMINA, healTime, MAX_STAMINA, healTime)
+            : database.prepare(`
+                UPDATE players SET stamina = ?, stamina_heal_time = ? WHERE id = ?
+            `).run(MAX_STAMINA, healTime, args.playerId);
         if (args.playerId !== undefined && result.changes === 0) {
             throw new Error(`Player ${args.playerId} does not exist.`);
         }
-        console.log(`Set stamina to ${MAX_STAMINA} for ${result.changes} player(s).`);
+        console.log(`Set stamina to ${MAX_STAMINA} and marked it fully healed for ${result.changes} player(s).`);
     } finally {
         database.close();
     }

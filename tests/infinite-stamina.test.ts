@@ -5,7 +5,10 @@ import { FixedClock } from "../src/infrastructure/clock/fixed-clock";
 import { PlayerFactory } from "../src/modules/player/player.factory";
 import { SqlitePlayerRepository } from "../src/modules/player/player.repository.sqlite";
 import { SqliteQuestRepository } from "../src/modules/quest/quest.repository.sqlite";
-import { MAX_STAMINA } from "../src/modules/stamina/infinite-stamina.policy";
+import {
+    FULL_STAMINA_HEAL_TIME,
+    MAX_STAMINA,
+} from "../src/modules/stamina/infinite-stamina.policy";
 
 function createAccount(database: ReturnType<typeof createDatabase>): number {
     const now = "2026-09-07T00:00:00.000Z";
@@ -26,8 +29,12 @@ test("new and existing players always resolve to 120 stamina", () => {
         assert.equal(initial.player.stamina, MAX_STAMINA);
         const player = repository.createInitial(createAccount(database), initial);
         database.prepare("UPDATE players SET stamina = 0 WHERE id = ?").run(player.id);
-        assert.equal(repository.findById(player.id)?.stamina, MAX_STAMINA);
-        assert.equal(new SqliteQuestRepository(database).getPlayerState(player.id)?.stamina, MAX_STAMINA);
+        const loaded = repository.findById(player.id);
+        assert.equal(loaded?.stamina, MAX_STAMINA);
+        assert.equal(loaded?.staminaHealTime.toISOString(), FULL_STAMINA_HEAL_TIME.toISOString());
+        const questState = new SqliteQuestRepository(database).getPlayerState(player.id);
+        assert.equal(questState?.stamina, MAX_STAMINA);
+        assert.equal(questState?.staminaHealTime.toISOString(), FULL_STAMINA_HEAL_TIME.toISOString());
     } finally {
         database.close();
     }

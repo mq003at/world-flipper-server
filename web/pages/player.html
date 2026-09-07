@@ -47,6 +47,35 @@
             <h1 class="text-4xl font-bold mb-4 text-on-background">Player "{{playerName}}"</h1>
             <h2 class="text-2xl text-on-surface-variant mt-2">"{{playerComment}}"</h2>
             <section
+                class="mt-5 flex flex-col p-5 border border-outline-variant bg-surface-container rounded-3xl w-full gap-5">
+                <h3 class="text-xl text-on-background font-semibold">Lodestar Beads</h3>
+                <div class="flex flex-wrap gap-6 text-lg">
+                    <p>Paid: <strong id="paid-balance">{{paidVmoney}}</strong></p>
+                    <p>Free: <strong id="free-balance">{{freeVmoney}}</strong></p>
+                </div>
+                <form id="bead-form" data-player-id="{{playerId}}" class="flex flex-wrap gap-3 items-end">
+                    <label class="flex flex-col gap-1">Currency
+                        <select id="bead-currency" class="p-2 rounded-lg bg-surface-container-high">
+                            <option value="free">Free beads</option>
+                            <option value="paid">Paid beads</option>
+                        </select>
+                    </label>
+                    <label class="flex flex-col gap-1">Operation
+                        <select id="bead-operation" class="p-2 rounded-lg bg-surface-container-high">
+                            <option value="add">Add/subtract</option>
+                            <option value="set">Set balance</option>
+                        </select>
+                    </label>
+                    <label class="flex flex-col gap-1">Amount
+                        <input id="bead-amount" type="number" value="1500" step="1" required
+                            class="p-2 rounded-lg bg-surface-container-high" />
+                    </label>
+                    <button type="submit"
+                        class="text-base bg-primary text-on-primary h-[40px] px-[24px] rounded-full">Apply</button>
+                </form>
+                <p id="bead-status" class="text-base text-on-surface-variant"></p>
+            </section>
+            <section
                 class="mt-5 flex flex-col items-center justify-center p-5 border border-outline-variant bg-surface-container rounded-3xl w-full gap-5">
                 <h3 class="text-xl text-on-background font-semibold mt-2">Download a copy of this player's save data in JSON
                     format.</h3>
@@ -68,6 +97,30 @@
                 </button>
             </form>
             <script>
+                document.getElementById('bead-form').addEventListener('submit', async (event) => {
+                    event.preventDefault();
+                    const form = event.currentTarget;
+                    const status = document.getElementById('bead-status');
+                    try {
+                        const response = await fetch(`/web_api/player/${form.dataset.playerId}/beads`, {
+                            method: 'POST',
+                            headers: { 'content-type': 'application/json' },
+                            body: JSON.stringify({
+                                currency: document.getElementById('bead-currency').value,
+                                operation: document.getElementById('bead-operation').value,
+                                amount: Number(document.getElementById('bead-amount').value)
+                            })
+                        });
+                        const result = await response.json();
+                        if (!response.ok) throw new Error(result.error || 'Update failed.');
+                        document.getElementById('paid-balance').textContent = result.paid_vmoney;
+                        document.getElementById('free-balance').textContent = result.free_vmoney;
+                        status.textContent = 'Bead balance updated.';
+                    } catch (error) {
+                        status.textContent = error instanceof Error ? error.message : String(error);
+                    }
+                });
+
                 document.getElementById('save-form').addEventListener('submit', async (event) => {
                     event.preventDefault();
                     const form = event.currentTarget;

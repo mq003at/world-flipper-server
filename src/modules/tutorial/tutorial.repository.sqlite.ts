@@ -6,7 +6,7 @@ import type {
     TutorialProgressUpdate,
     TutorialRepository,
 } from "./tutorial.repository";
-import { resolvePlayerStamina } from "../stamina/infinite-stamina.policy";
+import { resolvePlayerStamina, resolveStaminaHealTime } from "../stamina/infinite-stamina.policy";
 
 function fromDbBoolean(value: number): boolean {
     return value === 1;
@@ -60,7 +60,7 @@ function mapPlayer(raw: RawPlayerRow): Player {
         id: raw.id,
         accountId: raw.account_id,
         stamina: resolvePlayerStamina(),
-        staminaHealTime: new Date(raw.stamina_heal_time),
+        staminaHealTime: resolveStaminaHealTime(),
         boostPoint: raw.boost_point,
         bossBoostPoint: raw.boss_boost_point,
         transitionState: raw.transition_state,

@@ -7,21 +7,35 @@ import type { PaymentPurchaseRequest } from "./payment.contracts";
 import type { PaymentPack, PaymentPurchaseResult } from "./payment.models";
 import type { PaymentRepository } from "./payment.repository";
 
+export interface PaymentServiceOptions {
+    freePacksEnabled?: boolean;
+}
+
+function defaultOptions(): PaymentServiceOptions {
+    return {
+        freePacksEnabled: process.env.PAYMENT_FREE_PACKS_ENABLED?.trim().toLowerCase() === "true",
+    };
+}
+
 export class PaymentService {
     constructor(
         private readonly identityService: IdentityService,
         private readonly playerService: PlayerService,
         private readonly repository: PaymentRepository,
         private readonly clock: Clock,
+        private readonly options: PaymentServiceOptions = defaultOptions(),
     ) {}
 
     list(viewerId: number): readonly PaymentPack[] {
         this.requirePlayer(viewerId);
-        return FREE_PAYMENT_PACKS;
+        return this.options.freePacksEnabled ? FREE_PAYMENT_PACKS : [];
     }
 
     purchase(input: PaymentPurchaseRequest): PaymentPurchaseResult {
         const player = this.requirePlayer(input.viewerId);
+        if (!this.options.freePacksEnabled) {
+            throw new InvalidRequestError("Free payment packs are disabled.");
+        }
         const pack = findPaymentPack(input.productIdentifier);
         if (!pack) throw new InvalidRequestError("Unknown payment product.");
 

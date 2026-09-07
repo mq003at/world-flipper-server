@@ -98,3 +98,7 @@ Admin UI  ────────── separate adapter
 
 Cần test mitproxy để check xem có mua beads qua GGPlay Billing không
 Tạo 1 chỗ cho probability list
+Sửa trag admin
+--< Free beads fail, lần khác thử lại. .env có field đó>
+
+----

@@ -6,6 +6,7 @@ import type { Clock } from "../../infrastructure/clock/clock";
 import type { AdjustableSystemClock } from "../../infrastructure/clock/adjustable-system-clock";
 import type { PlayerDataService } from "../player-data/player-data.service";
 import type { AdminWebRepository } from "./admin-web.repository";
+import type { BeadCurrency, BeadOperation } from "./admin-web.repository";
 
 export interface AdminWebOptions {
     webDir: string;
@@ -22,6 +23,24 @@ function escapeHtml(value: string): string {
 function parsePlayerId(raw: string): number | null {
     const value = Number(raw);
     return Number.isSafeInteger(value) && value > 0 ? value : null;
+}
+
+function parseBeadUpdate(value: unknown): {
+    currency: BeadCurrency;
+    operation: BeadOperation;
+    amount: number;
+} | null {
+    if (typeof value !== "object" || value === null || Array.isArray(value)) return null;
+    const body = value as Record<string, unknown>;
+    const currency = body.currency;
+    const operation = body.operation;
+    const amount = body.amount;
+    if ((currency !== "paid" && currency !== "free")
+        || (operation !== "set" && operation !== "add")
+        || typeof amount !== "number"
+        || !Number.isSafeInteger(amount)
+        || (operation === "set" && amount < 0)) return null;
+    return { currency, operation, amount };
 }
 
 export function createAdminWebRoutes(
@@ -71,8 +90,30 @@ export function createAdminWebRoutes(
                 .replace("{{playerName}}", escapeHtml(player.name))
                 .replace("{{playerComment}}", escapeHtml(player.comment))
                 .replace(/{{playerId}}/g, String(player.id))
+                .replace("{{paidVmoney}}", String(player.paidVmoney))
+                .replace("{{freeVmoney}}", String(player.freeVmoney))
                 .replace("{{importDisabled}}", options.importEnabled ? "" : "Import is disabled. Set PLAYER_DATA_IMPORT_ENABLED=true.");
             return reply.type("text/html; charset=utf-8").send(html);
+        });
+
+        fastify.post<{ Params: { playerId: string } }>("/web_api/player/:playerId/beads", async (request, reply) => {
+            const playerId = parsePlayerId(request.params.playerId);
+            const update = parseBeadUpdate(request.body);
+            if (playerId === null || !update) {
+                return reply.code(400).send({ error: "Invalid bead update." });
+            }
+            const player = repository.updateBeads(
+                playerId,
+                update.currency,
+                update.operation,
+                update.amount,
+            );
+            if (!player) return reply.code(404).send({ error: "Player not found." });
+            return {
+                player_id: player.id,
+                paid_vmoney: player.paidVmoney,
+                free_vmoney: player.freeVmoney,
+            };
         });
 
         fastify.get<{ Params: { playerId: string } }>("/web_api/player/:playerId/save", async (request, reply) => {

@@ -1,5 +1,5 @@
 import type { Clock } from "../../infrastructure/clock/clock";
-import { MAX_STAMINA } from "../stamina/infinite-stamina.policy";
+import { MAX_STAMINA, resolveStaminaHealTime } from "../stamina/infinite-stamina.policy";
 import {
     PartyCategory,
     type InitialPlayerState,
@@ -115,7 +115,7 @@ export class PlayerFactory {
         return {
             player: {
                 stamina: MAX_STAMINA,
-                staminaHealTime: now,
+                staminaHealTime: resolveStaminaHealTime(),
                 boostPoint: 3,
                 bossBoostPoint: 3,
                 transitionState: 0,

@@ -8,9 +8,16 @@ import { createAdminWebRoutes } from "../src/modules/admin-web/admin-web.routes"
 function createFixture(importEnabled = true) {
     const clock = new AdjustableSystemClock();
     const repository = {
-        listPlayers: () => [{ id: 2, name: "Test <Player>", comment: "Hello", lastLoginTime: new Date("2026-09-07T00:00:00Z") }],
+        listPlayers: () => [{ id: 2, name: "Test <Player>", comment: "Hello", lastLoginTime: new Date("2026-09-07T00:00:00Z"), paidVmoney: 10, freeVmoney: 20 }],
         findPlayer: (id: number) => id === 2
-            ? { id: 2, name: "Test <Player>", comment: "Hello", lastLoginTime: new Date("2026-09-07T00:00:00Z") }
+            ? { id: 2, name: "Test <Player>", comment: "Hello", lastLoginTime: new Date("2026-09-07T00:00:00Z"), paidVmoney: 10, freeVmoney: 20 }
+            : null,
+        updateBeads: (id: number, currency: string, operation: string, amount: number) => id === 2
+            ? {
+                id: 2, name: "Test", comment: "Hello", lastLoginTime: new Date(),
+                paidVmoney: currency === "paid" ? (operation === "set" ? amount : 10 + amount) : 10,
+                freeVmoney: currency === "free" ? (operation === "set" ? amount : 20 + amount) : 20,
+            }
             : null,
     } as any;
     const playerData = {
@@ -34,6 +41,27 @@ test("admin web renders extracted pages and escapes player data", async () => {
     assert.match(players.body, /Test &lt;Player&gt;/);
     const detail = await app.inject({ method: "GET", url: "/player/2" });
     assert.match(detail.body, /\/web_api\/player\/2\/save/);
+    assert.match(detail.body, /id="bead-form" data-player-id="2"/);
+    assert.match(detail.body, /\/web_api\/player\/\$\{form\.dataset\.playerId\}\/beads/);
+    await app.close();
+});
+
+test("admin web updates paid or free beads without a store checkout", async () => {
+    const { app, plugin } = createFixture();
+    await app.register(plugin);
+    const response = await app.inject({
+        method: "POST",
+        url: "/web_api/player/2/beads",
+        payload: { currency: "free", operation: "add", amount: 1500 },
+    });
+    assert.equal(response.statusCode, 200);
+    assert.equal(response.json().free_vmoney, 1520);
+    const invalid = await app.inject({
+        method: "POST",
+        url: "/web_api/player/2/beads",
+        payload: { currency: "free", operation: "set", amount: -1 },
+    });
+    assert.equal(invalid.statusCode, 400);
     await app.close();
 });
 
