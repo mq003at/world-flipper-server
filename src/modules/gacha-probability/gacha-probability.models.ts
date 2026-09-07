@@ -1,4 +1,4 @@
-import type { SeasonalContentType, SeasonalGachaSlot } from "../gacha/seasonal-gacha.models";
+import type { RuntimeGachaSlot, SeasonalContentType } from "../gacha/seasonal-gacha.models";
 
 export interface ProbabilityEntry {
     id: number;
@@ -15,7 +15,7 @@ export interface ProbabilityEntry {
 export interface ProbabilityBanner {
     seasonNumber: number;
     cycleIndex: number;
-    slot: SeasonalGachaSlot;
+    slot: RuntimeGachaSlot;
     shellGachaId: number;
     festival: boolean;
     startsAt: string;

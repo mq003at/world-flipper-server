@@ -7,6 +7,7 @@ import {
 } from "./character-catalog";
 
 interface RawCharacterDefinition {
+    name?: string;
     rarity: number;
     element: number;
     skill_count: number;
@@ -28,6 +29,7 @@ export class JsonCharacterCatalog implements CharacterCatalog {
                     id,
                     {
                         id,
+                        ...(raw.name?.trim() ? { name: raw.name.trim() } : {}),
                         rarity: raw.rarity,
                         element: raw.element as Element,
                         skillCount: raw.skill_count,

@@ -7,6 +7,21 @@ import { createAdminWebRoutes } from "../src/modules/admin-web/admin-web.routes"
 
 function createFixture(importEnabled = true) {
     const clock = new AdjustableSystemClock();
+    clock.set(new Date("2026-09-07T05:00:00Z"));
+    const gachaBanner = {
+        seasonNumber: 3, cycleIndex: 22, slot: "new", shellGachaId: 157, featuredIds: [151006],
+        festival: false, startsAt: new Date("2026-09-04T17:00:00Z"), endsAt: new Date("2026-09-13T17:00:00Z"),
+        enabled: true, artworkPath: null,
+        definition: {
+            id: 157, type: 0, paymentType: 0, singleCost: 150, multiCost: 1500, discountCost: 0,
+            startDate: "2026-09-04T17:00:00Z", endDate: "2026-09-13T17:00:00Z", rankWeights: [500, 2500, 7000],
+            pool: {
+                1: [{ id: 151006, rank: 5, odds: 500, isRateUp: true, weight: 1 }],
+                2: [{ id: 241001, rank: 4, odds: 2500, isRateUp: false, weight: 1 }],
+                3: [{ id: 341001, rank: 3, odds: 7000, isRateUp: false, weight: 1 }],
+            },
+        },
+    };
     const repository = {
         listPlayers: () => [{ id: 2, name: "Test <Player>", comment: "Hello", lastLoginTime: new Date("2026-09-07T00:00:00Z"), paidVmoney: 10, freeVmoney: 20 }],
         findPlayer: (id: number) => id === 2
@@ -19,13 +34,31 @@ function createFixture(importEnabled = true) {
                 freeVmoney: currency === "free" ? (operation === "set" ? amount : 20 + amount) : 20,
             }
             : null,
+        listCurrentGachas: () => [gachaBanner],
+        findGacha: () => gachaBanner,
+        setGachaEnabled: (_season: number, _cycle: number, _slot: string, enabled: boolean) => ({ ...gachaBanner, enabled }),
+        updateGachaDefinition: (_season: number, _cycle: number, _slot: string, definition: any, featuredIds: number[]) => ({ ...gachaBanner, definition, featuredIds }),
+        setGachaArtwork: (_season: number, _cycle: number, _slot: string, artworkPath: string | null) => ({ ...gachaBanner, artworkPath }),
     } as any;
     const playerData = {
         exportPlayer: (id: number) => ({ format: "world-flipper-server-player-save", version: 1, player: { id } }),
         importPlayer: (id: number) => ({ playerId: id, importedSections: 2, importedRows: 5, replaced: true }),
     } as any;
+    const gachaProbability = {
+        activeManifest: () => ({ generatedAt: clock.now().toISOString(), banners: [] }),
+        presentBanner: (banner: any) => ({
+            seasonNumber: banner.seasonNumber, cycleIndex: banner.cycleIndex, slot: banner.slot, shellGachaId: banner.shellGachaId,
+            festival: banner.festival, startsAt: banner.startsAt.toISOString(), endsAt: banner.endsAt.toISOString(),
+            rarityRatesPercent: { "5": 5, "4": 25, "3": 70 }, featuredIds: banner.featuredIds,
+            entries: [
+                { id: 151006, name: "Featured Unit", contentType: "character", rarity: 5, featured: true, ratePercent: 5 },
+                { id: 241001, name: "Four Star", contentType: "character", rarity: 4, featured: false, ratePercent: 25 },
+                { id: 341001, name: "Three Star", contentType: "character", rarity: 3, featured: false, ratePercent: 70 },
+            ],
+        }),
+    } as any;
     const app = Fastify();
-    return { app, clock, plugin: createAdminWebRoutes(repository, playerData, clock, {
+    return { app, clock, plugin: createAdminWebRoutes(repository, playerData, gachaProbability, clock, {
         webDir: path.resolve("web"), importEnabled, adjustableClock: clock,
     }) };
 }
@@ -83,6 +116,22 @@ test("admin import respects the trusted-server feature flag", async () => {
     await app.register(plugin);
     const response = await app.inject({ method: "PUT", url: "/web_api/player/2/save", payload: {} });
     assert.equal(response.statusCode, 403);
+    await app.close();
+});
+
+test("admin gacha page renders probability list and pool editor", async () => {
+    const { app, plugin } = createFixture();
+    await app.register(plugin);
+    const list = await app.inject({ method: "GET", url: "/gacha" });
+    assert.equal(list.statusCode, 200);
+    assert.match(list.body, /Featured Unit/);
+    assert.match(list.body, /Add Gacha/);
+    assert.match(list.body, /5★ <strong>5%/);
+    const detail = await app.inject({ method: "GET", url: "/gacha/3/22/new" });
+    assert.equal(detail.statusCode, 200);
+    assert.match(detail.body, /NEW probability list/);
+    assert.match(detail.body, /Featured Unit/);
+    assert.match(detail.body, /Attach artwork/);
     await app.close();
 });
 

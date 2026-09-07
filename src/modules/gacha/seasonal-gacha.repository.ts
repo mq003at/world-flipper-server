@@ -9,6 +9,9 @@ export interface FeatureHistoryEntry {
 export interface SeasonalGachaRepository {
     findBanner(seasonNumber: number, cycleIndex: number, slot: SeasonalGachaSlot): RuntimeGachaBanner | null;
     saveBanner(banner: RuntimeGachaBanner): void;
+    isBannerEnabled?(seasonNumber: number, cycleIndex: number, slot: SeasonalGachaSlot): boolean;
+    findEnabledBannerByShell?(seasonNumber: number, cycleIndex: number, shellGachaId: number): RuntimeGachaBanner | null;
+    listEnabledBanners?(seasonNumber: number, cycleIndex: number): RuntimeGachaBanner[];
     listReleased(contentType: SeasonalContentType): number[];
     release(contentType: SeasonalContentType, ids: readonly number[], seasonNumber: number, cycleIndex: number, at: Date): void;
     featureHistory(contentType: SeasonalContentType, slot: SeasonalGachaSlot): FeatureHistoryEntry[];

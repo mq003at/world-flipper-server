@@ -1,0 +1,227 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/public/tailwind.css">
+    <title>Starpoint - Gacha {{slotLabel}}</title>
+    <style>
+        .page-stack { display: flex; flex-direction: column; gap: 20px; width: 100%; min-width: 0; }
+        .heading-row { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+        .heading-row h2 { font-size: 2.25rem; line-height: 2.5rem; font-weight: 700; }
+        .muted { color: var(--md-sys-color-on-surface-variant); }
+        .eyebrow { font-size: .78rem; letter-spacing: .08em; font-weight: 700; color: var(--md-sys-color-on-surface-variant); }
+        .primary-button, .secondary-button, .danger-button, .row-delete {
+            min-height: 40px; padding: 0 20px; border-radius: 9999px; display: inline-flex; align-items: center;
+            justify-content: center; cursor: pointer; font-size: 1rem; text-decoration: none; border: 1px solid transparent;
+        }
+        .primary-button { background: var(--md-sys-color-primary); color: var(--md-sys-color-on-primary); }
+        .secondary-button { background: transparent; color: var(--md-sys-color-on-surface); border-color: var(--md-sys-color-outline-variant); }
+        .danger-button, .row-delete { background: transparent; color: var(--md-sys-color-error); border-color: var(--md-sys-color-error); }
+        .row-delete { min-height: 32px; padding: 0 12px; font-size: .85rem; }
+        .state-pill { padding: 5px 12px; border-radius: 9999px; background: var(--md-sys-color-surface-container-highest); font-weight: 600; }
+        .panel { padding: 22px; border: 1px solid var(--md-sys-color-outline-variant); border-radius: 28px; background: var(--md-sys-color-surface-container); }
+        .artwork-layout { display: grid; grid-template-columns: minmax(260px, 420px) 1fr; gap: 22px; align-items: stretch; }
+        .artwork-frame { min-height: 230px; border-radius: 20px; overflow: hidden; background: var(--md-sys-color-surface-container-high); }
+        .gacha-artwork { width: 100%; height: 100%; min-height: 230px; max-height: 350px; object-fit: cover; display: block; }
+        .gacha-artwork-placeholder { min-height: 230px; height: 100%; display: flex; align-items: center; justify-content: center; color: var(--md-sys-color-on-surface-variant); font-weight: 600; }
+        .artwork-controls { display: flex; flex-direction: column; justify-content: center; gap: 12px; }
+        .action-row { display: flex; flex-wrap: wrap; gap: 10px; }
+        .rank-rates { display: grid; grid-template-columns: repeat(3, minmax(120px, 1fr)); gap: 12px; margin-top: 16px; }
+        .rank-rates label { display: flex; flex-direction: column; gap: 6px; }
+        input[type="number"], input[type="file"] { max-width: 100%; }
+        .rank-rates input, .pool-table input[type="number"] { padding: 9px 10px; border-radius: 10px; background: var(--md-sys-color-surface-container-high); border: 1px solid var(--md-sys-color-outline-variant); }
+        .rank-section { margin-top: 22px; }
+        .rank-heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 10px; }
+        .rank-heading h3 { font-size: 1.25rem; font-weight: 700; }
+        .pool-scroll { overflow-x: auto; }
+        .pool-table { width: 100%; border-collapse: collapse; min-width: 720px; }
+        .pool-table th, .pool-table td { padding: 9px 8px; text-align: left; border-bottom: 1px solid var(--md-sys-color-outline-variant); vertical-align: middle; }
+        .pool-table th { color: var(--md-sys-color-on-surface-variant); font-size: .85rem; }
+        .pool-table .pool-id { width: 130px; }
+        .pool-table .pool-rate { width: 140px; }
+        .pool-name { min-width: 200px; }
+        .featured-cell { text-align: center !important; }
+        .status-line { min-height: 24px; color: var(--md-sys-color-on-surface-variant); font-weight: 600; }
+        @media (max-width: 900px) { .artwork-layout { grid-template-columns: 1fr; } .rank-rates { grid-template-columns: 1fr; } }
+    </style>
+</head>
+
+<body class="bg-background text-on-surface relative mt-16 m-auto max-w-screen-2xl min-h-screen box-border flex flex-col items-start px-3 pb-3">
+    <header class="flex gap-3 items-center md:justify-start justify-center mb-3 w-full">
+        <img src="/public/img/logo.png" class="w-9 h-9">
+        <h1 class="text-4xl mt-4 font-black mb-4 text-on-background">Starpoint</h1>
+    </header>
+    <div class="md:grid md:grid-cols-sidebar flex flex-col gap-5 w-full h-fit">
+        <nav class="px-3 py-5 gap-3 flex flex-col bg-surface-container-low rounded-3xl h-fit w-full">
+            <a href="/" class="px-5 py-3 flex gap-3 items-center rounded-full hover:bg-surface-container-high text-on-surface text-lg transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" class="fill-on-surface"><path d="M520-600v-240h320v240H520ZM120-440v-400h320v400H120Zm400 320v-400h320v400H520Zm-400 0v-240h320v240H120Z"/></svg>Dashboard
+            </a>
+            <div class="px-5 py-3 flex gap-3 items-center bg-primary rounded-full w-full font-bold text-on-primary text-lg">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" class="fill-on-primary"><path d="M480-80q-82 0-155-31.5t-127.5-86Q143-252 111.5-325T80-480q0-82 31.5-155T198-762.5q54.5-54.5 127.5-86T480-880q82 0 155 31.5t127.5 86q54.5 54.5 86 127.5T880-480q0 82-31.5 155T762-197.5q-54.5 54.5-127.5 86T480-80Z"/></svg>Gacha
+            </div>
+            <a href="/player" class="px-5 py-3 flex gap-3 items-center rounded-full hover:bg-surface-container-high text-on-surface text-lg transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" class="fill-on-surface"><path d="M40-160v-112q0-34 17.5-62.5T104-378q62-31 126-46.5T360-440q66 0 130 15.5T616-378q29 15 46.5 43.5T680-272v112H40Z"/></svg>Players
+            </a>
+            <a href="https://github.com/Duosion/starpoint" class="px-5 py-3 flex gap-3 items-center rounded-full hover:bg-surface-container-high text-on-surface text-lg transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" class="fill-on-surface"><path d="M320-240 80-480l240-240 57 57-184 184 183 183-56 56Zm320 0-57-57 184-184-183-183 56-56 240 240-240 240Z"/></svg>Source Code
+            </a>
+        </nav>
+        <main id="gacha-editor" class="page-stack" data-season="{{seasonNumber}}" data-cycle="{{cycleIndex}}" data-slot="{{slot}}" data-enabled="{{enabled}}">
+            <section class="heading-row">
+                <div>
+                    <p class="eyebrow">{{slotLabel}} · Gacha #{{shellGachaId}}</p>
+                    <h2>{{slotLabel}} probability list</h2>
+                    <p class="muted">Season {{seasonNumber}}, cycle {{cycleIndex}} · <span id="banner-state">{{state}}</span></p>
+                </div>
+                <div class="action-row">
+                    <a href="/gacha" class="secondary-button">Back</a>
+                    <button id="toggle-banner" type="button" class="danger-button">Delete Gacha</button>
+                </div>
+            </section>
+
+            <section class="panel artwork-layout">
+                <div id="artwork-frame" class="artwork-frame">{{artwork}}</div>
+                <div class="artwork-controls">
+                    <h3 class="text-xl font-semibold">Artwork</h3>
+                    <p class="muted">Attach a PNG, JPEG, or WebP image to this banner in the admin UI.</p>
+                    <input id="artwork-file" type="file" accept="image/png,image/jpeg,image/webp">
+                    <div class="action-row">
+                        <button id="upload-artwork" type="button" class="primary-button">Attach artwork</button>
+                        <button id="remove-artwork" type="button" class="secondary-button">Remove artwork</button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="panel">
+                <div class="heading-row">
+                    <div>
+                        <h3 class="text-xl font-semibold">Pool probabilities</h3>
+                        <p class="muted">Rank rates must total 100%. Item rates inside each rarity must total that rarity's rate.</p>
+                    </div>
+                    <button id="save-pool" type="button" class="primary-button">Save pool</button>
+                </div>
+                <div class="rank-rates">
+                    <label>5★ total rate (%)<input id="rank-rate-5" type="number" min="0.01" max="99.98" step="0.01" value="{{rate5}}"></label>
+                    <label>4★ total rate (%)<input id="rank-rate-4" type="number" min="0.01" max="99.98" step="0.01" value="{{rate4}}"></label>
+                    <label>3★ total rate (%)<input id="rank-rate-3" type="number" min="0.01" max="99.98" step="0.01" value="{{rate3}}"></label>
+                </div>
+
+                <section class="rank-section">
+                    <div class="rank-heading"><h3>5★ pool</h3><button type="button" class="secondary-button add-row" data-rarity="5">Add item</button></div>
+                    <div class="pool-scroll"><table class="pool-table"><thead><tr><th>ID</th><th>Name</th><th>Rate (%)</th><th>Featured</th><th></th></tr></thead><tbody id="pool-5">{{rows5}}</tbody></table></div>
+                </section>
+                <section class="rank-section">
+                    <div class="rank-heading"><h3>4★ pool</h3><button type="button" class="secondary-button add-row" data-rarity="4">Add item</button></div>
+                    <div class="pool-scroll"><table class="pool-table"><thead><tr><th>ID</th><th>Name</th><th>Rate (%)</th><th>Featured</th><th></th></tr></thead><tbody id="pool-4">{{rows4}}</tbody></table></div>
+                </section>
+                <section class="rank-section">
+                    <div class="rank-heading"><h3>3★ pool</h3><button type="button" class="secondary-button add-row" data-rarity="3">Add item</button></div>
+                    <div class="pool-scroll"><table class="pool-table"><thead><tr><th>ID</th><th>Name</th><th>Rate (%)</th><th>Featured</th><th></th></tr></thead><tbody id="pool-3">{{rows3}}</tbody></table></div>
+                </section>
+            </section>
+            <p id="editor-status" class="status-line"></p>
+        </main>
+    </div>
+
+    <script>
+        const editor = document.getElementById('gacha-editor');
+        const status = document.getElementById('editor-status');
+        const key = `${editor.dataset.season}/${editor.dataset.cycle}/${editor.dataset.slot}`;
+        const toggle = document.getElementById('toggle-banner');
+
+        function updateToggle() {
+            const enabled = editor.dataset.enabled === 'true';
+            toggle.textContent = enabled ? 'Delete Gacha' : 'Add / Restore Gacha';
+            toggle.className = enabled ? 'danger-button' : 'primary-button';
+            document.getElementById('banner-state').textContent = enabled ? 'Active' : 'Disabled';
+        }
+        updateToggle();
+
+        function bindRemove(button) { button.addEventListener('click', () => button.closest('tr').remove()); }
+        document.querySelectorAll('.row-delete').forEach(bindRemove);
+
+        document.querySelectorAll('.add-row').forEach((button) => button.addEventListener('click', () => {
+            const rarity = Number(button.dataset.rarity);
+            const row = document.createElement('tr');
+            row.className = 'pool-row';
+            row.dataset.rarity = String(rarity);
+            row.innerHTML = `<td><input class="pool-id" type="number" min="1" step="1" required></td>
+                <td class="pool-name">New item</td>
+                <td><input class="pool-rate" type="number" min="0.000001" step="0.000001" required></td>
+                <td class="featured-cell"><input class="pool-featured" type="checkbox"></td>
+                <td><button type="button" class="row-delete">Remove</button></td>`;
+            bindRemove(row.querySelector('.row-delete'));
+            document.getElementById(`pool-${rarity}`).appendChild(row);
+        }));
+
+        document.getElementById('save-pool').addEventListener('click', async () => {
+            const entries = [...document.querySelectorAll('.pool-row')].map((row) => ({
+                id: Number(row.querySelector('.pool-id').value),
+                rarity: Number(row.dataset.rarity),
+                ratePercent: Number(row.querySelector('.pool-rate').value),
+                featured: row.querySelector('.pool-featured').checked
+            }));
+            const rankRatesPercent = {
+                5: Number(document.getElementById('rank-rate-5').value),
+                4: Number(document.getElementById('rank-rate-4').value),
+                3: Number(document.getElementById('rank-rate-3').value)
+            };
+            status.textContent = 'Saving pool...';
+            try {
+                const response = await fetch(`/web_api/gacha/${key}/pool`, {
+                    method: 'PUT', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ rankRatesPercent, entries })
+                });
+                const result = await response.json();
+                if (!response.ok) throw new Error(result.error || 'Pool update failed.');
+                status.textContent = 'Pool saved. Reloading calculated probabilities...';
+                location.reload();
+            } catch (error) { status.textContent = error instanceof Error ? error.message : String(error); }
+        });
+
+        toggle.addEventListener('click', async () => {
+            const enabled = editor.dataset.enabled === 'true';
+            if (enabled && !confirm('Delete this gacha from the active portal? The pool and artwork are preserved.')) return;
+            status.textContent = enabled ? 'Deleting...' : 'Restoring...';
+            try {
+                const response = await fetch(`/web_api/gacha/${key}${enabled ? '' : '/enable'}`, { method: enabled ? 'DELETE' : 'POST' });
+                const result = await response.json();
+                if (!response.ok) throw new Error(result.error || 'Gacha update failed.');
+                editor.dataset.enabled = String(!enabled);
+                updateToggle();
+                status.textContent = !enabled ? 'Gacha restored.' : 'Gacha deleted from the active portal.';
+            } catch (error) { status.textContent = error instanceof Error ? error.message : String(error); }
+        });
+
+        document.getElementById('upload-artwork').addEventListener('click', async () => {
+            const file = document.getElementById('artwork-file').files[0];
+            if (!file) { status.textContent = 'Choose an artwork file first.'; return; }
+            status.textContent = 'Uploading artwork...';
+            try {
+                const dataUrl = await new Promise((resolve, reject) => {
+                    const reader = new FileReader(); reader.onload = () => resolve(reader.result); reader.onerror = () => reject(reader.error); reader.readAsDataURL(file);
+                });
+                const response = await fetch(`/web_api/gacha/${key}/artwork`, {
+                    method: 'PUT', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ dataUrl })
+                });
+                const result = await response.json();
+                if (!response.ok) throw new Error(result.error || 'Artwork upload failed.');
+                document.getElementById('artwork-frame').innerHTML = `<img src="${result.artworkPath}?t=${Date.now()}" alt="Gacha artwork" class="gacha-artwork">`;
+                status.textContent = 'Artwork attached.';
+            } catch (error) { status.textContent = error instanceof Error ? error.message : String(error); }
+        });
+
+        document.getElementById('remove-artwork').addEventListener('click', async () => {
+            status.textContent = 'Removing artwork...';
+            try {
+                const response = await fetch(`/web_api/gacha/${key}/artwork`, { method: 'DELETE' });
+                const result = await response.json();
+                if (!response.ok) throw new Error(result.error || 'Artwork removal failed.');
+                document.getElementById('artwork-frame').innerHTML = '<div class="gacha-artwork-placeholder">No artwork</div>';
+                status.textContent = 'Artwork removed.';
+            } catch (error) { status.textContent = error instanceof Error ? error.message : String(error); }
+        });
+    </script>
+</body>
+
+</html>

@@ -9,6 +9,7 @@ export enum Element {
 
 export interface CharacterDefinition {
     id: number;
+    name?: string;
     rarity: number;
     element: Element;
     skillCount: number;

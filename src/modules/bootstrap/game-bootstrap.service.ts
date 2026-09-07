@@ -22,6 +22,7 @@ export interface MailArrivalReader {
 export interface GachaPortalProvider {
     portalState(playerId: number): {
         shellGachaIds: number[];
+        freeCampaignGachaIds?: number[];
         freeCampaignId: number;
         freeCampaignAvailable: boolean;
     };
@@ -39,7 +40,7 @@ export function applyGachaPortalState(
         gachaExchangePoint: 0,
     }));
     snapshot.gachaCampaignList = portal.freeCampaignAvailable
-        ? portal.shellGachaIds.slice(0, 2).map((gachaId) => ({
+        ? (portal.freeCampaignGachaIds ?? portal.shellGachaIds.slice(0, 2)).map((gachaId) => ({
             gachaId,
             campaignId: portal.freeCampaignId,
             count: 1,

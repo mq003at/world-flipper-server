@@ -1,4 +1,5 @@
 import type { DisplayCatalog } from "../../content/display/display-catalog";
+import { GachaType } from "../../content/master-data/gacha-catalog";
 import type { Clock } from "../../infrastructure/clock/clock";
 import type { RuntimeGachaBanner, SeasonalContentType } from "../gacha/seasonal-gacha.models";
 import type { SeasonalGachaService } from "../gacha/seasonal-gacha.service";
@@ -20,8 +21,8 @@ export class GachaProbabilityService {
         };
     }
 
-    private presentBanner(banner: RuntimeGachaBanner): ProbabilityBanner {
-        const contentType: SeasonalContentType = banner.slot === "weapon" ? "equipment" : "character";
+    presentBanner(banner: RuntimeGachaBanner): ProbabilityBanner {
+        const contentType: SeasonalContentType = banner.definition.type === GachaType.WEAPON ? "equipment" : "character";
         const rankWeights = banner.definition.rankWeights ?? [500, 2500, 7000];
         const entries: ProbabilityEntry[] = [];
         for (let index = 0; index < RANKS.length; index += 1) {

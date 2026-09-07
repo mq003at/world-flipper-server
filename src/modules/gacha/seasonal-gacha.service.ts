@@ -74,14 +74,23 @@ export class SeasonalGachaService {
     resolve(shellGachaId: number, now = this.clock.now()): RuntimeGachaBanner | null {
         this.ensureCurrentRotation();
         const position = this.calendar.position(now);
+        if (this.repository.findEnabledBannerByShell) {
+            return this.repository.findEnabledBannerByShell(position.seasonNumber, position.cycleIndex, shellGachaId);
+        }
         const slot = this.slotForShell(shellGachaId);
-        return slot ? this.repository.findBanner(position.seasonNumber, position.cycleIndex, slot) : null;
+        if (!slot) return null;
+        if (this.repository.isBannerEnabled?.(position.seasonNumber, position.cycleIndex, slot) === false) return null;
+        return this.repository.findBanner(position.seasonNumber, position.cycleIndex, slot);
     }
 
     activeBanners(now = this.clock.now()): RuntimeGachaBanner[] {
         this.ensureCurrentRotation();
         const position = this.calendar.position(now);
+        if (this.repository.listEnabledBanners) {
+            return this.repository.listEnabledBanners(position.seasonNumber, position.cycleIndex);
+        }
         return (["new", "rerun", "weapon"] as const)
+            .filter((slot) => this.repository.isBannerEnabled?.(position.seasonNumber, position.cycleIndex, slot) !== false)
             .map((slot) => this.repository.findBanner(position.seasonNumber, position.cycleIndex, slot))
             .filter((banner): banner is RuntimeGachaBanner => banner !== null);
     }
@@ -91,8 +100,12 @@ export class SeasonalGachaService {
         const campaign = this.calendar.isMonthEndCampaign(now);
         const dayKey = this.calendar.dayKey(now);
         if (campaign) this.repository.ensureEntitlement(playerId, dayKey);
+        const active = this.activeBanners(now);
         return {
-            shellGachaIds: [this.config.shells.new, this.config.shells.rerun, this.config.shells.weapon],
+            shellGachaIds: active.map((banner) => banner.shellGachaId),
+            freeCampaignGachaIds: active
+                .filter((banner) => banner.slot === "new" || banner.slot === "rerun")
+                .map((banner) => banner.shellGachaId),
             freeCampaignId: this.config.freeCampaignId,
             freeCampaignAvailable: campaign && this.repository.isEntitlementAvailable(playerId, dayKey),
         };

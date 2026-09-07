@@ -383,6 +383,7 @@ export async function createApp(
         adminWeb: createAdminWebRoutes(
             new AdminWebRepository(database),
             playerDataService,
+            gachaProbabilityService,
             clock,
             {
                 webDir: path.resolve(process.cwd(), "web"),

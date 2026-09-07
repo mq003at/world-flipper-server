@@ -1,6 +1,7 @@
 import type { GachaDefinition } from "../../content/master-data/gacha-catalog";
 
 export type SeasonalGachaSlot = "new" | "rerun" | "weapon";
+export type RuntimeGachaSlot = SeasonalGachaSlot | `custom-${number}`;
 export type SeasonalContentType = "character" | "equipment";
 
 export interface SeasonPosition {
@@ -15,7 +16,7 @@ export interface SeasonPosition {
 export interface RuntimeGachaBanner {
     seasonNumber: number;
     cycleIndex: number;
-    slot: SeasonalGachaSlot;
+    slot: RuntimeGachaSlot;
     shellGachaId: number;
     featuredIds: number[];
     festival: boolean;
@@ -26,6 +27,7 @@ export interface RuntimeGachaBanner {
 
 export interface SeasonalGachaPortalState {
     shellGachaIds: number[];
+    freeCampaignGachaIds?: number[];
     freeCampaignId: number;
     freeCampaignAvailable: boolean;
 }

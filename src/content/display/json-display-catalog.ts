@@ -27,7 +27,7 @@ export class JsonDisplayCatalog implements DisplayCatalog {
         const supplied = typeof raw === "string" ? { name: raw } : raw;
         return {
             id,
-            name: supplied?.name?.trim() || `Unknown ${contentType === "character" ? "Character" : "Equipment"} #${id}`,
+            name: supplied?.name?.trim() || base?.name?.trim() || `Unknown ${contentType === "character" ? "Character" : "Equipment"} #${id}`,
             ...(base ? { rarity: base.rarity, element: base.element } : {}),
             ...supplied,
         };

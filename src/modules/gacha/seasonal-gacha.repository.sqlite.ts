@@ -1,12 +1,12 @@
 import type { DatabaseConnection } from "../../infrastructure/database/database";
 import type { GachaDefinition } from "../../content/master-data/gacha-catalog";
-import type { RuntimeGachaBanner, SeasonalContentType, SeasonalGachaSlot } from "./seasonal-gacha.models";
+import type { RuntimeGachaBanner, RuntimeGachaSlot, SeasonalContentType, SeasonalGachaSlot } from "./seasonal-gacha.models";
 import type { FeatureHistoryEntry, SeasonalGachaRepository } from "./seasonal-gacha.repository";
 
 interface BannerRow {
     season_number: number;
     cycle_index: number;
-    slot_type: SeasonalGachaSlot;
+    slot_type: RuntimeGachaSlot;
     shell_gacha_id: number;
     featured_ids_json: string;
     festival: number;
@@ -40,6 +40,47 @@ export class SqliteSeasonalGachaRepository implements SeasonalGachaRepository {
             WHERE season_number = ? AND cycle_index = ? AND slot_type = ?
         `).get(seasonNumber, cycleIndex, slot) as BannerRow | undefined;
         return row ? mapBanner(row) : null;
+    }
+
+    isBannerEnabled(seasonNumber: number, cycleIndex: number, slot: SeasonalGachaSlot): boolean {
+        const row = this.database.prepare(`
+            SELECT enabled FROM admin_gacha_overrides
+            WHERE season_number = ? AND cycle_index = ? AND slot_type = ?
+        `).get(seasonNumber, cycleIndex, slot) as { enabled: number } | undefined;
+        return row?.enabled !== 0;
+    }
+
+    findEnabledBannerByShell(seasonNumber: number, cycleIndex: number, shellGachaId: number): RuntimeGachaBanner | null {
+        const row = this.database.prepare(`
+            SELECT b.season_number, b.cycle_index, b.slot_type, b.shell_gacha_id,
+                   b.featured_ids_json, b.festival, b.starts_at, b.ends_at, b.definition_json
+            FROM runtime_gacha_banners b
+            LEFT JOIN admin_gacha_overrides o
+              ON o.season_number = b.season_number
+             AND o.cycle_index = b.cycle_index
+             AND o.slot_type = b.slot_type
+            WHERE b.season_number = ? AND b.cycle_index = ? AND b.shell_gacha_id = ?
+              AND COALESCE(o.enabled, 1) = 1
+            ORDER BY CASE b.slot_type WHEN 'new' THEN 0 WHEN 'rerun' THEN 1 WHEN 'weapon' THEN 2 ELSE 3 END
+            LIMIT 1
+        `).get(seasonNumber, cycleIndex, shellGachaId) as BannerRow | undefined;
+        return row ? mapBanner(row) : null;
+    }
+
+    listEnabledBanners(seasonNumber: number, cycleIndex: number): RuntimeGachaBanner[] {
+        return (this.database.prepare(`
+            SELECT b.season_number, b.cycle_index, b.slot_type, b.shell_gacha_id,
+                   b.featured_ids_json, b.festival, b.starts_at, b.ends_at, b.definition_json
+            FROM runtime_gacha_banners b
+            LEFT JOIN admin_gacha_overrides o
+              ON o.season_number = b.season_number
+             AND o.cycle_index = b.cycle_index
+             AND o.slot_type = b.slot_type
+            WHERE b.season_number = ? AND b.cycle_index = ?
+              AND COALESCE(o.enabled, 1) = 1
+            ORDER BY CASE b.slot_type WHEN 'new' THEN 0 WHEN 'rerun' THEN 1 WHEN 'weapon' THEN 2 ELSE 3 END,
+                     b.slot_type ASC
+        `).all(seasonNumber, cycleIndex) as BannerRow[]).map(mapBanner);
     }
 
     saveBanner(banner: RuntimeGachaBanner): void {
