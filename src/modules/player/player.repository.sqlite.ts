@@ -16,6 +16,7 @@ import {
     type PlayerSnapshot,
 } from "./player.models";
 import type { PlayerRepository } from "./player.repository";
+import { resolvePlayerStamina } from "../stamina/infinite-stamina.policy";
 
 interface PlayerRow {
     id: number;
@@ -77,7 +78,7 @@ function mapPlayer(row: PlayerRow): Player {
     return {
         id: row.id,
         accountId: row.account_id,
-        stamina: row.stamina,
+        stamina: resolvePlayerStamina(),
         staminaHealTime: new Date(row.stamina_heal_time),
         boostPoint: row.boost_point,
         bossBoostPoint: row.boss_boost_point,

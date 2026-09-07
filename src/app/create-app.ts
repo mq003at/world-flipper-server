@@ -24,7 +24,6 @@ import { CryptoRandomSource } from "../infrastructure/random/crypto-random-sourc
 import { SeasonEconomyPolicy } from "../live/economy/season-economy.policy";
 import { PlayerLifecycleService } from "../live/lifecycle/player-lifecycle.service";
 import { SqlitePlayerLifecycleRepository } from "../live/lifecycle/player-lifecycle.repository.sqlite";
-import { JsonQuestStaminaCostCatalog } from "../live/economy/json-quest-stamina-cost.catalog";
 import { InProcessGameplayEventBus } from "../live/gameplay-events/in-process-gameplay-event-bus";
 import { JsonScheduleCatalog } from "../live/schedule/json-schedule-catalog";
 import { ScheduleService } from "../live/schedule/schedule.service";
@@ -145,7 +144,6 @@ export async function createApp(
     const schedule = new ScheduleService(new JsonScheduleCatalog(liveContentDir), seasonTimeline);
     const seasonalWindows = new SeasonalWindowResolver(seasonTimeline);
     const gameplayEvents = new InProcessGameplayEventBus();
-    const staminaCosts = new JsonQuestStaminaCostCatalog(liveContentDir);
     const eventCatalog = new JsonEventCatalog(liveContentDir);
     const eventRegistry = new EventRegistry(eventCatalog, schedule);
 
@@ -271,8 +269,6 @@ export async function createApp(
         characterCatalog,
         clock,
         random,
-        staminaCosts,
-        economy,
         gameplayEvents,
         eventRegistry,
         rushFinishExtension,

@@ -6,8 +6,6 @@ import {
 } from "../../content/master-data/quest-catalog";
 import type { Clock } from "../../infrastructure/clock/clock";
 import { NOOP_GAMEPLAY_EVENT_SINK, type GameplayEventSink } from "../../live/gameplay-events/gameplay-event-sink";
-import type { QuestStaminaCostCatalog } from "../../live/economy/quest-stamina-cost.catalog";
-import type { SeasonEconomyPolicy } from "../../live/economy/season-economy.policy";
 import { InvalidRequestError, InvariantError } from "../../shared/errors/application-error";
 import type { IdentityService } from "../identity/identity.service";
 import type { PlayerService } from "../player/player.service";
@@ -31,6 +29,7 @@ import { ScoreRewardService } from "./score-reward.service";
 import type { RandomSource } from "../../infrastructure/random/random-source";
 import type { QuestAvailabilityPolicy } from "./quest-availability.policy";
 import { NOOP_QUEST_FINISH_EXTENSION, type QuestFinishExtension } from "./quest-finish.extension";
+import { resolvePlayerStamina } from "../stamina/infinite-stamina.policy";
 
 const CONTINUE_VMONEY_COST = 50;
 
@@ -55,8 +54,6 @@ export class QuestService {
         characterCatalog: CharacterCatalog,
         private readonly clock: Clock,
         random: RandomSource,
-        private readonly staminaCosts: QuestStaminaCostCatalog,
-        private readonly economy: SeasonEconomyPolicy,
         private readonly gameplayEvents: GameplayEventSink = NOOP_GAMEPLAY_EVENT_SINK,
         private readonly events?: QuestAvailabilityPolicy,
         private readonly finishExtension: QuestFinishExtension = NOOP_QUEST_FINISH_EXTENSION,
@@ -78,17 +75,10 @@ export class QuestService {
                 && existing.playId === input.playId
                 && existing.questId === input.questId
                 && existing.category === input.category) {
-                return { stamina: state.stamina, staminaHealTime: state.staminaHealTime, staminaCost: 0 };
+                return { stamina: resolvePlayerStamina(), staminaHealTime: state.staminaHealTime, staminaCost: 0 };
             }
-            const baseStaminaCost = this.staminaCosts.findBaseCost(input.category, input.questId);
-            const staminaCost = baseStaminaCost === null
-                ? 0
-                : this.economy.resolveStaminaCost(baseStaminaCost);
-            if (state.stamina < staminaCost) {
-                throw new InvalidRequestError("Not enough stamina.");
-            }
-            const stamina = state.stamina - staminaCost;
-            if (staminaCost > 0) this.repository.updateStamina(player.id, stamina);
+            const stamina = resolvePlayerStamina();
+            const staminaCost = 0;
 
             const activeQuest: ActiveQuest = {
                 playerId: player.id,

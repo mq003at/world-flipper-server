@@ -14,7 +14,8 @@
     "player:export": "tsx tools/player-save.ts export",
     "player:import": "tsx tools/player-save.ts import",
     "catalog:build": "tsx tools/display-catalog.ts",
-    "gacha:probability": "tsx tools/gacha-probability.ts"
+    "gacha:probability": "tsx tools/gacha-probability.ts",
+    "stamina:max": "tsx tools/max-stamina.ts"
   },
   "engines": {
     "node": ">=20.0.0"

@@ -3,6 +3,7 @@ import type { QuestCategory } from "../../content/master-data/quest-catalog";
 import type { PlayerCharacter, PlayerQuestProgress } from "../player/player.models";
 import type { ActiveQuest, QuestPlayerState } from "./quest.models";
 import type { QuestRepository } from "./quest.repository";
+import { resolvePlayerStamina } from "../stamina/infinite-stamina.policy";
 
 function fromDbBoolean(value: number): boolean {
     return value === 1;
@@ -46,7 +47,7 @@ export class SqliteQuestRepository implements QuestRepository {
         if (!row) return null;
         return {
             playerId: row.id,
-            stamina: row.stamina,
+            stamina: resolvePlayerStamina(),
             staminaHealTime: new Date(row.stamina_heal_time),
             boostPoint: row.boost_point,
             bossBoostPoint: row.boss_boost_point,
@@ -66,8 +67,9 @@ export class SqliteQuestRepository implements QuestRepository {
     }
 
     updateStamina(playerId: number, stamina: number): void {
+        // Infinite-stamina mode never persists a depleted value.
         this.database.prepare("UPDATE players SET stamina = ? WHERE id = ?")
-            .run(stamina, playerId);
+            .run(resolvePlayerStamina(), playerId);
     }
 
     updateBattleState(

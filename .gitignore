@@ -16,6 +16,7 @@ var/
 
 # Game CDN / copyrighted runtime assets
 .cdn/
+.cdn_extracted/
 
 # Local proxy binaries/certificates
 .mitmproxy/
