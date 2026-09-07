@@ -1,10 +1,10 @@
 {
     "1001": {
-        "name": "",
+        "name": "Prologue",
         "clearRewardId": 1
     },
     "1002": {
-        "name": "",
+        "name": "Ilco Opus ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 2717,
@@ -18,11 +18,11 @@
         "poolExpReward": 112
     },
     "1003": {
-        "name": "",
+        "name": "Epilogue",
         "clearRewardId": 1
     },
     "1004": {
-        "name": "",
+        "name": "Ilco Opus ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 2718,
@@ -36,7 +36,7 @@
         "poolExpReward": 400
     },
     "1005": {
-        "name": "",
+        "name": "Ilco Opus ::quest_rank::",
         "clearRewardId": 31,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 2719,
@@ -50,11 +50,11 @@
         "poolExpReward": 1400
     },
     "2001": {
-        "name": "",
+        "name": "Prologue",
         "clearRewardId": 1
     },
     "2002": {
-        "name": "",
+        "name": "Ilse Badika ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 2817,
@@ -68,11 +68,11 @@
         "poolExpReward": 112
     },
     "2003": {
-        "name": "",
+        "name": "Epilogue",
         "clearRewardId": 1
     },
     "2004": {
-        "name": "",
+        "name": "Ilse Badika ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 2818,
@@ -86,7 +86,7 @@
         "poolExpReward": 400
     },
     "2005": {
-        "name": "",
+        "name": "Ilse Badika ::quest_rank::",
         "clearRewardId": 31,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 2819,
@@ -100,11 +100,11 @@
         "poolExpReward": 1400
     },
     "3001": {
-        "name": "",
+        "name": "Prologue",
         "clearRewardId": 1
     },
     "3002": {
-        "name": "",
+        "name": "Ilma Talei ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 2917,
@@ -118,11 +118,11 @@
         "poolExpReward": 112
     },
     "3003": {
-        "name": "",
+        "name": "Epilogue",
         "clearRewardId": 1
     },
     "3004": {
-        "name": "",
+        "name": "Ilma Talei ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 2918,
@@ -136,7 +136,7 @@
         "poolExpReward": 400
     },
     "3005": {
-        "name": "",
+        "name": "Ilma Talei ::quest_rank::",
         "clearRewardId": 31,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 2919,
@@ -150,11 +150,11 @@
         "poolExpReward": 1400
     },
     "4001": {
-        "name": "",
+        "name": "Prologue",
         "clearRewardId": 1
     },
     "4002": {
-        "name": "",
+        "name": "Arch Guardian ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 2921,
@@ -168,11 +168,11 @@
         "poolExpReward": 112
     },
     "4003": {
-        "name": "",
+        "name": "Epilogue",
         "clearRewardId": 1
     },
     "4004": {
-        "name": "",
+        "name": "Arch Guardian ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 2922,
@@ -186,7 +186,7 @@
         "poolExpReward": 400
     },
     "4005": {
-        "name": "",
+        "name": "Arch Guardian ::quest_rank::",
         "clearRewardId": 31,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 2923,
@@ -200,11 +200,11 @@
         "poolExpReward": 1400
     },
     "5001": {
-        "name": "",
+        "name": "Prologue",
         "clearRewardId": 1
     },
     "5002": {
-        "name": "",
+        "name": "Il Laudress Inter.",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 2925,
@@ -218,7 +218,7 @@
         "poolExpReward": 112
     },
     "5003": {
-        "name": "",
+        "name": "Il Laudress Adv.",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 2926,
@@ -232,7 +232,7 @@
         "poolExpReward": 400
     },
     "5004": {
-        "name": "",
+        "name": "Il Laudress Adv.+",
         "clearRewardId": 31,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 2927,
@@ -246,11 +246,11 @@
         "poolExpReward": 1400
     },
     "6001": {
-        "name": "",
+        "name": "Prologue",
         "clearRewardId": 1
     },
     "6002": {
-        "name": "",
+        "name": "Ilse Badika ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 2821,
@@ -264,7 +264,7 @@
         "poolExpReward": 117
     },
     "6003": {
-        "name": "",
+        "name": "Ilse Badika ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 2822,
@@ -278,7 +278,7 @@
         "poolExpReward": 410
     },
     "6004": {
-        "name": "",
+        "name": "Ilse Badika ::quest_rank::",
         "clearRewardId": 31,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 2823,
@@ -292,7 +292,7 @@
         "poolExpReward": 1415
     },
     "6005": {
-        "name": "",
+        "name": "Ilse Badika ::quest_rank::",
         "clearRewardId": 31,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 2824,
@@ -306,11 +306,11 @@
         "poolExpReward": 2435
     },
     "7001": {
-        "name": "",
+        "name": "Prologue",
         "clearRewardId": 1
     },
     "7002": {
-        "name": "",
+        "name": "Ilanthra ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 2825,
@@ -324,7 +324,7 @@
         "poolExpReward": 117
     },
     "7003": {
-        "name": "",
+        "name": "Ilanthra ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 2826,
@@ -338,7 +338,7 @@
         "poolExpReward": 410
     },
     "7004": {
-        "name": "",
+        "name": "Ilanthra ::quest_rank::",
         "clearRewardId": 31,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 2827,
@@ -352,7 +352,7 @@
         "poolExpReward": 1415
     },
     "7005": {
-        "name": "",
+        "name": "Ilanthra ::quest_rank::",
         "clearRewardId": 31,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 2828,
@@ -366,15 +366,15 @@
         "poolExpReward": 2435
     },
     "9001": {
-        "name": "",
+        "name": "Spooky Scary Palpebra",
         "clearRewardId": 1
     },
     "9002": {
-        "name": "",
+        "name": "Jack-o'-Lantern",
         "clearRewardId": 1
     },
     "9003": {
-        "name": "",
+        "name": "Jack-o'-Lantern ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 2829,
@@ -388,11 +388,11 @@
         "poolExpReward": 117
     },
     "9004": {
-        "name": "",
+        "name": "In the Face of Fear",
         "clearRewardId": 1
     },
     "9005": {
-        "name": "",
+        "name": "Jack-o'-Lantern ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 2830,
@@ -406,11 +406,11 @@
         "poolExpReward": 410
     },
     "9006": {
-        "name": "",
+        "name": "Requiem Aeternam",
         "clearRewardId": 1
     },
     "9007": {
-        "name": "",
+        "name": "Jack-o'-Lantern ::quest_rank::",
         "clearRewardId": 31,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 2831,
@@ -424,7 +424,7 @@
         "poolExpReward": 1415
     },
     "9008": {
-        "name": "",
+        "name": "Jack-o'-Lantern ::quest_rank::",
         "clearRewardId": 31,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 2832,
@@ -438,11 +438,11 @@
         "poolExpReward": 2435
     },
     "10001": {
-        "name": "",
+        "name": "Prologue",
         "clearRewardId": 1
     },
     "10002": {
-        "name": "",
+        "name": "Ilco Opus ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 2833,
@@ -456,7 +456,7 @@
         "poolExpReward": 117
     },
     "10003": {
-        "name": "",
+        "name": "Ilco Opus ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 2834,
@@ -470,7 +470,7 @@
         "poolExpReward": 410
     },
     "10004": {
-        "name": "",
+        "name": "Ilco Opus ::quest_rank::",
         "clearRewardId": 31,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 2835,
@@ -484,7 +484,7 @@
         "poolExpReward": 1415
     },
     "10005": {
-        "name": "",
+        "name": "Ilco Opus ::quest_rank::",
         "clearRewardId": 31,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 2836,
@@ -498,7 +498,7 @@
         "poolExpReward": 2435
     },
     "11001": {
-        "name": "",
+        "name": "Festive Snowy Maws ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 2837,
@@ -512,7 +512,7 @@
         "poolExpReward": 117
     },
     "11002": {
-        "name": "",
+        "name": "Festive Snowy Maws ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 2838,
@@ -526,7 +526,7 @@
         "poolExpReward": 410
     },
     "11003": {
-        "name": "",
+        "name": "Festive Snowy Maws ::quest_rank::",
         "clearRewardId": 31,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 2839,
@@ -540,7 +540,7 @@
         "poolExpReward": 1415
     },
     "11004": {
-        "name": "",
+        "name": "Festive Snowy Maws ::quest_rank::",
         "clearRewardId": 31,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 2840,
@@ -554,11 +554,11 @@
         "poolExpReward": 2435
     },
     "12001": {
-        "name": "",
+        "name": "Prologue",
         "clearRewardId": 1
     },
     "12002": {
-        "name": "",
+        "name": "Il Laudress ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 2841,
@@ -572,7 +572,7 @@
         "poolExpReward": 117
     },
     "12003": {
-        "name": "",
+        "name": "Il Laudress ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 2842,
@@ -586,7 +586,7 @@
         "poolExpReward": 410
     },
     "12004": {
-        "name": "",
+        "name": "Il Laudress ::quest_rank::",
         "clearRewardId": 31,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 2843,
@@ -600,7 +600,7 @@
         "poolExpReward": 1415
     },
     "12005": {
-        "name": "",
+        "name": "Il Laudress ::quest_rank::",
         "clearRewardId": 31,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 2844,
@@ -614,11 +614,11 @@
         "poolExpReward": 2435
     },
     "13001": {
-        "name": "",
+        "name": "Prologue",
         "clearRewardId": 1
     },
     "13002": {
-        "name": "",
+        "name": "Il Glaur ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 2845,
@@ -632,7 +632,7 @@
         "poolExpReward": 117
     },
     "13003": {
-        "name": "",
+        "name": "Il Glaur ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 2846,
@@ -646,7 +646,7 @@
         "poolExpReward": 410
     },
     "13004": {
-        "name": "",
+        "name": "Il Glaur ::quest_rank::",
         "clearRewardId": 31,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 2847,
@@ -660,7 +660,7 @@
         "poolExpReward": 1415
     },
     "13005": {
-        "name": "",
+        "name": "Il Glaur ::quest_rank::",
         "clearRewardId": 31,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 2848,
@@ -674,7 +674,7 @@
         "poolExpReward": 2435
     },
     "14001": {
-        "name": "",
+        "name": "Progreo ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 2853,
@@ -688,7 +688,7 @@
         "poolExpReward": 117
     },
     "14002": {
-        "name": "",
+        "name": "Progreo ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 2854,
@@ -702,7 +702,7 @@
         "poolExpReward": 410
     },
     "14003": {
-        "name": "",
+        "name": "Progreo ::quest_rank::",
         "clearRewardId": 31,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 2855,
@@ -716,7 +716,7 @@
         "poolExpReward": 1415
     },
     "14004": {
-        "name": "",
+        "name": "Progreo ::quest_rank::",
         "clearRewardId": 31,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 2856,
@@ -730,7 +730,7 @@
         "poolExpReward": 2435
     },
     "15001": {
-        "name": "",
+        "name": "Slamgon ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 2861,
@@ -744,7 +744,7 @@
         "poolExpReward": 117
     },
     "15002": {
-        "name": "",
+        "name": "Slamgon ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 2862,
@@ -758,7 +758,7 @@
         "poolExpReward": 410
     },
     "15003": {
-        "name": "",
+        "name": "Slamgon ::quest_rank::",
         "clearRewardId": 31,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 2863,
@@ -772,7 +772,7 @@
         "poolExpReward": 1415
     },
     "15004": {
-        "name": "",
+        "name": "Slamgon ::quest_rank::",
         "clearRewardId": 31,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 2864,
@@ -786,15 +786,15 @@
         "poolExpReward": 2435
     },
     "16001": {
-        "name": "",
+        "name": "Spooky Scary Palpebra",
         "clearRewardId": 1
     },
     "16002": {
-        "name": "",
+        "name": "Jack-o'-Lantern",
         "clearRewardId": 1
     },
     "16003": {
-        "name": "",
+        "name": "Jack-o'-Lantern ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 2865,
@@ -808,11 +808,11 @@
         "poolExpReward": 117
     },
     "16004": {
-        "name": "",
+        "name": "In the Face of Fear",
         "clearRewardId": 1
     },
     "16005": {
-        "name": "",
+        "name": "Jack-o'-Lantern ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 2866,
@@ -826,11 +826,11 @@
         "poolExpReward": 410
     },
     "16006": {
-        "name": "",
+        "name": "Requiem Aeternam",
         "clearRewardId": 1
     },
     "16007": {
-        "name": "",
+        "name": "Jack-o'-Lantern ::quest_rank::",
         "clearRewardId": 31,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 2867,
@@ -844,7 +844,7 @@
         "poolExpReward": 1415
     },
     "16008": {
-        "name": "",
+        "name": "Jack-o'-Lantern ::quest_rank::",
         "clearRewardId": 31,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 2868,
@@ -858,7 +858,7 @@
         "poolExpReward": 2435
     },
     "17001": {
-        "name": "",
+        "name": "Festive Snowy Maws ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 2869,
@@ -872,7 +872,7 @@
         "poolExpReward": 117
     },
     "17002": {
-        "name": "",
+        "name": "Festive Snowy Maws ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 2870,
@@ -886,7 +886,7 @@
         "poolExpReward": 410
     },
     "17003": {
-        "name": "",
+        "name": "Festive Snowy Maws ::quest_rank::",
         "clearRewardId": 31,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 2871,
@@ -900,7 +900,7 @@
         "poolExpReward": 1415
     },
     "17004": {
-        "name": "",
+        "name": "Festive Snowy Maws ::quest_rank::",
         "clearRewardId": 31,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 2872,
@@ -914,7 +914,7 @@
         "poolExpReward": 2435
     },
     "19001": {
-        "name": "",
+        "name": "Alternia ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 2873,
@@ -928,7 +928,7 @@
         "poolExpReward": 117
     },
     "19002": {
-        "name": "",
+        "name": "Alternia ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 2874,
@@ -942,7 +942,7 @@
         "poolExpReward": 410
     },
     "19003": {
-        "name": "",
+        "name": "Alternia ::quest_rank::",
         "clearRewardId": 31,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 2875,
@@ -956,7 +956,7 @@
         "poolExpReward": 1415
     },
     "19004": {
-        "name": "",
+        "name": "Alternia ::quest_rank::",
         "clearRewardId": 31,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 2876,
@@ -970,7 +970,7 @@
         "poolExpReward": 2435
     },
     "20001": {
-        "name": "",
+        "name": "Doomeo ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 2877,
@@ -984,7 +984,7 @@
         "poolExpReward": 117
     },
     "20002": {
-        "name": "",
+        "name": "Doomeo ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 2878,
@@ -998,7 +998,7 @@
         "poolExpReward": 410
     },
     "20003": {
-        "name": "",
+        "name": "Doomeo ::quest_rank::",
         "clearRewardId": 31,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 2879,
@@ -1012,7 +1012,7 @@
         "poolExpReward": 1415
     },
     "20004": {
-        "name": "",
+        "name": "Doomeo ::quest_rank::",
         "clearRewardId": 31,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 2880,
@@ -1026,7 +1026,7 @@
         "poolExpReward": 2435
     },
     "21001": {
-        "name": "",
+        "name": "Progreo ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 2929,
@@ -1040,7 +1040,7 @@
         "poolExpReward": 117
     },
     "21002": {
-        "name": "",
+        "name": "Progreo ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 2930,
@@ -1054,7 +1054,7 @@
         "poolExpReward": 410
     },
     "21003": {
-        "name": "",
+        "name": "Progreo ::quest_rank::",
         "clearRewardId": 31,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 2931,
@@ -1068,7 +1068,7 @@
         "poolExpReward": 1415
     },
     "21004": {
-        "name": "",
+        "name": "Progreo ::quest_rank::",
         "clearRewardId": 31,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 2932,
@@ -1082,7 +1082,7 @@
         "poolExpReward": 2435
     },
     "22001": {
-        "name": "",
+        "name": "Atmosia ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 2881,
@@ -1096,7 +1096,7 @@
         "poolExpReward": 117
     },
     "22002": {
-        "name": "",
+        "name": "Atmosia ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 2882,
@@ -1110,7 +1110,7 @@
         "poolExpReward": 410
     },
     "22003": {
-        "name": "",
+        "name": "Atmosia ::quest_rank::",
         "clearRewardId": 31,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 2883,
@@ -1124,7 +1124,7 @@
         "poolExpReward": 1415
     },
     "22004": {
-        "name": "",
+        "name": "Atmosia ::quest_rank::",
         "clearRewardId": 31,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 2884,
@@ -1138,7 +1138,7 @@
         "poolExpReward": 2435
     },
     "23001": {
-        "name": "",
+        "name": "Theatrio ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 2885,
@@ -1152,7 +1152,7 @@
         "poolExpReward": 117
     },
     "23002": {
-        "name": "",
+        "name": "Theatrio ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 2886,
@@ -1166,7 +1166,7 @@
         "poolExpReward": 410
     },
     "23003": {
-        "name": "",
+        "name": "Theatrio ::quest_rank::",
         "clearRewardId": 31,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 2887,
@@ -1180,7 +1180,7 @@
         "poolExpReward": 1415
     },
     "23004": {
-        "name": "",
+        "name": "Theatrio ::quest_rank::",
         "clearRewardId": 31,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 2888,
@@ -1194,19 +1194,19 @@
         "poolExpReward": 2435
     },
     "100001001": {
-        "name": "",
+        "name": "New World SAGA",
         "clearRewardId": 100001
     },
     "100001002": {
-        "name": "",
+        "name": "SAGA Is as SAGA Does",
         "clearRewardId": 1
     },
     "100001003": {
-        "name": "",
+        "name": "First Concert in SAGA",
         "clearRewardId": 1
     },
     "100001004": {
-        "name": "",
+        "name": "Feral Romero ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000,
@@ -1220,11 +1220,11 @@
         "poolExpReward": 117
     },
     "100001005": {
-        "name": "",
+        "name": "Our SAGA Continues",
         "clearRewardId": 1
     },
     "100001006": {
-        "name": "",
+        "name": "Feral Romero ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11001,
@@ -1238,7 +1238,7 @@
         "poolExpReward": 410
     },
     "100001007": {
-        "name": "",
+        "name": "Feral Romero ::quest_rank::",
         "clearRewardId": 31,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11002,
@@ -1252,7 +1252,7 @@
         "poolExpReward": 1415
     },
     "100001008": {
-        "name": "",
+        "name": "Feral Romero ::quest_rank::",
         "clearRewardId": 31,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11003,
@@ -1266,15 +1266,15 @@
         "poolExpReward": 1635
     },
     "100002001": {
-        "name": "",
+        "name": "Re:ZERO (Again)",
         "clearRewardId": 100101
     },
     "100002002": {
-        "name": "",
+        "name": "Find Subaru Natsuki!",
         "clearRewardId": 1
     },
     "100002003": {
-        "name": "",
+        "name": "Winged Familiars ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 12000,
@@ -1288,11 +1288,11 @@
         "poolExpReward": 117
     },
     "100002004": {
-        "name": "",
+        "name": "Life in Another World",
         "clearRewardId": 1
     },
     "100002005": {
-        "name": "",
+        "name": "Winged Familiars ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 12001,
@@ -1306,7 +1306,7 @@
         "poolExpReward": 410
     },
     "100002006": {
-        "name": "",
+        "name": "Winged Familiars ::quest_rank::",
         "clearRewardId": 31,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 12002,
@@ -1320,7 +1320,7 @@
         "poolExpReward": 1415
     },
     "100002007": {
-        "name": "",
+        "name": "Winged Familiars ::quest_rank::",
         "clearRewardId": 31,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 12003,
@@ -1334,19 +1334,19 @@
         "poolExpReward": 2435
     },
     "100003001": {
-        "name": "",
+        "name": "New World SAGA",
         "clearRewardId": 100001
     },
     "100003002": {
-        "name": "",
+        "name": "SAGA Is as SAGA Does",
         "clearRewardId": 1
     },
     "100003003": {
-        "name": "",
+        "name": "First Concert in SAGA",
         "clearRewardId": 1
     },
     "100003004": {
-        "name": "",
+        "name": "Feral Romero ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11100,
@@ -1360,11 +1360,11 @@
         "poolExpReward": 117
     },
     "100003005": {
-        "name": "",
+        "name": "Our SAGA Continues",
         "clearRewardId": 1
     },
     "100003006": {
-        "name": "",
+        "name": "Feral Romero ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11101,
@@ -1378,7 +1378,7 @@
         "poolExpReward": 410
     },
     "100003007": {
-        "name": "",
+        "name": "Feral Romero ::quest_rank::",
         "clearRewardId": 31,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11102,
@@ -1392,7 +1392,7 @@
         "poolExpReward": 1415
     },
     "100003008": {
-        "name": "",
+        "name": "Feral Romero ::quest_rank::",
         "clearRewardId": 31,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11103,
@@ -1406,11 +1406,11 @@
         "poolExpReward": 1635
     },
     "100004001": {
-        "name": "",
+        "name": "From Blue Skies",
         "clearRewardId": 1
     },
     "100004002": {
-        "name": "",
+        "name": "Wind & Thunder ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 2849,
@@ -1424,11 +1424,11 @@
         "poolExpReward": 117
     },
     "100004003": {
-        "name": "",
+        "name": "Info Exchange",
         "clearRewardId": 1
     },
     "100004004": {
-        "name": "",
+        "name": "Wind & Thunder ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 2850,
@@ -1442,11 +1442,11 @@
         "poolExpReward": 410
     },
     "100004005": {
-        "name": "",
+        "name": "Primal Reversal",
         "clearRewardId": 1
     },
     "100004006": {
-        "name": "",
+        "name": "Wind & Thunder ::quest_rank::",
         "clearRewardId": 31,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 2851,
@@ -1460,7 +1460,7 @@
         "poolExpReward": 1415
     },
     "100004007": {
-        "name": "",
+        "name": "Wind & Thunder ::quest_rank::",
         "clearRewardId": 31,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 2852,
@@ -1474,15 +1474,15 @@
         "poolExpReward": 2435
     },
     "100006001": {
-        "name": "",
+        "name": "Re:ZERO (Again)",
         "clearRewardId": 100101
     },
     "100006002": {
-        "name": "",
+        "name": "Find Subaru Natsuki!",
         "clearRewardId": 1
     },
     "100006003": {
-        "name": "",
+        "name": "Winged Familiars ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 13000,
@@ -1496,11 +1496,11 @@
         "poolExpReward": 117
     },
     "100006004": {
-        "name": "",
+        "name": "Life in Another World",
         "clearRewardId": 1
     },
     "100006005": {
-        "name": "",
+        "name": "Winged Familiars ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 13001,
@@ -1514,7 +1514,7 @@
         "poolExpReward": 410
     },
     "100006006": {
-        "name": "",
+        "name": "Winged Familiars ::quest_rank::",
         "clearRewardId": 31,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 13002,
@@ -1528,7 +1528,7 @@
         "poolExpReward": 1415
     },
     "100006007": {
-        "name": "",
+        "name": "Winged Familiars ::quest_rank::",
         "clearRewardId": 31,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 13003,
@@ -1542,15 +1542,15 @@
         "poolExpReward": 2435
     },
     "100007001": {
-        "name": "",
+        "name": "Palpebran Debut",
         "clearRewardId": 100301
     },
     "100007002": {
-        "name": "",
+        "name": "Gotta Go Fast",
         "clearRewardId": 1
     },
     "100007003": {
-        "name": "",
+        "name": "Jolly Harvester ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 14000,
@@ -1564,11 +1564,11 @@
         "poolExpReward": 117
     },
     "100007004": {
-        "name": "",
+        "name": "And the Race Is On!",
         "clearRewardId": 1
     },
     "100007005": {
-        "name": "",
+        "name": "Jolly Harvester ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 14001,
@@ -1582,7 +1582,7 @@
         "poolExpReward": 410
     },
     "100007006": {
-        "name": "",
+        "name": "Jolly Harvester ::quest_rank::",
         "clearRewardId": 31,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 14002,
@@ -1596,7 +1596,7 @@
         "poolExpReward": 1415
     },
     "100007007": {
-        "name": "",
+        "name": "Jolly Harvester ::quest_rank::",
         "clearRewardId": 31,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 14003,
@@ -1610,7 +1610,7 @@
         "poolExpReward": 2435
     },
     "200002001": {
-        "name": "",
+        "name": "Atmosia ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000027,
@@ -1624,7 +1624,7 @@
         "poolExpReward": 117
     },
     "200002002": {
-        "name": "",
+        "name": "Atmosia ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000028,
@@ -1638,7 +1638,7 @@
         "poolExpReward": 410
     },
     "200002003": {
-        "name": "",
+        "name": "Atmosia ::quest_rank::",
         "clearRewardId": 31,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000029,
@@ -1652,7 +1652,7 @@
         "poolExpReward": 1415
     },
     "200002004": {
-        "name": "",
+        "name": "Atmosia ::quest_rank::",
         "clearRewardId": 31,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000030,
@@ -1666,7 +1666,7 @@
         "poolExpReward": 2435
     },
     "200004001": {
-        "name": "",
+        "name": "Slamgon ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000049,
@@ -1680,7 +1680,7 @@
         "poolExpReward": 117
     },
     "200004002": {
-        "name": "",
+        "name": "Slamgon ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000050,
@@ -1694,7 +1694,7 @@
         "poolExpReward": 410
     },
     "200004003": {
-        "name": "",
+        "name": "Slamgon ::quest_rank::",
         "clearRewardId": 31,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000051,
@@ -1708,7 +1708,7 @@
         "poolExpReward": 1415
     },
     "200004004": {
-        "name": "",
+        "name": "Slamgon ::quest_rank::",
         "clearRewardId": 31,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000052,
@@ -1722,7 +1722,7 @@
         "poolExpReward": 2435
     },
     "200005001": {
-        "name": "",
+        "name": "Alternia ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000053,
@@ -1736,7 +1736,7 @@
         "poolExpReward": 117
     },
     "200005002": {
-        "name": "",
+        "name": "Alternia ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000054,
@@ -1750,7 +1750,7 @@
         "poolExpReward": 410
     },
     "200005003": {
-        "name": "",
+        "name": "Alternia ::quest_rank::",
         "clearRewardId": 31,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000055,
@@ -1764,7 +1764,7 @@
         "poolExpReward": 1415
     },
     "200005004": {
-        "name": "",
+        "name": "Alternia ::quest_rank::",
         "clearRewardId": 31,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000056,
@@ -1778,7 +1778,7 @@
         "poolExpReward": 2435
     },
     "200009001": {
-        "name": "",
+        "name": "Progreo ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000093,
@@ -1792,7 +1792,7 @@
         "poolExpReward": 117
     },
     "200009002": {
-        "name": "",
+        "name": "Progreo ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000094,
@@ -1806,7 +1806,7 @@
         "poolExpReward": 410
     },
     "200009003": {
-        "name": "",
+        "name": "Progreo ::quest_rank::",
         "clearRewardId": 31,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000095,
@@ -1820,7 +1820,7 @@
         "poolExpReward": 1415
     },
     "200009004": {
-        "name": "",
+        "name": "Progreo ::quest_rank::",
         "clearRewardId": 31,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000096,
@@ -1834,15 +1834,15 @@
         "poolExpReward": 2435
     },
     "200010001": {
-        "name": "",
+        "name": "Spooky Scary Palpebra",
         "clearRewardId": 1
     },
     "200010002": {
-        "name": "",
+        "name": "Jack-o'-Lantern",
         "clearRewardId": 1
     },
     "200010003": {
-        "name": "",
+        "name": "Jack-o'-Lantern ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000097,
@@ -1856,11 +1856,11 @@
         "poolExpReward": 117
     },
     "200010004": {
-        "name": "",
+        "name": "In the Face of Fear",
         "clearRewardId": 1
     },
     "200010005": {
-        "name": "",
+        "name": "Jack-o'-Lantern ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000098,
@@ -1874,11 +1874,11 @@
         "poolExpReward": 410
     },
     "200010006": {
-        "name": "",
+        "name": "Requiem Aeternam",
         "clearRewardId": 1
     },
     "200010007": {
-        "name": "",
+        "name": "Jack-o'-Lantern ::quest_rank::",
         "clearRewardId": 31,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000099,
@@ -1892,7 +1892,7 @@
         "poolExpReward": 1415
     },
     "200010008": {
-        "name": "",
+        "name": "Jack-o'-Lantern ::quest_rank::",
         "clearRewardId": 10042500,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000100,
@@ -1906,7 +1906,7 @@
         "poolExpReward": 2435
     },
     "200011001": {
-        "name": "",
+        "name": "Doomeo ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000101,
@@ -1920,7 +1920,7 @@
         "poolExpReward": 117
     },
     "200011002": {
-        "name": "",
+        "name": "Doomeo ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000102,
@@ -1934,7 +1934,7 @@
         "poolExpReward": 410
     },
     "200011003": {
-        "name": "",
+        "name": "Doomeo ::quest_rank::",
         "clearRewardId": 31,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000103,
@@ -1948,7 +1948,7 @@
         "poolExpReward": 1415
     },
     "200011004": {
-        "name": "",
+        "name": "Doomeo ::quest_rank::",
         "clearRewardId": 31,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000104,
@@ -1962,7 +1962,7 @@
         "poolExpReward": 2435
     },
     "200011005": {
-        "name": "",
+        "name": "Doomeo ::quest_rank::",
         "clearRewardId": 34,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000105,
@@ -1976,7 +1976,7 @@
         "poolExpReward": 2600
     },
     "200012001": {
-        "name": "",
+        "name": "Slamgon ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000113,
@@ -1990,7 +1990,7 @@
         "poolExpReward": 117
     },
     "200012002": {
-        "name": "",
+        "name": "Slamgon ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000114,
@@ -2004,7 +2004,7 @@
         "poolExpReward": 410
     },
     "200012003": {
-        "name": "",
+        "name": "Slamgon ::quest_rank::",
         "clearRewardId": 31,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000115,
@@ -2018,7 +2018,7 @@
         "poolExpReward": 1415
     },
     "200012004": {
-        "name": "",
+        "name": "Slamgon ::quest_rank::",
         "clearRewardId": 31,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000116,
@@ -2032,7 +2032,7 @@
         "poolExpReward": 2435
     },
     "200012005": {
-        "name": "",
+        "name": "Slamgon ::quest_rank::",
         "clearRewardId": 34,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000117,
@@ -2046,11 +2046,11 @@
         "poolExpReward": 2600
     },
     "200013001": {
-        "name": "",
+        "name": "Wish Upon a Star",
         "clearRewardId": 1
     },
     "200013002": {
-        "name": "",
+        "name": "Frontline Purger ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000109,
@@ -2064,15 +2064,15 @@
         "poolExpReward": 2435
     },
     "200013003": {
-        "name": "",
+        "name": "Palpebra's Counterattack",
         "clearRewardId": 1
     },
     "200013004": {
-        "name": "",
+        "name": "The Path to Safety",
         "clearRewardId": 1
     },
     "200013005": {
-        "name": "",
+        "name": "Purger Sage ::quest_rank::",
         "clearRewardId": 71,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000110,
@@ -2086,7 +2086,7 @@
         "poolExpReward": 2435
     },
     "200013006": {
-        "name": "",
+        "name": "Modified Purger ::quest_rank::",
         "clearRewardId": 71,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000111,
@@ -2100,15 +2100,15 @@
         "poolExpReward": 2435
     },
     "200013007": {
-        "name": "",
+        "name": "Echoes in the Abyss",
         "clearRewardId": 1
     },
     "200013008": {
-        "name": "",
+        "name": "Seize Your Destiny",
         "clearRewardId": 1
     },
     "200013009": {
-        "name": "",
+        "name": "Purger Empress ::quest_rank::",
         "clearRewardId": 34,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000112,
@@ -2122,7 +2122,7 @@
         "poolExpReward": 2435
     },
     "200014001": {
-        "name": "",
+        "name": "Heinlert ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000134,
@@ -2136,7 +2136,7 @@
         "poolExpReward": 117
     },
     "200014002": {
-        "name": "",
+        "name": "Heinlert ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000135,
@@ -2150,7 +2150,7 @@
         "poolExpReward": 410
     },
     "200014003": {
-        "name": "",
+        "name": "Heinlert ::quest_rank::",
         "clearRewardId": 31,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000136,
@@ -2164,7 +2164,7 @@
         "poolExpReward": 1415
     },
     "200014004": {
-        "name": "",
+        "name": "Heinlert ::quest_rank::",
         "clearRewardId": 31,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000137,
@@ -2178,7 +2178,7 @@
         "poolExpReward": 2435
     },
     "200015001": {
-        "name": "",
+        "name": "聖夜の雪像Ｇ ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000121,
@@ -2192,7 +2192,7 @@
         "poolExpReward": 117
     },
     "200015002": {
-        "name": "",
+        "name": "聖夜の雪像Ｇ ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000122,
@@ -2206,7 +2206,7 @@
         "poolExpReward": 410
     },
     "200015003": {
-        "name": "",
+        "name": "聖夜の雪像Ｇ ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000123,
@@ -2220,7 +2220,7 @@
         "poolExpReward": 1415
     },
     "200015004": {
-        "name": "",
+        "name": "聖夜の雪像Ｇ ::quest_rank::",
         "clearRewardId": 31,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000124,
@@ -2234,7 +2234,7 @@
         "poolExpReward": 2435
     },
     "200015005": {
-        "name": "",
+        "name": "聖夜の雪像Ｇ ::quest_rank::",
         "clearRewardId": 11000000,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000133,
@@ -2248,7 +2248,7 @@
         "poolExpReward": 2600
     },
     "200016001": {
-        "name": "",
+        "name": "Theatrio ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000125,
@@ -2262,7 +2262,7 @@
         "poolExpReward": 117
     },
     "200016002": {
-        "name": "",
+        "name": "Theatrio ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000126,
@@ -2276,7 +2276,7 @@
         "poolExpReward": 410
     },
     "200016003": {
-        "name": "",
+        "name": "Theatrio ::quest_rank::",
         "clearRewardId": 31,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000127,
@@ -2290,7 +2290,7 @@
         "poolExpReward": 1415
     },
     "200016004": {
-        "name": "",
+        "name": "Theatrio ::quest_rank::",
         "clearRewardId": 31,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000128,
@@ -2304,7 +2304,7 @@
         "poolExpReward": 2435
     },
     "200016005": {
-        "name": "",
+        "name": "Theatrio ::quest_rank::",
         "clearRewardId": 34,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000129,
@@ -2318,7 +2318,7 @@
         "poolExpReward": 2600
     },
     "200017001": {
-        "name": "",
+        "name": "翠機兵クラーグ ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000143,
@@ -2332,7 +2332,7 @@
         "poolExpReward": 117
     },
     "200017002": {
-        "name": "",
+        "name": "翠機兵クラーグ ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000144,
@@ -2346,7 +2346,7 @@
         "poolExpReward": 410
     },
     "200017003": {
-        "name": "",
+        "name": "翠機兵クラーグ ::quest_rank::",
         "clearRewardId": 31,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000145,
@@ -2360,7 +2360,7 @@
         "poolExpReward": 1415
     },
     "200017004": {
-        "name": "",
+        "name": "翠機兵クラーグ ::quest_rank::",
         "clearRewardId": 31,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000146,
@@ -2374,7 +2374,7 @@
         "poolExpReward": 2435
     },
     "200018001": {
-        "name": "",
+        "name": "蒼機兵ヴェルヌス ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000203,
@@ -2388,7 +2388,7 @@
         "poolExpReward": 117
     },
     "200018002": {
-        "name": "",
+        "name": "蒼機兵ヴェルヌス ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000204,
@@ -2402,7 +2402,7 @@
         "poolExpReward": 410
     },
     "200018003": {
-        "name": "",
+        "name": "蒼機兵ヴェルヌス ::quest_rank::",
         "clearRewardId": 31,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000205,
@@ -2416,7 +2416,7 @@
         "poolExpReward": 1415
     },
     "200018004": {
-        "name": "",
+        "name": "蒼機兵ヴェルヌス ::quest_rank::",
         "clearRewardId": 31,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000206,
@@ -2430,7 +2430,7 @@
         "poolExpReward": 2435
     },
     "200019001": {
-        "name": "",
+        "name": "Alternia ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000193,
@@ -2444,7 +2444,7 @@
         "poolExpReward": 117
     },
     "200019002": {
-        "name": "",
+        "name": "Alternia ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000194,
@@ -2458,7 +2458,7 @@
         "poolExpReward": 410
     },
     "200019003": {
-        "name": "",
+        "name": "Alternia ::quest_rank::",
         "clearRewardId": 31,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000195,
@@ -2472,7 +2472,7 @@
         "poolExpReward": 1415
     },
     "200019004": {
-        "name": "",
+        "name": "Alternia ::quest_rank::",
         "clearRewardId": 31,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000196,
@@ -2486,7 +2486,7 @@
         "poolExpReward": 2435
     },
     "200019005": {
-        "name": "",
+        "name": "Alternia ::quest_rank::",
         "clearRewardId": 34,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000197,
@@ -2500,7 +2500,7 @@
         "poolExpReward": 2600
     },
     "200020001": {
-        "name": "",
+        "name": "Doomeo ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000157,
@@ -2514,7 +2514,7 @@
         "poolExpReward": 117
     },
     "200020002": {
-        "name": "",
+        "name": "Doomeo ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000158,
@@ -2528,7 +2528,7 @@
         "poolExpReward": 410
     },
     "200020003": {
-        "name": "",
+        "name": "Doomeo ::quest_rank::",
         "clearRewardId": 31,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000159,
@@ -2542,7 +2542,7 @@
         "poolExpReward": 1415
     },
     "200020004": {
-        "name": "",
+        "name": "Doomeo ::quest_rank::",
         "clearRewardId": 31,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000160,
@@ -2556,7 +2556,7 @@
         "poolExpReward": 2435
     },
     "200020005": {
-        "name": "",
+        "name": "Doomeo ::quest_rank::",
         "clearRewardId": 34,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000161,
@@ -2570,11 +2570,11 @@
         "poolExpReward": 2600
     },
     "200021001": {
-        "name": "",
+        "name": "星に願いを",
         "clearRewardId": 1
     },
     "200021002": {
-        "name": "",
+        "name": "歩兵の粛清者 ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000169,
@@ -2588,15 +2588,15 @@
         "poolExpReward": 2435
     },
     "200021003": {
-        "name": "",
+        "name": "天蓋都市の反撃",
         "clearRewardId": 1
     },
     "200021004": {
-        "name": "",
+        "name": "光の逃走経路",
         "clearRewardId": 1
     },
     "200021005": {
-        "name": "",
+        "name": "僧正の粛清者 ::quest_rank::",
         "clearRewardId": 71,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000170,
@@ -2610,7 +2610,7 @@
         "poolExpReward": 2435
     },
     "200021006": {
-        "name": "",
+        "name": "異形粛清者 ::quest_rank::",
         "clearRewardId": 71,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000171,
@@ -2624,15 +2624,15 @@
         "poolExpReward": 2435
     },
     "200021007": {
-        "name": "",
+        "name": "深淵より響く",
         "clearRewardId": 1
     },
     "200021008": {
-        "name": "",
+        "name": "掴め、全ての子達よ。",
         "clearRewardId": 1
     },
     "200021009": {
-        "name": "",
+        "name": "女帝の粛清者 ::quest_rank::",
         "clearRewardId": 34,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000172,
@@ -2646,7 +2646,7 @@
         "poolExpReward": 2435
     },
     "200025001": {
-        "name": "",
+        "name": "Progreo ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000185,
@@ -2660,7 +2660,7 @@
         "poolExpReward": 117
     },
     "200025002": {
-        "name": "",
+        "name": "Progreo ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000186,
@@ -2674,7 +2674,7 @@
         "poolExpReward": 410
     },
     "200025003": {
-        "name": "",
+        "name": "Progreo ::quest_rank::",
         "clearRewardId": 31,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000187,
@@ -2688,7 +2688,7 @@
         "poolExpReward": 1415
     },
     "200025004": {
-        "name": "",
+        "name": "Progreo ::quest_rank::",
         "clearRewardId": 31,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000188,
@@ -2702,7 +2702,7 @@
         "poolExpReward": 2435
     },
     "200025005": {
-        "name": "",
+        "name": "Progreo ::quest_rank::",
         "clearRewardId": 34,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000189,
@@ -2716,7 +2716,7 @@
         "poolExpReward": 2600
     },
     "200028001": {
-        "name": "",
+        "name": "星喰いデオフラスス ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000198,
@@ -2730,7 +2730,7 @@
         "poolExpReward": 117
     },
     "200028002": {
-        "name": "",
+        "name": "星喰いデオフラスス ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000199,
@@ -2744,7 +2744,7 @@
         "poolExpReward": 410
     },
     "200028003": {
-        "name": "",
+        "name": "星喰いデオフラスス ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000200,
@@ -2758,7 +2758,7 @@
         "poolExpReward": 1415
     },
     "200028004": {
-        "name": "",
+        "name": "星喰いデオフラスス ::quest_rank::",
         "clearRewardId": 11500000,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000201,
@@ -2772,7 +2772,7 @@
         "poolExpReward": 2435
     },
     "200028005": {
-        "name": "",
+        "name": "星喰いデオフラスス ::quest_rank::",
         "clearRewardId": 11500001,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000202,
@@ -2786,7 +2786,7 @@
         "poolExpReward": 2600
     },
     "200037001": {
-        "name": "",
+        "name": "ブラックドラゴン ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000248,
@@ -2800,7 +2800,7 @@
         "poolExpReward": 117
     },
     "200037002": {
-        "name": "",
+        "name": "ブラックドラゴン ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000249,
@@ -2814,7 +2814,7 @@
         "poolExpReward": 410
     },
     "200037003": {
-        "name": "",
+        "name": "ブラックドラゴン ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000250,
@@ -2828,7 +2828,7 @@
         "poolExpReward": 1415
     },
     "200037004": {
-        "name": "",
+        "name": "ブラックドラゴン ::quest_rank::",
         "clearRewardId": 11500000,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000251,
@@ -2842,7 +2842,7 @@
         "poolExpReward": 2435
     },
     "200037005": {
-        "name": "",
+        "name": "ブラックドラゴン ::quest_rank::",
         "clearRewardId": 11500001,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000252,
@@ -2856,7 +2856,7 @@
         "poolExpReward": 2600
     },
     "200038001": {
-        "name": "",
+        "name": "Doomeo ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000253,
@@ -2870,7 +2870,7 @@
         "poolExpReward": 117
     },
     "200038002": {
-        "name": "",
+        "name": "Doomeo ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000254,
@@ -2884,7 +2884,7 @@
         "poolExpReward": 410
     },
     "200038003": {
-        "name": "",
+        "name": "Doomeo ::quest_rank::",
         "clearRewardId": 31,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000255,
@@ -2898,7 +2898,7 @@
         "poolExpReward": 1415
     },
     "200038004": {
-        "name": "",
+        "name": "Doomeo ::quest_rank::",
         "clearRewardId": 31,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000256,
@@ -2912,7 +2912,7 @@
         "poolExpReward": 2435
     },
     "200038005": {
-        "name": "",
+        "name": "Doomeo ::quest_rank::",
         "clearRewardId": 34,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000257,
@@ -2926,11 +2926,11 @@
         "poolExpReward": 2600
     },
     "200050001": {
-        "name": "",
+        "name": "星に願いを",
         "clearRewardId": 1
     },
     "200050002": {
-        "name": "",
+        "name": "歩兵の粛清者 ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000324,
@@ -2944,15 +2944,15 @@
         "poolExpReward": 2435
     },
     "200050003": {
-        "name": "",
+        "name": "天蓋都市の反撃",
         "clearRewardId": 1
     },
     "200050004": {
-        "name": "",
+        "name": "光の逃走経路",
         "clearRewardId": 1
     },
     "200050005": {
-        "name": "",
+        "name": "僧正の粛清者 ::quest_rank::",
         "clearRewardId": 71,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000325,
@@ -2966,7 +2966,7 @@
         "poolExpReward": 2435
     },
     "200050006": {
-        "name": "",
+        "name": "異形粛清者 ::quest_rank::",
         "clearRewardId": 71,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000326,
@@ -2980,15 +2980,15 @@
         "poolExpReward": 2435
     },
     "200050007": {
-        "name": "",
+        "name": "深淵より響く",
         "clearRewardId": 1
     },
     "200050008": {
-        "name": "",
+        "name": "掴め、全ての子達よ。",
         "clearRewardId": 1
     },
     "200050009": {
-        "name": "",
+        "name": "女帝の粛清者 ::quest_rank::",
         "clearRewardId": 34,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000327,
@@ -3002,7 +3002,7 @@
         "poolExpReward": 2435
     },
     "200051001": {
-        "name": "",
+        "name": "Alternia ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000328,
@@ -3016,7 +3016,7 @@
         "poolExpReward": 117
     },
     "200051002": {
-        "name": "",
+        "name": "Alternia ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000329,
@@ -3030,7 +3030,7 @@
         "poolExpReward": 410
     },
     "200051003": {
-        "name": "",
+        "name": "Alternia ::quest_rank::",
         "clearRewardId": 31,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000330,
@@ -3044,7 +3044,7 @@
         "poolExpReward": 1415
     },
     "200051004": {
-        "name": "",
+        "name": "Alternia ::quest_rank::",
         "clearRewardId": 31,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000331,
@@ -3058,7 +3058,7 @@
         "poolExpReward": 2435
     },
     "200051005": {
-        "name": "",
+        "name": "Alternia ::quest_rank::",
         "clearRewardId": 34,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000332,
@@ -3072,7 +3072,7 @@
         "poolExpReward": 2600
     },
     "200052001": {
-        "name": "",
+        "name": "Atmosia ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000333,
@@ -3086,7 +3086,7 @@
         "poolExpReward": 117
     },
     "200052002": {
-        "name": "",
+        "name": "Atmosia ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000334,
@@ -3100,7 +3100,7 @@
         "poolExpReward": 410
     },
     "200052003": {
-        "name": "",
+        "name": "Atmosia ::quest_rank::",
         "clearRewardId": 31,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000335,
@@ -3114,7 +3114,7 @@
         "poolExpReward": 1415
     },
     "200052004": {
-        "name": "",
+        "name": "Atmosia ::quest_rank::",
         "clearRewardId": 31,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000336,
@@ -3128,7 +3128,7 @@
         "poolExpReward": 2435
     },
     "200052005": {
-        "name": "",
+        "name": "Atmosia ::quest_rank::",
         "clearRewardId": 34,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000337,
@@ -3142,7 +3142,7 @@
         "poolExpReward": 2600
     },
     "200053001": {
-        "name": "",
+        "name": "閃機兵アイザン ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000338,
@@ -3156,7 +3156,7 @@
         "poolExpReward": 117
     },
     "200053002": {
-        "name": "",
+        "name": "閃機兵アイザン ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000339,
@@ -3170,7 +3170,7 @@
         "poolExpReward": 410
     },
     "200053003": {
-        "name": "",
+        "name": "閃機兵アイザン ::quest_rank::",
         "clearRewardId": 31,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000340,
@@ -3184,7 +3184,7 @@
         "poolExpReward": 1415
     },
     "200053004": {
-        "name": "",
+        "name": "閃機兵アイザン ::quest_rank::",
         "clearRewardId": 31,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000341,
@@ -3198,7 +3198,7 @@
         "poolExpReward": 2435
     },
     "200056001": {
-        "name": "",
+        "name": "Doomeo ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000351,
@@ -3212,7 +3212,7 @@
         "poolExpReward": 117
     },
     "200056002": {
-        "name": "",
+        "name": "Doomeo ::quest_rank::",
         "clearRewardId": 1,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000352,
@@ -3226,7 +3226,7 @@
         "poolExpReward": 410
     },
     "200056003": {
-        "name": "",
+        "name": "Doomeo ::quest_rank::",
         "clearRewardId": 31,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000353,
@@ -3240,7 +3240,7 @@
         "poolExpReward": 1415
     },
     "200056004": {
-        "name": "",
+        "name": "Doomeo ::quest_rank::",
         "clearRewardId": 31,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000354,
@@ -3254,7 +3254,7 @@
         "poolExpReward": 2435
     },
     "200056005": {
-        "name": "",
+        "name": "Doomeo ::quest_rank::",
         "clearRewardId": 34,
         "sPlusRewardId": 1,
         "scoreRewardGroup": 11000355,

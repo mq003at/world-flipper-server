@@ -1,2850 +1,2850 @@
 {
     "1": {
-        "name": "",
+        "name": "Alk",
         "rarity": 4,
         "element": 0,
         "skill_count": 6
     },
     "10": {
-        "name": "",
+        "name": "Nimbus",
         "rarity": 4,
         "element": 3,
         "skill_count": 6
     },
     "111001": {
-        "name": "",
+        "name": "Vagner",
         "rarity": 5,
         "element": 0,
         "skill_count": 6
     },
     "111002": {
-        "name": "",
+        "name": "Marina",
         "rarity": 5,
         "element": 0,
         "skill_count": 6
     },
     "111003": {
-        "name": "",
+        "name": "Clarisse",
         "rarity": 5,
         "element": 0,
         "skill_count": 6
     },
     "111004": {
-        "name": "",
+        "name": "Marianne (Christmas)",
         "rarity": 5,
         "element": 0,
         "skill_count": 6
     },
     "111005": {
-        "name": "",
+        "name": "Noenne (New Year)",
         "rarity": 5,
         "element": 0,
         "skill_count": 6
     },
     "111006": {
-        "name": "",
+        "name": "Kikuno",
         "rarity": 5,
         "element": 0,
         "skill_count": 6
     },
     "111007": {
-        "name": "",
+        "name": "Rolf",
         "rarity": 5,
         "element": 0,
         "skill_count": 6
     },
     "111009": {
-        "name": "",
+        "name": "Mia (Summer)",
         "rarity": 5,
         "element": 0,
         "skill_count": 6
     },
     "111015": {
-        "name": "",
+        "name": "Hanabi (Anniversary)",
         "rarity": 5,
         "element": 0,
         "skill_count": 6
     },
     "111021": {
-        "name": "",
+        "name": "Bianca (Christmas)",
         "rarity": 5,
         "element": 0,
         "skill_count": 6
     },
     "111027": {
-        "name": "",
+        "name": "Toria",
         "rarity": 5,
         "element": 0,
         "skill_count": 6
     },
     "111033": {
-        "name": "",
+        "name": "Liao",
         "rarity": 5,
         "element": 0,
         "skill_count": 6
     },
     "111039": {
-        "name": "",
+        "name": "Suizen (White Day)",
         "rarity": 5,
         "element": 0,
         "skill_count": 6
     },
     "111045": {
-        "name": "",
+        "name": "Quare",
         "rarity": 5,
         "element": 0,
         "skill_count": 6
     },
     "111051": {
-        "name": "",
+        "name": "Zeta",
         "rarity": 5,
         "element": 0,
         "skill_count": 6
     },
     "111057": {
-        "name": "",
+        "name": "Leticia",
         "rarity": 5,
         "element": 0,
         "skill_count": 6
     },
     "111063": {
-        "name": "",
+        "name": "Ecrire / Écrire (Summer)",
         "rarity": 5,
         "element": 0,
         "skill_count": 6
     },
     "111081": {
-        "name": "",
+        "name": "Ryunon",
         "rarity": 5,
         "element": 0,
         "skill_count": 6
     },
     "111087": {
-        "name": "",
+        "name": "Marina (Anniversary)",
         "rarity": 5,
         "element": 0,
         "skill_count": 6
     },
     "111093": {
-        "name": "",
+        "name": "Misogi",
         "rarity": 5,
         "element": 0,
         "skill_count": 6
     },
     "111099": {
-        "name": "",
+        "name": "Leticia (Valentine)",
         "rarity": 5,
         "element": 0,
         "skill_count": 6
     },
     "111105": {
-        "name": "",
+        "name": "Waif",
         "rarity": 5,
         "element": 0,
         "skill_count": 6
     },
     "111111": {
-        "name": "",
+        "name": "Toria (Half Anniversary)",
         "rarity": 5,
         "element": 0,
         "skill_count": 6
     },
     "111123": {
-        "name": "",
+        "name": "Parfait (Summer)",
         "rarity": 5,
         "element": 0,
         "skill_count": 6
     },
     "111129": {
-        "name": "",
+        "name": "[Lion of Anguish] Magnos",
         "rarity": 5,
         "element": 0,
         "skill_count": 3
     },
     "111135": {
-        "name": "",
+        "name": "Daedalia",
         "rarity": 5,
         "element": 0,
         "skill_count": 6
     },
     "111141": {
-        "name": "",
+        "name": "Mia (Christmas)",
         "rarity": 5,
         "element": 0,
         "skill_count": 3
     },
     "111147": {
-        "name": "",
+        "name": "Stinel (Ballot)",
         "rarity": 5,
         "element": 0,
         "skill_count": 3
     },
     "111153": {
-        "name": "",
+        "name": "Runetta",
         "rarity": 5,
         "element": 0,
         "skill_count": 3
     },
     "111159": {
-        "name": "",
+        "name": "Penerone",
         "rarity": 5,
         "element": 0,
         "skill_count": 3
     },
     "111165": {
-        "name": "",
+        "name": "Lilith (Meteor)",
         "rarity": 5,
         "element": 0,
         "skill_count": 3
     },
     "113001": {
-        "name": "",
+        "name": "Gold Ship",
         "rarity": 5,
         "element": 0,
         "skill_count": 6
     },
     "121001": {
-        "name": "",
+        "name": "Sonia",
         "rarity": 5,
         "element": 1,
         "skill_count": 6
     },
     "121002": {
-        "name": "",
+        "name": "Suizen",
         "rarity": 5,
         "element": 1,
         "skill_count": 6
     },
     "121003": {
-        "name": "",
+        "name": "Ellya (New Year)",
         "rarity": 5,
         "element": 1,
         "skill_count": 6
     },
     "121004": {
-        "name": "",
+        "name": "Cipher",
         "rarity": 5,
         "element": 1,
         "skill_count": 6
     },
     "121005": {
-        "name": "",
+        "name": "Selene",
         "rarity": 5,
         "element": 1,
         "skill_count": 6
     },
     "121006": {
-        "name": "",
+        "name": "Remnith",
         "rarity": 5,
         "element": 1,
         "skill_count": 6
     },
     "121007": {
-        "name": "",
+        "name": "Rakisha",
         "rarity": 5,
         "element": 1,
         "skill_count": 6
     },
     "121008": {
-        "name": "",
+        "name": "Lazeret (Summer)",
         "rarity": 5,
         "element": 1,
         "skill_count": 6
     },
     "121009": {
-        "name": "",
+        "name": "Sakura Minamoto (Zombie Land Saga Collab)",
         "rarity": 5,
         "element": 1,
         "skill_count": 6
     },
     "121015": {
-        "name": "",
+        "name": "Raylas",
         "rarity": 5,
         "element": 1,
         "skill_count": 6
     },
     "121021": {
-        "name": "",
+        "name": "Emilia (Re:Zero Collab)",
         "rarity": 5,
         "element": 1,
         "skill_count": 6
     },
     "121027": {
-        "name": "",
+        "name": "Rem (Re:Zero Collab)",
         "rarity": 5,
         "element": 1,
         "skill_count": 6
     },
     "121033": {
-        "name": "",
+        "name": "Sheyron / Shuilong",
         "rarity": 5,
         "element": 1,
         "skill_count": 6
     },
     "121039": {
-        "name": "",
+        "name": "Halidal",
         "rarity": 5,
         "element": 1,
         "skill_count": 6
     },
     "121045": {
-        "name": "",
+        "name": "Amelia (Half Anniversary)",
         "rarity": 5,
         "element": 1,
         "skill_count": 6
     },
     "121051": {
-        "name": "",
+        "name": "Mamnalia",
         "rarity": 5,
         "element": 1,
         "skill_count": 6
     },
     "121069": {
-        "name": "",
+        "name": "Sheyron / Shuilong (Beast)",
         "rarity": 5,
         "element": 1,
         "skill_count": 6
     },
     "121070": {
-        "name": "",
+        "name": "Mishima Yuki",
         "rarity": 5,
         "element": 1,
         "skill_count": 6
     },
     "121075": {
-        "name": "",
+        "name": "Fraxis",
         "rarity": 5,
         "element": 1,
         "skill_count": 6
     },
     "121081": {
-        "name": "",
+        "name": "Cypher (Anniversary)",
         "rarity": 5,
         "element": 1,
         "skill_count": 6
     },
     "121087": {
-        "name": "",
+        "name": "Raylas (Christmas)",
         "rarity": 5,
         "element": 1,
         "skill_count": 6
     },
     "121093": {
-        "name": "",
+        "name": "Toraetty (New Year)",
         "rarity": 5,
         "element": 1,
         "skill_count": 6
     },
     "121099": {
-        "name": "",
+        "name": "Kyouka",
         "rarity": 5,
         "element": 1,
         "skill_count": 6
     },
     "121105": {
-        "name": "",
+        "name": "Anbach",
         "rarity": 5,
         "element": 1,
         "skill_count": 6
     },
     "121111": {
-        "name": "",
+        "name": "Justy",
         "rarity": 5,
         "element": 1,
         "skill_count": 6
     },
     "121117": {
-        "name": "",
+        "name": "Dia (Half Anniversary)",
         "rarity": 5,
         "element": 1,
         "skill_count": 6
     },
     "121129": {
-        "name": "",
+        "name": "Luca",
         "rarity": 5,
         "element": 1,
         "skill_count": 3
     },
     "121135": {
-        "name": "",
+        "name": "Zelimir",
         "rarity": 5,
         "element": 1,
         "skill_count": 6
     },
     "121141": {
-        "name": "",
+        "name": "Ciel",
         "rarity": 5,
         "element": 1,
         "skill_count": 3
     },
     "121147": {
-        "name": "",
+        "name": "Mishima Yuki (New Year)",
         "rarity": 5,
         "element": 1,
         "skill_count": 3
     },
     "121153": {
-        "name": "",
+        "name": "Sotieth (Meteor)",
         "rarity": 5,
         "element": 1,
         "skill_count": 3
     },
     "121159": {
-        "name": "",
+        "name": "Nisues",
         "rarity": 5,
         "element": 1,
         "skill_count": 3
     },
     "121165": {
-        "name": "",
+        "name": "Ranmei",
         "rarity": 5,
         "element": 1,
         "skill_count": 3
     },
     "131001": {
-        "name": "",
+        "name": "Inaho",
         "rarity": 5,
         "element": 2,
         "skill_count": 6
     },
     "131002": {
-        "name": "",
+        "name": "Cagliostro",
         "rarity": 5,
         "element": 2,
         "skill_count": 6
     },
     "131003": {
-        "name": "",
+        "name": "Soushiro (Christmas)",
         "rarity": 5,
         "element": 2,
         "skill_count": 6
     },
     "131004": {
-        "name": "",
+        "name": "Metis",
         "rarity": 5,
         "element": 2,
         "skill_count": 6
     },
     "131005": {
-        "name": "",
+        "name": "Barrek",
         "rarity": 5,
         "element": 2,
         "skill_count": 6
     },
     "131011": {
-        "name": "",
+        "name": "Sera",
         "rarity": 5,
         "element": 2,
         "skill_count": 6
     },
     "131012": {
-        "name": "",
+        "name": "Botan",
         "rarity": 5,
         "element": 2,
         "skill_count": 6
     },
     "131013": {
-        "name": "",
+        "name": "Illumine (Summer)",
         "rarity": 5,
         "element": 2,
         "skill_count": 6
     },
     "131014": {
-        "name": "",
+        "name": "Belsidia (Summer)",
         "rarity": 5,
         "element": 2,
         "skill_count": 6
     },
     "131020": {
-        "name": "",
+        "name": "Regis (Anniversary)",
         "rarity": 5,
         "element": 2,
         "skill_count": 6
     },
     "131026": {
-        "name": "",
+        "name": "Beaucy (New Year)",
         "rarity": 5,
         "element": 2,
         "skill_count": 6
     },
     "131032": {
-        "name": "",
+        "name": "Rhode",
         "rarity": 5,
         "element": 2,
         "skill_count": 6
     },
     "131038": {
-        "name": "",
+        "name": "Twink",
         "rarity": 5,
         "element": 2,
         "skill_count": 6
     },
     "131044": {
-        "name": "",
+        "name": "Zantetsu",
         "rarity": 5,
         "element": 2,
         "skill_count": 6
     },
     "131050": {
-        "name": "",
+        "name": "Marquis",
         "rarity": 5,
         "element": 2,
         "skill_count": 6
     },
     "131056": {
-        "name": "",
+        "name": "Sera (Summer)",
         "rarity": 5,
         "element": 2,
         "skill_count": 6
     },
     "131062": {
-        "name": "",
+        "name": "Stryna",
         "rarity": 5,
         "element": 2,
         "skill_count": 6
     },
     "131068": {
-        "name": "",
+        "name": "Memram",
         "rarity": 5,
         "element": 2,
         "skill_count": 6
     },
     "131074": {
-        "name": "",
+        "name": "Helga (Beast)",
         "rarity": 5,
         "element": 2,
         "skill_count": 6
     },
     "131080": {
-        "name": "",
+        "name": "Kazutake Tooru",
         "rarity": 5,
         "element": 2,
         "skill_count": 6
     },
     "131086": {
-        "name": "",
+        "name": "Shiro (Anniversary)",
         "rarity": 5,
         "element": 2,
         "skill_count": 6
     },
     "131092": {
-        "name": "",
+        "name": "Tect",
         "rarity": 5,
         "element": 2,
         "skill_count": 6
     },
     "131098": {
-        "name": "",
+        "name": "Mayuzuki",
         "rarity": 5,
         "element": 2,
         "skill_count": 6
     },
     "131104": {
-        "name": "",
+        "name": "Baretta (Summer)",
         "rarity": 5,
         "element": 2,
         "skill_count": 3
     },
     "131110": {
-        "name": "",
+        "name": "Laputina",
         "rarity": 5,
         "element": 2,
         "skill_count": 6
     },
     "131116": {
-        "name": "",
+        "name": "Rumylaka",
         "rarity": 5,
         "element": 2,
         "skill_count": 6
     },
     "131122": {
-        "name": "",
+        "name": "Kira (Halloween)",
         "rarity": 5,
         "element": 2,
         "skill_count": 3
     },
     "131128": {
-        "name": "",
+        "name": "Twink (New Year)",
         "rarity": 5,
         "element": 2,
         "skill_count": 3
     },
     "131134": {
-        "name": "",
+        "name": "Käsivars",
         "rarity": 5,
         "element": 2,
         "skill_count": 6
     },
     "131140": {
-        "name": "",
+        "name": "Dine (Valentine)",
         "rarity": 5,
         "element": 2,
         "skill_count": 3
     },
     "131146": {
-        "name": "",
+        "name": "Liebraum (White Day)",
         "rarity": 5,
         "element": 2,
         "skill_count": 3
     },
     "131152": {
-        "name": "",
+        "name": "King Johnson",
         "rarity": 5,
         "element": 2,
         "skill_count": 3
     },
     "131158": {
-        "name": "",
+        "name": "Amou Nagiri",
         "rarity": 5,
         "element": 2,
         "skill_count": 3
     },
     "141001": {
-        "name": "",
+        "name": "Celtie",
         "rarity": 5,
         "element": 3,
         "skill_count": 6
     },
     "141002": {
-        "name": "",
+        "name": "Phiria",
         "rarity": 5,
         "element": 3,
         "skill_count": 6
     },
     "141003": {
-        "name": "",
+        "name": "Murakumo",
         "rarity": 5,
         "element": 3,
         "skill_count": 6
     },
     "141004": {
-        "name": "",
+        "name": "Leon",
         "rarity": 5,
         "element": 3,
         "skill_count": 6
     },
     "141005": {
-        "name": "",
+        "name": "Shywe",
         "rarity": 5,
         "element": 3,
         "skill_count": 6
     },
     "141006": {
-        "name": "",
+        "name": "Miguel",
         "rarity": 5,
         "element": 3,
         "skill_count": 6
     },
     "141007": {
-        "name": "",
+        "name": "Kokkoro",
         "rarity": 5,
         "element": 3,
         "skill_count": 6
     },
     "141008": {
-        "name": "",
+        "name": "Schult",
         "rarity": 5,
         "element": 3,
         "skill_count": 6
     },
     "141009": {
-        "name": "",
+        "name": "Saki Nikaido (Zombie Land Saga Collab)",
         "rarity": 5,
         "element": 3,
         "skill_count": 6
     },
     "141015": {
-        "name": "",
+        "name": "Esterielle",
         "rarity": 5,
         "element": 3,
         "skill_count": 6
     },
     "141021": {
-        "name": "",
+        "name": "Silty (Anniversary)",
         "rarity": 5,
         "element": 3,
         "skill_count": 6
     },
     "141027": {
-        "name": "",
+        "name": "Suzuka (New Year)",
         "rarity": 5,
         "element": 3,
         "skill_count": 6
     },
     "141033": {
-        "name": "",
+        "name": "Fluffy",
         "rarity": 5,
         "element": 3,
         "skill_count": 6
     },
     "141039": {
-        "name": "",
+        "name": "Sonya (Limited)",
         "rarity": 5,
         "element": 3,
         "skill_count": 6
     },
     "141045": {
-        "name": "",
+        "name": "Nevia",
         "rarity": 5,
         "element": 3,
         "skill_count": 6
     },
     "141051": {
-        "name": "",
+        "name": "Esterielle (Half Anniversary)",
         "rarity": 5,
         "element": 3,
         "skill_count": 6
     },
     "141057": {
-        "name": "",
+        "name": "Gouran",
         "rarity": 5,
         "element": 3,
         "skill_count": 6
     },
     "141063": {
-        "name": "",
+        "name": "Shiue (Summer)",
         "rarity": 5,
         "element": 3,
         "skill_count": 6
     },
     "141069": {
-        "name": "",
+        "name": "Leon (Summer/Yukata)",
         "rarity": 5,
         "element": 3,
         "skill_count": 6
     },
     "141081": {
-        "name": "",
+        "name": "Fluffy (Christmas)",
         "rarity": 5,
         "element": 3,
         "skill_count": 6
     },
     "141087": {
-        "name": "",
+        "name": "Mimi",
         "rarity": 5,
         "element": 3,
         "skill_count": 6
     },
     "141093": {
-        "name": "",
+        "name": "Marchia",
         "rarity": 5,
         "element": 3,
         "skill_count": 6
     },
     "141099": {
-        "name": "",
+        "name": "Shult (White Day)",
         "rarity": 5,
         "element": 3,
         "skill_count": 6
     },
     "141105": {
-        "name": "",
+        "name": "Elmar",
         "rarity": 5,
         "element": 3,
         "skill_count": 6
     },
     "141111": {
-        "name": "",
+        "name": "Silence Suzuka",
         "rarity": 5,
         "element": 3,
         "skill_count": 6
     },
     "141117": {
-        "name": "",
+        "name": "Inori Shouta (Summer)",
         "rarity": 5,
         "element": 3,
         "skill_count": 6
     },
     "141123": {
-        "name": "",
+        "name": "Manoka",
         "rarity": 5,
         "element": 3,
         "skill_count": 6
     },
     "141135": {
-        "name": "",
+        "name": "Zephyr",
         "rarity": 5,
         "element": 3,
         "skill_count": 6
     },
     "141141": {
-        "name": "",
+        "name": "Cirqueharle (New Year)",
         "rarity": 5,
         "element": 3,
         "skill_count": 3
     },
     "141147": {
-        "name": "",
+        "name": "Beaucy (Valentine)",
         "rarity": 5,
         "element": 3,
         "skill_count": 3
     },
     "141153": {
-        "name": "",
+        "name": "Asato Yae",
         "rarity": 5,
         "element": 3,
         "skill_count": 3
     },
     "141159": {
-        "name": "",
+        "name": "Rolf (White Day)",
         "rarity": 5,
         "element": 3,
         "skill_count": 3
     },
     "141165": {
-        "name": "",
+        "name": "Philia (Meteor)",
         "rarity": 5,
         "element": 3,
         "skill_count": 3
     },
     "141171": {
-        "name": "",
+        "name": "Yuhino Taichi",
         "rarity": 5,
         "element": 3,
         "skill_count": 3
     },
     "151001": {
-        "name": "",
+        "name": "Nephtim",
         "rarity": 5,
         "element": 4,
         "skill_count": 6
     },
     "151002": {
-        "name": "",
+        "name": "Razelt",
         "rarity": 5,
         "element": 4,
         "skill_count": 6
     },
     "151003": {
-        "name": "",
+        "name": "Eclair",
         "rarity": 5,
         "element": 4,
         "skill_count": 6
     },
     "151004": {
-        "name": "",
+        "name": "Inaho (Christmas)",
         "rarity": 5,
         "element": 4,
         "skill_count": 6
     },
     "151005": {
-        "name": "",
+        "name": "Teurgis",
         "rarity": 5,
         "element": 4,
         "skill_count": 6
     },
     "151006": {
-        "name": "",
+        "name": "Bulleta",
         "rarity": 5,
         "element": 4,
         "skill_count": 6
     },
     "151007": {
-        "name": "",
+        "name": "Libram",
         "rarity": 5,
         "element": 4,
         "skill_count": 6
     },
     "151009": {
-        "name": "",
+        "name": "Nephtim (Half Anniversary)",
         "rarity": 5,
         "element": 4,
         "skill_count": 6
     },
     "151011": {
-        "name": "",
+        "name": "Pecorine",
         "rarity": 5,
         "element": 4,
         "skill_count": 6
     },
     "151012": {
-        "name": "",
+        "name": "Lyra",
         "rarity": 5,
         "element": 4,
         "skill_count": 6
     },
     "151013": {
-        "name": "",
+        "name": "Orvelle",
         "rarity": 5,
         "element": 4,
         "skill_count": 6
     },
     "151014": {
-        "name": "",
+        "name": "Philamelia",
         "rarity": 5,
         "element": 4,
         "skill_count": 6
     },
     "151015": {
-        "name": "",
+        "name": "Lily Hoshikawa (Zombie Land Saga Collab)",
         "rarity": 5,
         "element": 4,
         "skill_count": 6
     },
     "151021": {
-        "name": "",
+        "name": "Philia (Anniversary)",
         "rarity": 5,
         "element": 4,
         "skill_count": 6
     },
     "151027": {
-        "name": "",
+        "name": "Eliya (Valentine's)",
         "rarity": 5,
         "element": 4,
         "skill_count": 6
     },
     "151033": {
-        "name": "",
+        "name": "Seriol",
         "rarity": 5,
         "element": 4,
         "skill_count": 6
     },
     "151039": {
-        "name": "",
+        "name": "Rengetsu",
         "rarity": 5,
         "element": 4,
         "skill_count": 6
     },
     "151045": {
-        "name": "",
+        "name": "Lilith (Summer)",
         "rarity": 5,
         "element": 4,
         "skill_count": 6
     },
     "151051": {
-        "name": "",
+        "name": "Inaho (Summer)",
         "rarity": 5,
         "element": 4,
         "skill_count": 6
     },
     "151063": {
-        "name": "",
+        "name": "Nephteim (Summer/Yukata)",
         "rarity": 5,
         "element": 4,
         "skill_count": 6
     },
     "151069": {
-        "name": "",
+        "name": "Zekhel",
         "rarity": 5,
         "element": 4,
         "skill_count": 6
     },
     "151075": {
-        "name": "",
+        "name": "Lila (Halloween)",
         "rarity": 5,
         "element": 4,
         "skill_count": 6
     },
     "151081": {
-        "name": "",
+        "name": "Orvelle (New Year)",
         "rarity": 5,
         "element": 4,
         "skill_count": 6
     },
     "151087": {
-        "name": "",
+        "name": "Nate (Valentine)",
         "rarity": 5,
         "element": 4,
         "skill_count": 6
     },
     "151093": {
-        "name": "",
+        "name": "Stinel",
         "rarity": 5,
         "element": 4,
         "skill_count": 6
     },
     "151099": {
-        "name": "",
+        "name": "Quinvid",
         "rarity": 5,
         "element": 4,
         "skill_count": 6
     },
     "151105": {
-        "name": "",
+        "name": "Special Week",
         "rarity": 5,
         "element": 4,
         "skill_count": 6
     },
     "151117": {
-        "name": "",
+        "name": "Zantetsu (Summer)",
         "rarity": 5,
         "element": 4,
         "skill_count": 6
     },
     "151123": {
-        "name": "",
+        "name": "Irinoa",
         "rarity": 5,
         "element": 4,
         "skill_count": 6
     },
     "151129": {
-        "name": "",
+        "name": "Yuwel (Anniversary)",
         "rarity": 5,
         "element": 4,
         "skill_count": 3
     },
     "151141": {
-        "name": "",
+        "name": "Kikuno (Christmas)",
         "rarity": 5,
         "element": 4,
         "skill_count": 3
     },
     "151147": {
-        "name": "",
+        "name": "Stella",
         "rarity": 5,
         "element": 4,
         "skill_count": 3
     },
     "151153": {
-        "name": "",
+        "name": "Light",
         "rarity": 5,
         "element": 4,
         "skill_count": 3
     },
     "151159": {
-        "name": "",
+        "name": "Rachmano",
         "rarity": 5,
         "element": 4,
         "skill_count": 3
     },
     "151165": {
-        "name": "",
+        "name": "Arc (Meteor)",
         "rarity": 5,
         "element": 4,
         "skill_count": 3
     },
     "151171": {
-        "name": "",
+        "name": "Tamako",
         "rarity": 5,
         "element": 4,
         "skill_count": 3
     },
     "153001": {
-        "name": "",
+        "name": "Nagihara Nao (Ceremony)",
         "rarity": 5,
         "element": 4,
         "skill_count": 3
     },
     "161001": {
-        "name": "",
+        "name": "Belsidia",
         "rarity": 5,
         "element": 5,
         "skill_count": 6
     },
     "161002": {
-        "name": "",
+        "name": "Vyron",
         "rarity": 5,
         "element": 5,
         "skill_count": 6
     },
     "161004": {
-        "name": "",
+        "name": "Mormia",
         "rarity": 5,
         "element": 5,
         "skill_count": 6
     },
     "161005": {
-        "name": "",
+        "name": "Carla",
         "rarity": 5,
         "element": 5,
         "skill_count": 6
     },
     "161006": {
-        "name": "",
+        "name": "Olivia",
         "rarity": 5,
         "element": 5,
         "skill_count": 6
     },
     "161007": {
-        "name": "",
+        "name": "Karyl",
         "rarity": 5,
         "element": 5,
         "skill_count": 6
     },
     "161008": {
-        "name": "",
+        "name": "Alice (Summer)",
         "rarity": 5,
         "element": 5,
         "skill_count": 6
     },
     "161009": {
-        "name": "",
+        "name": "Junko Konno (Zombie Land Saga Collab)",
         "rarity": 5,
         "element": 5,
         "skill_count": 6
     },
     "161015": {
-        "name": "",
+        "name": "Dia (Halloween)",
         "rarity": 5,
         "element": 5,
         "skill_count": 6
     },
     "161021": {
-        "name": "",
+        "name": "Dine",
         "rarity": 5,
         "element": 5,
         "skill_count": 6
     },
     "161027": {
-        "name": "",
+        "name": "Educeus",
         "rarity": 5,
         "element": 5,
         "skill_count": 6
     },
     "161033": {
-        "name": "",
+        "name": "Alm (Christmas)",
         "rarity": 5,
         "element": 5,
         "skill_count": 6
     },
     "161039": {
-        "name": "",
+        "name": "Couette",
         "rarity": 5,
         "element": 5,
         "skill_count": 6
     },
     "161045": {
-        "name": "",
+        "name": "Maelviola",
         "rarity": 5,
         "element": 5,
         "skill_count": 6
     },
     "161051": {
-        "name": "",
+        "name": "Dine (Limited)",
         "rarity": 5,
         "element": 5,
         "skill_count": 6
     },
     "161057": {
-        "name": "",
+        "name": "Beatrix",
         "rarity": 5,
         "element": 5,
         "skill_count": 6
     },
     "161063": {
-        "name": "",
+        "name": "Sergil / Sergyl (Half Anniversary)",
         "rarity": 5,
         "element": 5,
         "skill_count": 6
     },
     "161069": {
-        "name": "",
+        "name": "Primula",
         "rarity": 5,
         "element": 5,
         "skill_count": 6
     },
     "161081": {
-        "name": "",
+        "name": "Lav / Love (Halloween)",
         "rarity": 5,
         "element": 5,
         "skill_count": 6
     },
     "161082": {
-        "name": "",
+        "name": "Inori Shouta",
         "rarity": 5,
         "element": 5,
         "skill_count": 6
     },
     "161087": {
-        "name": "",
+        "name": "Couette (Anniversary)",
         "rarity": 5,
         "element": 5,
         "skill_count": 6
     },
     "161093": {
-        "name": "",
+        "name": "Bercetia (New Year)",
         "rarity": 5,
         "element": 5,
         "skill_count": 6
     },
     "161099": {
-        "name": "",
+        "name": "Murakumo (White Day)",
         "rarity": 5,
         "element": 5,
         "skill_count": 6
     },
     "161105": {
-        "name": "",
+        "name": "Hildegard",
         "rarity": 5,
         "element": 5,
         "skill_count": 6
     },
     "161111": {
-        "name": "",
+        "name": "[Witch Of The Mirror] Louelise",
         "rarity": 5,
         "element": 5,
         "skill_count": 6
     },
     "161117": {
-        "name": "",
+        "name": "Liam (Half Anniversary)",
         "rarity": 5,
         "element": 5,
         "skill_count": 6
     },
     "161123": {
-        "name": "",
+        "name": "Primula (Summer)",
         "rarity": 5,
         "element": 5,
         "skill_count": 6
     },
     "161129": {
-        "name": "",
+        "name": "Kuguri Yukariko",
         "rarity": 5,
         "element": 5,
         "skill_count": 6
     },
     "161135": {
-        "name": "",
+        "name": "Silty (Halloween)",
         "rarity": 5,
         "element": 5,
         "skill_count": 3
     },
     "161147": {
-        "name": "",
+        "name": "Elmore",
         "rarity": 5,
         "element": 5,
         "skill_count": 6
     },
     "161153": {
-        "name": "",
+        "name": "Veron (Anniversary)",
         "rarity": 5,
         "element": 5,
         "skill_count": 3
     },
     "161159": {
-        "name": "",
+        "name": "Nirjana",
         "rarity": 5,
         "element": 5,
         "skill_count": 3
     },
     "161165": {
-        "name": "",
+        "name": "Tanakiera",
         "rarity": 5,
         "element": 5,
         "skill_count": 6
     },
     "161171": {
-        "name": "",
+        "name": "Iorez",
         "rarity": 5,
         "element": 5,
         "skill_count": 3
     },
     "161177": {
-        "name": "",
+        "name": "Nephteim (Meteor)",
         "rarity": 5,
         "element": 5,
         "skill_count": 3
     },
     "161183": {
-        "name": "",
+        "name": "Suminami Hibiki",
         "rarity": 5,
         "element": 5,
         "skill_count": 3
     },
     "161189": {
-        "name": "",
+        "name": "Marden",
         "rarity": 5,
         "element": 5,
         "skill_count": 3
     },
     "163001": {
-        "name": "",
+        "name": "Yakumo",
         "rarity": 5,
         "element": 5,
         "skill_count": 6
     },
     "211001": {
-        "name": "",
+        "name": "Azel",
         "rarity": 4,
         "element": 0,
         "skill_count": 6
     },
     "211002": {
-        "name": "",
+        "name": "Bianca",
         "rarity": 4,
         "element": 0,
         "skill_count": 6
     },
     "211003": {
-        "name": "",
+        "name": "Hanabi",
         "rarity": 4,
         "element": 0,
         "skill_count": 6
     },
     "211004": {
-        "name": "",
+        "name": "Asukirimaru",
         "rarity": 4,
         "element": 0,
         "skill_count": 6
     },
     "211005": {
-        "name": "",
+        "name": "Clyde",
         "rarity": 4,
         "element": 0,
         "skill_count": 6
     },
     "211006": {
-        "name": "",
+        "name": "Kannon",
         "rarity": 4,
         "element": 0,
         "skill_count": 6
     },
     "211007": {
-        "name": "",
+        "name": "Luluca (New Year)",
         "rarity": 4,
         "element": 0,
         "skill_count": 6
     },
     "211008": {
-        "name": "",
+        "name": "Levy",
         "rarity": 4,
         "element": 0,
         "skill_count": 6
     },
     "211009": {
-        "name": "",
+        "name": "Kyrie",
         "rarity": 4,
         "element": 0,
         "skill_count": 6
     },
     "211010": {
-        "name": "",
+        "name": "Hayz",
         "rarity": 4,
         "element": 0,
         "skill_count": 6
     },
     "211011": {
-        "name": "",
+        "name": "Melmyna",
         "rarity": 4,
         "element": 0,
         "skill_count": 6
     },
     "211012": {
-        "name": "",
+        "name": "Nasir",
         "rarity": 4,
         "element": 0,
         "skill_count": 6
     },
     "211013": {
-        "name": "",
+        "name": "Kuramaru",
         "rarity": 4,
         "element": 0,
         "skill_count": 6
     },
     "211014": {
-        "name": "",
+        "name": "Yugiri (Zombie Land Saga Collab)",
         "rarity": 4,
         "element": 0,
         "skill_count": 6
     },
     "211020": {
-        "name": "",
+        "name": "Nikola",
         "rarity": 4,
         "element": 0,
         "skill_count": 6
     },
     "211026": {
-        "name": "",
+        "name": "Torene (Christmas)",
         "rarity": 4,
         "element": 0,
         "skill_count": 6
     },
     "211032": {
-        "name": "",
+        "name": "Maihime",
         "rarity": 4,
         "element": 0,
         "skill_count": 6
     },
     "211038": {
-        "name": "",
+        "name": "Azel (Summer)",
         "rarity": 4,
         "element": 0,
         "skill_count": 6
     },
     "211044": {
-        "name": "",
+        "name": "Hikawa Rinne",
         "rarity": 4,
         "element": 0,
         "skill_count": 6
     },
     "211050": {
-        "name": "",
+        "name": "Pishika",
         "rarity": 4,
         "element": 0,
         "skill_count": 6
     },
     "211056": {
-        "name": "",
+        "name": "Revy (New Year)",
         "rarity": 4,
         "element": 0,
         "skill_count": 6
     },
     "211062": {
-        "name": "",
+        "name": "Qianshi",
         "rarity": 4,
         "element": 0,
         "skill_count": 6
     },
     "213001": {
-        "name": "",
+        "name": "Arc (Anniversary)",
         "rarity": 4,
         "element": 0,
         "skill_count": 6
     },
     "213013": {
-        "name": "",
+        "name": "Nagihara Nao",
         "rarity": 4,
         "element": 0,
         "skill_count": 6
     },
     "221001": {
-        "name": "",
+        "name": "Yuwel",
         "rarity": 4,
         "element": 1,
         "skill_count": 6
     },
     "221002": {
-        "name": "",
+        "name": "Liesel",
         "rarity": 4,
         "element": 1,
         "skill_count": 6
     },
     "221003": {
-        "name": "",
+        "name": "Amelia",
         "rarity": 4,
         "element": 1,
         "skill_count": 6
     },
     "221004": {
-        "name": "",
+        "name": "Alice",
         "rarity": 4,
         "element": 1,
         "skill_count": 6
     },
     "221006": {
-        "name": "",
+        "name": "Sharon",
         "rarity": 4,
         "element": 1,
         "skill_count": 6
     },
     "221007": {
-        "name": "",
+        "name": "Saar",
         "rarity": 4,
         "element": 1,
         "skill_count": 6
     },
     "221008": {
-        "name": "",
+        "name": "Mordiaga",
         "rarity": 4,
         "element": 1,
         "skill_count": 6
     },
     "221009": {
-        "name": "",
+        "name": "Mizuchi",
         "rarity": 4,
         "element": 1,
         "skill_count": 6
     },
     "221010": {
-        "name": "",
+        "name": "Sohvi",
         "rarity": 4,
         "element": 1,
         "skill_count": 6
     },
     "221011": {
-        "name": "",
+        "name": "Gerard (Summer)",
         "rarity": 4,
         "element": 1,
         "skill_count": 6
     },
     "221017": {
-        "name": "",
+        "name": "Vivi",
         "rarity": 4,
         "element": 1,
         "skill_count": 6
     },
     "221022": {
-        "name": "",
+        "name": "Trista (New Year)",
         "rarity": 4,
         "element": 1,
         "skill_count": 6
     },
     "221028": {
-        "name": "",
+        "name": "Facon",
         "rarity": 4,
         "element": 1,
         "skill_count": 6
     },
     "221034": {
-        "name": "",
+        "name": "Evelyn",
         "rarity": 4,
         "element": 1,
         "skill_count": 6
     },
     "221040": {
-        "name": "",
+        "name": "Shirano (Summer)",
         "rarity": 4,
         "element": 1,
         "skill_count": 6
     },
     "221053": {
-        "name": "",
+        "name": "Lanner (Halloween)",
         "rarity": 4,
         "element": 1,
         "skill_count": 6
     },
     "221054": {
-        "name": "",
+        "name": "Takamori Seiji",
         "rarity": 4,
         "element": 1,
         "skill_count": 6
     },
     "221060": {
-        "name": "",
+        "name": "Faroro",
         "rarity": 4,
         "element": 1,
         "skill_count": 6
     },
     "221066": {
-        "name": "",
+        "name": "Pishika (Summer)",
         "rarity": 4,
         "element": 1,
         "skill_count": 6
     },
     "221072": {
-        "name": "",
+        "name": "Farah",
         "rarity": 4,
         "element": 1,
         "skill_count": 6
     },
     "221078": {
-        "name": "",
+        "name": "Fini (Valentine)",
         "rarity": 4,
         "element": 1,
         "skill_count": 3
     },
     "222001": {
-        "name": "",
+        "name": "Rain",
         "rarity": 4,
         "element": 1,
         "skill_count": 6
     },
     "223001": {
-        "name": "",
+        "name": "Marina (Summer)",
         "rarity": 4,
         "element": 1,
         "skill_count": 6
     },
     "223007": {
-        "name": "",
+        "name": "Sotieth (Oath to the Dawn)",
         "rarity": 4,
         "element": 1,
         "skill_count": 6
     },
     "223013": {
-        "name": "",
+        "name": "Nate (HERO: BEGINNING)",
         "rarity": 4,
         "element": 1,
         "skill_count": 6
     },
     "223019": {
-        "name": "",
+        "name": "Luciada (Binary Planet)",
         "rarity": 4,
         "element": 1,
         "skill_count": 6
     },
     "231001": {
-        "name": "",
+        "name": "Rams",
         "rarity": 4,
         "element": 2,
         "skill_count": 6
     },
     "231002": {
-        "name": "",
+        "name": "Renoir",
         "rarity": 4,
         "element": 2,
         "skill_count": 6
     },
     "231003": {
-        "name": "",
+        "name": "Regis",
         "rarity": 4,
         "element": 2,
         "skill_count": 6
     },
     "231004": {
-        "name": "",
+        "name": "Eleanor",
         "rarity": 4,
         "element": 2,
         "skill_count": 6
     },
     "231005": {
-        "name": "",
+        "name": "Jay",
         "rarity": 4,
         "element": 2,
         "skill_count": 6
     },
     "231006": {
-        "name": "",
+        "name": "Mino",
         "rarity": 4,
         "element": 2,
         "skill_count": 6
     },
     "231007": {
-        "name": "",
+        "name": "Aureo (Christmas)",
         "rarity": 4,
         "element": 2,
         "skill_count": 6
     },
     "231008": {
-        "name": "",
+        "name": "Adonis",
         "rarity": 4,
         "element": 2,
         "skill_count": 6
     },
     "231009": {
-        "name": "",
+        "name": "Rudy",
         "rarity": 4,
         "element": 2,
         "skill_count": 6
     },
     "231012": {
-        "name": "",
+        "name": "Naska (Summer)",
         "rarity": 4,
         "element": 2,
         "skill_count": 6
     },
     "231013": {
-        "name": "",
+        "name": "Roselia",
         "rarity": 4,
         "element": 2,
         "skill_count": 6
     },
     "231014": {
-        "name": "",
+        "name": "Ai Mizuno (Zombie Land Saga Collab)",
         "rarity": 4,
         "element": 2,
         "skill_count": 6
     },
     "231020": {
-        "name": "",
+        "name": "Lunalu (Halloween)",
         "rarity": 4,
         "element": 2,
         "skill_count": 6
     },
     "231032": {
-        "name": "",
+        "name": "Adoni (Christmas)",
         "rarity": 4,
         "element": 2,
         "skill_count": 6
     },
     "231038": {
-        "name": "",
+        "name": "To Rereni",
         "rarity": 4,
         "element": 2,
         "skill_count": 6
     },
     "231044": {
-        "name": "",
+        "name": "Editha",
         "rarity": 4,
         "element": 2,
         "skill_count": 6
     },
     "231050": {
-        "name": "",
+        "name": "Telna",
         "rarity": 4,
         "element": 2,
         "skill_count": 6
     },
     "231056": {
-        "name": "",
+        "name": "Giselle",
         "rarity": 4,
         "element": 2,
         "skill_count": 6
     },
     "231063": {
-        "name": "",
+        "name": "Fuku",
         "rarity": 4,
         "element": 2,
         "skill_count": 6
     },
     "231069": {
-        "name": "",
+        "name": "Kuro (New Year)",
         "rarity": 4,
         "element": 2,
         "skill_count": 6
     },
     "231075": {
-        "name": "",
+        "name": "Elegia",
         "rarity": 4,
         "element": 2,
         "skill_count": 6
     },
     "231081": {
-        "name": "",
+        "name": "Rinkarina",
         "rarity": 4,
         "element": 2,
         "skill_count": 6
     },
     "231087": {
-        "name": "",
+        "name": "Ornesto",
         "rarity": 4,
         "element": 2,
         "skill_count": 6
     },
     "231093": {
-        "name": "",
+        "name": "Elmelissa",
         "rarity": 4,
         "element": 2,
         "skill_count": 6
     },
     "231099": {
-        "name": "",
+        "name": "Invetra",
         "rarity": 4,
         "element": 2,
         "skill_count": 3
     },
     "233001": {
-        "name": "",
+        "name": "Prika (The Poppet Princess)",
         "rarity": 4,
         "element": 2,
         "skill_count": 6
     },
     "233007": {
-        "name": "",
+        "name": "Theo",
         "rarity": 4,
         "element": 2,
         "skill_count": 6
     },
     "233013": {
-        "name": "",
+        "name": "Echo (Blue Sunny Smile)",
         "rarity": 4,
         "element": 2,
         "skill_count": 6
     },
     "241001": {
-        "name": "",
+        "name": "Mia",
         "rarity": 4,
         "element": 3,
         "skill_count": 6
     },
     "241002": {
-        "name": "",
+        "name": "Aurore",
         "rarity": 4,
         "element": 3,
         "skill_count": 6
     },
     "241003": {
-        "name": "",
+        "name": "Soushiro",
         "rarity": 4,
         "element": 3,
         "skill_count": 6
     },
     "241004": {
-        "name": "",
+        "name": "Melsele",
         "rarity": 4,
         "element": 3,
         "skill_count": 6
     },
     "241005": {
-        "name": "",
+        "name": "Helga",
         "rarity": 4,
         "element": 3,
         "skill_count": 6
     },
     "241006": {
-        "name": "",
+        "name": "Rebecca (New Year)",
         "rarity": 4,
         "element": 3,
         "skill_count": 6
     },
     "241007": {
-        "name": "",
+        "name": "Lou",
         "rarity": 4,
         "element": 3,
         "skill_count": 6
     },
     "241008": {
-        "name": "",
+        "name": "Suzuka",
         "rarity": 4,
         "element": 3,
         "skill_count": 6
     },
     "241009": {
-        "name": "",
+        "name": "Kohane",
         "rarity": 4,
         "element": 3,
         "skill_count": 6
     },
     "241015": {
-        "name": "",
+        "name": "Hao",
         "rarity": 4,
         "element": 3,
         "skill_count": 6
     },
     "241021": {
-        "name": "",
+        "name": "Ram (Re:Zero Collab)",
         "rarity": 4,
         "element": 3,
         "skill_count": 6
     },
     "241027": {
-        "name": "",
+        "name": "Ricardo",
         "rarity": 4,
         "element": 3,
         "skill_count": 6
     },
     "241033": {
-        "name": "",
+        "name": "Middie",
         "rarity": 4,
         "element": 3,
         "skill_count": 6
     },
     "241039": {
-        "name": "",
+        "name": "Piamo",
         "rarity": 4,
         "element": 3,
         "skill_count": 6
     },
     "241045": {
-        "name": "",
+        "name": "Lemarque",
         "rarity": 4,
         "element": 3,
         "skill_count": 6
     },
     "241051": {
-        "name": "",
+        "name": "Makani",
         "rarity": 4,
         "element": 3,
         "skill_count": 6
     },
     "241057": {
-        "name": "",
+        "name": "Milmina (Halloween)",
         "rarity": 4,
         "element": 3,
         "skill_count": 6
     },
     "241063": {
-        "name": "",
+        "name": "Ryouki",
         "rarity": 4,
         "element": 3,
         "skill_count": 6
     },
     "241069": {
-        "name": "",
+        "name": "Fuuran",
         "rarity": 4,
         "element": 3,
         "skill_count": 6
     },
     "243001": {
-        "name": "",
+        "name": "Arisa",
         "rarity": 4,
         "element": 3,
         "skill_count": 6
     },
     "243007": {
-        "name": "",
+        "name": "Kugui (The Edited Day of Yo-kai Book)",
         "rarity": 4,
         "element": 3,
         "skill_count": 6
     },
     "243013": {
-        "name": "",
+        "name": "Shiro (Christmas)",
         "rarity": 4,
         "element": 3,
         "skill_count": 6
     },
     "243019": {
-        "name": "",
+        "name": "Merienna",
         "rarity": 4,
         "element": 3,
         "skill_count": 6
     },
     "251001": {
-        "name": "",
+        "name": "Dia",
         "rarity": 4,
         "element": 4,
         "skill_count": 6
     },
     "251002": {
-        "name": "",
+        "name": "Gerard",
         "rarity": 4,
         "element": 4,
         "skill_count": 6
     },
     "251003": {
-        "name": "",
+        "name": "Ellya",
         "rarity": 4,
         "element": 4,
         "skill_count": 6
     },
     "251004": {
-        "name": "",
+        "name": "Finn",
         "rarity": 4,
         "element": 4,
         "skill_count": 6
     },
     "251005": {
-        "name": "",
+        "name": "Keira",
         "rarity": 4,
         "element": 4,
         "skill_count": 6
     },
     "251006": {
-        "name": "",
+        "name": "Lyla",
         "rarity": 4,
         "element": 4,
         "skill_count": 6
     },
     "251007": {
-        "name": "",
+        "name": "Hopper",
         "rarity": 4,
         "element": 4,
         "skill_count": 6
     },
     "251008": {
-        "name": "",
+        "name": "Illumine",
         "rarity": 4,
         "element": 4,
         "skill_count": 6
     },
     "251009": {
-        "name": "",
+        "name": "Floretta",
         "rarity": 4,
         "element": 4,
         "skill_count": 6
     },
     "251010": {
-        "name": "",
+        "name": "Liesel (Summer)",
         "rarity": 4,
         "element": 4,
         "skill_count": 6
     },
     "251011": {
-        "name": "",
+        "name": "Keyana",
         "rarity": 4,
         "element": 4,
         "skill_count": 6
     },
     "251017": {
-        "name": "",
+        "name": "Lilith",
         "rarity": 4,
         "element": 4,
         "skill_count": 6
     },
     "251023": {
-        "name": "",
+        "name": "Mech",
         "rarity": 4,
         "element": 4,
         "skill_count": 6
     },
     "251029": {
-        "name": "",
+        "name": "Cecilia (Anniversary)",
         "rarity": 4,
         "element": 4,
         "skill_count": 6
     },
     "251035": {
-        "name": "",
+        "name": "Dilette",
         "rarity": 4,
         "element": 4,
         "skill_count": 6
     },
     "251041": {
-        "name": "",
+        "name": "Floretta (Valentine's)",
         "rarity": 4,
         "element": 4,
         "skill_count": 6
     },
     "251047": {
-        "name": "",
+        "name": "Fini",
         "rarity": 4,
         "element": 4,
         "skill_count": 6
     },
     "251053": {
-        "name": "",
+        "name": "Sariha",
         "rarity": 4,
         "element": 4,
         "skill_count": 6
     },
     "251059": {
-        "name": "",
+        "name": "False / Force (Christmas)",
         "rarity": 4,
         "element": 4,
         "skill_count": 6
     },
     "251065": {
-        "name": "",
+        "name": "Carabina",
         "rarity": 4,
         "element": 4,
         "skill_count": 6
     },
     "251071": {
-        "name": "",
+        "name": "Clarté",
         "rarity": 4,
         "element": 4,
         "skill_count": 6
     },
     "251077": {
-        "name": "",
+        "name": "Yuna (Summer)",
         "rarity": 4,
         "element": 4,
         "skill_count": 6
     },
     "253001": {
-        "name": "",
+        "name": "Parfait (Valentine's Festival Event)",
         "rarity": 4,
         "element": 4,
         "skill_count": 6
     },
     "253007": {
-        "name": "",
+        "name": "Souvi (Summer)",
         "rarity": 4,
         "element": 4,
         "skill_count": 6
     },
     "253013": {
-        "name": "",
+        "name": "Stella",
         "rarity": 4,
         "element": 4,
         "skill_count": 6
     },
     "253019": {
-        "name": "",
+        "name": "Veraine (The Long Way for King and Knights)",
         "rarity": 4,
         "element": 4,
         "skill_count": 3
     },
     "261001": {
-        "name": "",
+        "name": "Arum",
         "rarity": 4,
         "element": 5,
         "skill_count": 6
     },
     "261003": {
-        "name": "",
+        "name": "Marianne",
         "rarity": 4,
         "element": 5,
         "skill_count": 6
     },
     "261004": {
-        "name": "",
+        "name": "Andy",
         "rarity": 4,
         "element": 5,
         "skill_count": 6
     },
     "261005": {
-        "name": "",
+        "name": "Liam",
         "rarity": 4,
         "element": 5,
         "skill_count": 6
     },
     "261006": {
-        "name": "",
+        "name": "Yuwel (New Year)",
         "rarity": 4,
         "element": 5,
         "skill_count": 6
     },
     "261007": {
-        "name": "",
+        "name": "Selgir",
         "rarity": 4,
         "element": 5,
         "skill_count": 6
     },
     "261008": {
-        "name": "",
+        "name": "Luna",
         "rarity": 4,
         "element": 5,
         "skill_count": 6
     },
     "261009": {
-        "name": "",
+        "name": "Marguerite (Summer)",
         "rarity": 4,
         "element": 5,
         "skill_count": 6
     },
     "261010": {
-        "name": "",
+        "name": "Greig",
         "rarity": 4,
         "element": 5,
         "skill_count": 6
     },
     "261011": {
-        "name": "",
+        "name": "Bryce",
         "rarity": 4,
         "element": 5,
         "skill_count": 6
     },
     "261017": {
-        "name": "",
+        "name": "Falce (Halloween)",
         "rarity": 4,
         "element": 5,
         "skill_count": 6
     },
     "261023": {
-        "name": "",
+        "name": "Zelma",
         "rarity": 4,
         "element": 5,
         "skill_count": 6
     },
     "261029": {
-        "name": "",
+        "name": "Ari (Anniversary)",
         "rarity": 4,
         "element": 5,
         "skill_count": 6
     },
     "261035": {
-        "name": "",
+        "name": "Edward",
         "rarity": 4,
         "element": 5,
         "skill_count": 6
     },
     "261041": {
-        "name": "",
+        "name": "Lonsdale",
         "rarity": 4,
         "element": 5,
         "skill_count": 6
     },
     "261047": {
-        "name": "",
+        "name": "Tawil",
         "rarity": 4,
         "element": 5,
         "skill_count": 6
     },
     "261059": {
-        "name": "",
+        "name": "Virgia",
         "rarity": 4,
         "element": 5,
         "skill_count": 6
     },
     "261065": {
-        "name": "",
+        "name": "Kageoka Ryuichi",
         "rarity": 4,
         "element": 5,
         "skill_count": 6
     },
     "261071": {
-        "name": "",
+        "name": "Shion (Anniversary)",
         "rarity": 4,
         "element": 5,
         "skill_count": 6
     },
     "261077": {
-        "name": "",
+        "name": "Hikawa Rinne (Halloween)",
         "rarity": 4,
         "element": 5,
         "skill_count": 6
     },
     "261083": {
-        "name": "",
+        "name": "Heartleaf (Christmas)",
         "rarity": 4,
         "element": 5,
         "skill_count": 3
     },
     "261089": {
-        "name": "",
+        "name": "Armadeus",
         "rarity": 4,
         "element": 5,
         "skill_count": 3
     },
     "263001": {
-        "name": "",
+        "name": "Quazer (Co-Op Challenge)",
         "rarity": 4,
         "element": 5,
         "skill_count": 6
     },
     "263002": {
-        "name": "",
+        "name": "Love (Neon Skyline)",
         "rarity": 4,
         "element": 5,
         "skill_count": 6
     },
     "263003": {
-        "name": "",
+        "name": "Tae Yamada (Zombie Land Saga Collab)",
         "rarity": 4,
         "element": 5,
         "skill_count": 6
     },
     "263009": {
-        "name": "",
+        "name": "Subaru Natsuki (Re:Zero Collab)",
         "rarity": 4,
         "element": 5,
         "skill_count": 6
     },
     "311001": {
-        "name": "",
+        "name": "Lilial",
         "rarity": 3,
         "element": 0,
         "skill_count": 6
     },
     "311002": {
-        "name": "",
+        "name": "Marnie",
         "rarity": 3,
         "element": 0,
         "skill_count": 6
     },
     "311003": {
-        "name": "",
+        "name": "Elise",
         "rarity": 3,
         "element": 0,
         "skill_count": 6
     },
     "311004": {
-        "name": "",
+        "name": "Haaj",
         "rarity": 3,
         "element": 0,
         "skill_count": 6
     },
     "311005": {
-        "name": "",
+        "name": "Jin",
         "rarity": 3,
         "element": 0,
         "skill_count": 6
     },
     "311006": {
-        "name": "",
+        "name": "Trine",
         "rarity": 3,
         "element": 0,
         "skill_count": 6
     },
     "311008": {
-        "name": "",
+        "name": "Gilasrad",
         "rarity": 3,
         "element": 0,
         "skill_count": 6
     },
     "311009": {
-        "name": "",
+        "name": "Enni",
         "rarity": 3,
         "element": 0,
         "skill_count": 6
     },
     "311010": {
-        "name": "",
+        "name": "Jake",
         "rarity": 3,
         "element": 0,
         "skill_count": 6
     },
     "311011": {
-        "name": "",
+        "name": "Cran",
         "rarity": 3,
         "element": 0,
         "skill_count": 6
     },
     "311012": {
-        "name": "",
+        "name": "Harlisha",
         "rarity": 3,
         "element": 0,
         "skill_count": 6
     },
     "311013": {
-        "name": "",
+        "name": "Sven",
         "rarity": 3,
         "element": 0,
         "skill_count": 6
     },
     "311019": {
-        "name": "",
+        "name": "Lilian",
         "rarity": 3,
         "element": 0,
         "skill_count": 6
     },
     "311025": {
-        "name": "",
+        "name": "Klaus (White Day)",
         "rarity": 3,
         "element": 0,
         "skill_count": 6
     },
     "321001": {
-        "name": "",
+        "name": "Keylos",
         "rarity": 3,
         "element": 1,
         "skill_count": 6
     },
     "321002": {
-        "name": "",
+        "name": "Trista",
         "rarity": 3,
         "element": 1,
         "skill_count": 6
     },
     "321003": {
-        "name": "",
+        "name": "Walter",
         "rarity": 3,
         "element": 1,
         "skill_count": 6
     },
     "321004": {
-        "name": "",
+        "name": "Elza",
         "rarity": 3,
         "element": 1,
         "skill_count": 6
     },
     "321005": {
-        "name": "",
+        "name": "Klaus",
         "rarity": 3,
         "element": 1,
         "skill_count": 6
     },
     "321006": {
-        "name": "",
+        "name": "Shirano",
         "rarity": 3,
         "element": 1,
         "skill_count": 6
     },
     "321007": {
-        "name": "",
+        "name": "Kaiyu",
         "rarity": 3,
         "element": 1,
         "skill_count": 6
     },
     "321008": {
-        "name": "",
+        "name": "Lassie",
         "rarity": 3,
         "element": 1,
         "skill_count": 6
     },
     "321009": {
-        "name": "",
+        "name": "Faf",
         "rarity": 3,
         "element": 1,
         "skill_count": 6
     },
     "321010": {
-        "name": "",
+        "name": "Rico",
         "rarity": 3,
         "element": 1,
         "skill_count": 6
     },
     "321011": {
-        "name": "",
+        "name": "Clara",
         "rarity": 3,
         "element": 1,
         "skill_count": 6
     },
     "321012": {
-        "name": "",
+        "name": "Samantha",
         "rarity": 3,
         "element": 1,
         "skill_count": 6
     },
     "321013": {
-        "name": "",
+        "name": "Ritta",
         "rarity": 3,
         "element": 1,
         "skill_count": 6
     },
     "323001": {
-        "name": "",
+        "name": "Challua (Christmas)",
         "rarity": 3,
         "element": 1,
         "skill_count": 6
     },
     "331001": {
-        "name": "",
+        "name": "Yuna",
         "rarity": 3,
         "element": 2,
         "skill_count": 6
     },
     "331002": {
-        "name": "",
+        "name": "Bonnie",
         "rarity": 3,
         "element": 2,
         "skill_count": 6
     },
     "331003": {
-        "name": "",
+        "name": "Taiga",
         "rarity": 3,
         "element": 2,
         "skill_count": 6
     },
     "331004": {
-        "name": "",
+        "name": "Claw",
         "rarity": 3,
         "element": 2,
         "skill_count": 6
     },
     "331005": {
-        "name": "",
+        "name": "Albert",
         "rarity": 3,
         "element": 2,
         "skill_count": 6
     },
     "331006": {
-        "name": "",
+        "name": "Kazuchi",
         "rarity": 3,
         "element": 2,
         "skill_count": 6
     },
     "331007": {
-        "name": "",
+        "name": "Tatiana",
         "rarity": 3,
         "element": 2,
         "skill_count": 6
     },
     "331010": {
-        "name": "",
+        "name": "Colt",
         "rarity": 3,
         "element": 2,
         "skill_count": 6
     },
     "331011": {
-        "name": "",
+        "name": "Sha Suzu",
         "rarity": 3,
         "element": 2,
         "skill_count": 6
     },
     "331012": {
-        "name": "",
+        "name": "Fiora",
         "rarity": 3,
         "element": 2,
         "skill_count": 6
     },
     "331013": {
-        "name": "",
+        "name": "Vargen",
         "rarity": 3,
         "element": 2,
         "skill_count": 6
     },
     "331014": {
-        "name": "",
+        "name": "Flana",
         "rarity": 3,
         "element": 2,
         "skill_count": 6
     },
     "331020": {
-        "name": "",
+        "name": "Fi Nonoa",
         "rarity": 3,
         "element": 2,
         "skill_count": 6
     },
     "333001": {
-        "name": "",
+        "name": "Mew (New Year)",
         "rarity": 3,
         "element": 2,
         "skill_count": 6
     },
     "341001": {
-        "name": "",
+        "name": "Evan",
         "rarity": 3,
         "element": 3,
         "skill_count": 6
     },
     "341002": {
-        "name": "",
+        "name": "Challua",
         "rarity": 3,
         "element": 3,
         "skill_count": 6
     },
     "341003": {
-        "name": "",
+        "name": "Regitare",
         "rarity": 3,
         "element": 3,
         "skill_count": 6
     },
     "341004": {
-        "name": "",
+        "name": "Naska",
         "rarity": 3,
         "element": 3,
         "skill_count": 6
     },
     "341005": {
-        "name": "",
+        "name": "Mew",
         "rarity": 3,
         "element": 3,
         "skill_count": 6
     },
     "341006": {
-        "name": "",
+        "name": "Folus",
         "rarity": 3,
         "element": 3,
         "skill_count": 6
     },
     "341007": {
-        "name": "",
+        "name": "Hartlief",
         "rarity": 3,
         "element": 3,
         "skill_count": 6
     },
     "341008": {
-        "name": "",
+        "name": "Conner",
         "rarity": 3,
         "element": 3,
         "skill_count": 6
     },
     "341009": {
-        "name": "",
+        "name": "Jester",
         "rarity": 3,
         "element": 3,
         "skill_count": 6
     },
     "341010": {
-        "name": "",
+        "name": "Kate",
         "rarity": 3,
         "element": 3,
         "skill_count": 6
     },
     "341011": {
-        "name": "",
+        "name": "Nellie",
         "rarity": 3,
         "element": 3,
         "skill_count": 6
     },
     "341017": {
-        "name": "",
+        "name": "Millet",
         "rarity": 3,
         "element": 3,
         "skill_count": 6
     },
     "351001": {
-        "name": "",
+        "name": "Corinna",
         "rarity": 3,
         "element": 4,
         "skill_count": 6
     },
     "351002": {
-        "name": "",
+        "name": "Marguerite",
         "rarity": 3,
         "element": 4,
         "skill_count": 6
     },
     "351003": {
-        "name": "",
+        "name": "Cecilia",
         "rarity": 3,
         "element": 4,
         "skill_count": 6
     },
     "351004": {
-        "name": "",
+        "name": "Aureo",
         "rarity": 3,
         "element": 4,
         "skill_count": 6
     },
     "351005": {
-        "name": "",
+        "name": "Raul",
         "rarity": 3,
         "element": 4,
         "skill_count": 6
     },
     "351006": {
-        "name": "",
+        "name": "Miles",
         "rarity": 3,
         "element": 4,
         "skill_count": 6
     },
     "351007": {
-        "name": "",
+        "name": "Luluca",
         "rarity": 3,
         "element": 4,
         "skill_count": 6
     },
     "351008": {
-        "name": "",
+        "name": "Kharo",
         "rarity": 3,
         "element": 4,
         "skill_count": 6
     },
     "351009": {
-        "name": "",
+        "name": "Mora",
         "rarity": 3,
         "element": 4,
         "skill_count": 6
     },
     "351015": {
-        "name": "",
+        "name": "Corina (Halloween)",
         "rarity": 3,
         "element": 4,
         "skill_count": 6
     },
     "351021": {
-        "name": "",
+        "name": "Ksyukha",
         "rarity": 3,
         "element": 4,
         "skill_count": 6
     },
     "351027": {
-        "name": "",
+        "name": "Axem",
         "rarity": 3,
         "element": 4,
         "skill_count": 6
     },
     "351033": {
-        "name": "",
+        "name": "Ru Ruto",
         "rarity": 3,
         "element": 4,
         "skill_count": 6
     },
     "361001": {
-        "name": "",
+        "name": "Falsche",
         "rarity": 3,
         "element": 5,
         "skill_count": 6
     },
     "361002": {
-        "name": "",
+        "name": "Jalil",
         "rarity": 3,
         "element": 5,
         "skill_count": 6
     },
     "361003": {
-        "name": "",
+        "name": "Arly",
         "rarity": 3,
         "element": 5,
         "skill_count": 6
     },
     "361004": {
-        "name": "",
+        "name": "Shion",
         "rarity": 3,
         "element": 5,
         "skill_count": 6
     },
     "361005": {
-        "name": "",
+        "name": "Adil",
         "rarity": 3,
         "element": 5,
         "skill_count": 6
     },
     "361006": {
-        "name": "",
+        "name": "Dorothea",
         "rarity": 3,
         "element": 5,
         "skill_count": 6
     },
     "361007": {
-        "name": "",
+        "name": "Rebecca",
         "rarity": 3,
         "element": 5,
         "skill_count": 6
     },
     "361008": {
-        "name": "",
+        "name": "Nochel",
         "rarity": 3,
         "element": 5,
         "skill_count": 6
     },
     "361009": {
-        "name": "",
+        "name": "Meryll",
         "rarity": 3,
         "element": 5,
         "skill_count": 6
     },
     "361015": {
-        "name": "",
+        "name": "Meryl (Christmas)",
         "rarity": 3,
         "element": 5,
         "skill_count": 6
     },
     "361021": {
-        "name": "",
+        "name": "Talha",
         "rarity": 3,
         "element": 5,
         "skill_count": 6
     },
     "361027": {
-        "name": "",
+        "name": "Cody",
         "rarity": 3,
         "element": 5,
         "skill_count": 6
     },
     "361033": {
-        "name": "",
+        "name": "Lucille",
         "rarity": 3,
         "element": 5,
         "skill_count": 6
     },
     "412004": {
-        "name": "",
+        "name": "Golem",
         "rarity": 2,
         "element": 0,
         "skill_count": 2
     },
     "442004": {
-        "name": "",
+        "name": "Owlbert",
         "rarity": 2,
         "element": 3,
         "skill_count": 2
     },
     "442006": {
-        "name": "",
+        "name": "Kamaitachi",
         "rarity": 2,
         "element": 3,
         "skill_count": 2
     },
     "443001": {
-        "name": "",
+        "name": "CF Kiseki (Miraculous Golden Head Collab)",
         "rarity": 2,
         "element": 3,
         "skill_count": 2
     },
     "443002": {
-        "name": "",
+        "name": "Towa Kiseki (Miraculous Golden Head Collab)",
         "rarity": 2,
         "element": 3,
         "skill_count": 2
     },
     "512001": {
-        "name": "",
+        "name": "Shroombo",
         "rarity": 1,
         "element": 0,
         "skill_count": 2
     },
     "512002": {
-        "name": "",
+        "name": "Red Blobble",
         "rarity": 1,
         "element": 0,
         "skill_count": 2
     },
     "512004": {
-        "name": "",
+        "name": "Fire Imp",
         "rarity": 1,
         "element": 0,
         "skill_count": 2
     },
     "522001": {
-        "name": "",
+        "name": "Blue Blobble",
         "rarity": 1,
         "element": 1,
         "skill_count": 2
     },
     "532001": {
-        "name": "",
+        "name": "Yellow Blobble",
         "rarity": 1,
         "element": 2,
         "skill_count": 2
     },
     "532004": {
-        "name": "",
+        "name": "Zapquill",
         "rarity": 1,
         "element": 2,
         "skill_count": 2
     },
     "542001": {
-        "name": "",
+        "name": "Green Blobble",
         "rarity": 1,
         "element": 3,
         "skill_count": 2
     },
     "700000": {
-        "name": "",
+        "name": "Kugui (The Edited Day of Yo-kai Book)",
         "rarity": 4,
         "element": 3,
         "skill_count": 3
     },
     "700001": {
-        "name": "",
+        "name": "Educeus",
         "rarity": 5,
         "element": 5,
         "skill_count": 0
     },
     "700002": {
-        "name": "",
+        "name": "Esterielle",
         "rarity": 5,
         "element": 3,
         "skill_count": 0
     },
     "700003": {
-        "name": "",
+        "name": "Lilith",
         "rarity": 4,
         "element": 4,
         "skill_count": 0
     },
     "700004": {
-        "name": "",
+        "name": "Memram",
         "rarity": 4,
         "element": 2,
         "skill_count": 0
     },
     "700005": {
-        "name": "",
+        "name": "Zekhel",
         "rarity": 5,
         "element": 4,
         "skill_count": 0
     },
     "700006": {
-        "name": "",
+        "name": "Halidal",
         "rarity": 5,
         "element": 1,
         "skill_count": 0
     },
     "700007": {
-        "name": "",
+        "name": "Sotieth (Oath to the Dawn)",
         "rarity": 4,
         "element": 1,
         "skill_count": 0
     },
     "700008": {
-        "name": "",
+        "name": "Justy",
         "rarity": 5,
         "element": 1,
         "skill_count": 0
     },
     "700009": {
-        "name": "",
+        "name": "Alk",
         "rarity": 4,
         "element": 0,
         "skill_count": 6
     },
     "700010": {
-        "name": "",
+        "name": "Alk",
         "rarity": 4,
         "element": 0,
         "skill_count": 6
     },
     "700011": {
-        "name": "",
+        "name": "Mishima Yuki",
         "rarity": 5,
         "element": 1,
         "skill_count": 0
     },
     "700012": {
-        "name": "",
+        "name": "Inori Shouta",
         "rarity": 5,
         "element": 5,
         "skill_count": 0
     },
     "700013": {
-        "name": "",
+        "name": "Shiro (Anniversary)",
         "rarity": 5,
         "element": 2,
         "skill_count": 3
     },
     "700014": {
-        "name": "",
+        "name": "Cypher (Anniversary)",
         "rarity": 5,
         "element": 1,
         "skill_count": 3
     },
     "700015": {
-        "name": "",
+        "name": "Nimbus",
         "rarity": 5,
         "element": 2,
         "skill_count": 6
     },
     "700016": {
-        "name": "",
+        "name": "Light",
         "rarity": 5,
         "element": 4,
         "skill_count": 3
     },
     "700017": {
-        "name": "",
+        "name": "Alk",
         "rarity": 5,
         "element": 5,
         "skill_count": 3
     },
     "700018": {
-        "name": "",
+        "name": "Stella",
         "rarity": 5,
         "element": 4,
         "skill_count": 3
     },
     "700019": {
-        "name": "",
+        "name": "Stella",
         "rarity": 5,
         "element": 5,
         "skill_count": 3
     },
     "999999": {
-        "name": "",
+        "name": "Flame Witch",
         "rarity": 5,
         "element": 0,
         "skill_count": 3

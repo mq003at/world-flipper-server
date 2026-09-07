@@ -1,6 +1,6 @@
 {
     "1001": {
-        "name": "",
+        "name": "Door to the Depths",
         "clearRewardId": 2,
         "scoreRewardGroup": 2221,
         "sPlusRewardId": 1,
@@ -14,7 +14,7 @@
         "poolExpReward": 60
     },
     "1002": {
-        "name": "",
+        "name": "The Depths 1 - Fire (Lv. 50)",
         "clearRewardId": 19,
         "scoreRewardGroup": 2222,
         "sPlusRewardId": 1,
@@ -28,7 +28,7 @@
         "poolExpReward": 80
     },
     "1003": {
-        "name": "",
+        "name": "The Depths 2 - Fire (Lv. 60)",
         "clearRewardId": 19,
         "scoreRewardGroup": 2223,
         "sPlusRewardId": 1,
@@ -42,7 +42,7 @@
         "poolExpReward": 100
     },
     "1004": {
-        "name": "",
+        "name": "The Depths 3 - Fire (Lv. 70)",
         "clearRewardId": 19,
         "scoreRewardGroup": 2224,
         "sPlusRewardId": 1,
@@ -56,7 +56,7 @@
         "poolExpReward": 120
     },
     "1005": {
-        "name": "",
+        "name": "The Depths 1- Water (Lv. 50)",
         "clearRewardId": 20,
         "scoreRewardGroup": 2225,
         "sPlusRewardId": 1,
@@ -70,7 +70,7 @@
         "poolExpReward": 80
     },
     "1006": {
-        "name": "",
+        "name": "The Depths 2 - Water (Lv. 60)",
         "clearRewardId": 20,
         "scoreRewardGroup": 2226,
         "sPlusRewardId": 1,
@@ -84,7 +84,7 @@
         "poolExpReward": 100
     },
     "1007": {
-        "name": "",
+        "name": "The Depths 3 - Water (Lv. 70)",
         "clearRewardId": 20,
         "scoreRewardGroup": 2227,
         "sPlusRewardId": 1,
@@ -98,7 +98,7 @@
         "poolExpReward": 120
     },
     "1008": {
-        "name": "",
+        "name": "The Depths 1 - Thunder (Lv. 50)",
         "clearRewardId": 21,
         "scoreRewardGroup": 2228,
         "sPlusRewardId": 1,
@@ -112,7 +112,7 @@
         "poolExpReward": 80
     },
     "1009": {
-        "name": "",
+        "name": "The Depths 2 - Thunder (Lv. 60)",
         "clearRewardId": 21,
         "scoreRewardGroup": 2229,
         "sPlusRewardId": 1,
@@ -126,7 +126,7 @@
         "poolExpReward": 100
     },
     "1010": {
-        "name": "",
+        "name": "The Depths 3 - Thunder (Lv. 70)",
         "clearRewardId": 21,
         "scoreRewardGroup": 2230,
         "sPlusRewardId": 1,
@@ -140,7 +140,7 @@
         "poolExpReward": 120
     },
     "1011": {
-        "name": "",
+        "name": "The Depths 1 - Wind (Lv. 50)",
         "clearRewardId": 22,
         "scoreRewardGroup": 2231,
         "sPlusRewardId": 1,
@@ -154,7 +154,7 @@
         "poolExpReward": 80
     },
     "1012": {
-        "name": "",
+        "name": "The Depths 2 - Wind (Lv. 60)",
         "clearRewardId": 22,
         "scoreRewardGroup": 2232,
         "sPlusRewardId": 1,
@@ -168,7 +168,7 @@
         "poolExpReward": 100
     },
     "1013": {
-        "name": "",
+        "name": "The Depths 3 - Wind (Lv. 70)",
         "clearRewardId": 22,
         "scoreRewardGroup": 2233,
         "sPlusRewardId": 1,
@@ -182,7 +182,7 @@
         "poolExpReward": 120
     },
     "1014": {
-        "name": "",
+        "name": "The Depths 1 - Light (Lv. 50)",
         "clearRewardId": 23,
         "scoreRewardGroup": 2234,
         "sPlusRewardId": 1,
@@ -196,7 +196,7 @@
         "poolExpReward": 80
     },
     "1015": {
-        "name": "",
+        "name": "The Depths 2 - Light (Lv. 60)",
         "clearRewardId": 23,
         "scoreRewardGroup": 2235,
         "sPlusRewardId": 1,
@@ -210,7 +210,7 @@
         "poolExpReward": 100
     },
     "1016": {
-        "name": "",
+        "name": "The Depths 3 - Light (Lv. 70)",
         "clearRewardId": 23,
         "scoreRewardGroup": 2236,
         "sPlusRewardId": 1,
@@ -224,7 +224,7 @@
         "poolExpReward": 120
     },
     "1017": {
-        "name": "",
+        "name": "The Depths 1 - Dark (Lv. 50)",
         "clearRewardId": 24,
         "scoreRewardGroup": 2237,
         "sPlusRewardId": 1,
@@ -238,7 +238,7 @@
         "poolExpReward": 80
     },
     "1018": {
-        "name": "",
+        "name": "The Depths 2 - Dark (Lv. 60)",
         "clearRewardId": 24,
         "scoreRewardGroup": 2238,
         "sPlusRewardId": 1,
@@ -252,7 +252,7 @@
         "poolExpReward": 100
     },
     "1019": {
-        "name": "",
+        "name": "The Depths 3 - Dark (Lv. 70)",
         "clearRewardId": 24,
         "scoreRewardGroup": 2239,
         "sPlusRewardId": 1,
@@ -266,7 +266,7 @@
         "poolExpReward": 120
     },
     "1020": {
-        "name": "",
+        "name": "Beast of the Abyss",
         "clearRewardId": 39,
         "scoreRewardGroup": 2240,
         "sPlusRewardId": 1,
@@ -280,7 +280,7 @@
         "poolExpReward": 2430
     },
     "1021": {
-        "name": "",
+        "name": "True Abyssal Beast",
         "clearRewardId": 39,
         "scoreRewardGroup": 2241,
         "sPlusRewardId": 1,
@@ -294,7 +294,7 @@
         "poolExpReward": 2730
     },
     "1022": {
-        "name": "",
+        "name": "Unfettered Abyssal Beast",
         "clearRewardId": 39,
         "scoreRewardGroup": 2242,
         "sPlusRewardId": 1,
@@ -308,7 +308,7 @@
         "poolExpReward": 3030
     },
     "1023": {
-        "name": "",
+        "name": "Beast of the Abyss",
         "clearRewardId": 39,
         "scoreRewardGroup": 2243,
         "sPlusRewardId": 1,
@@ -322,7 +322,7 @@
         "poolExpReward": 2430
     },
     "1024": {
-        "name": "",
+        "name": "True Abyssal Beast",
         "clearRewardId": 39,
         "scoreRewardGroup": 2244,
         "sPlusRewardId": 1,
@@ -336,7 +336,7 @@
         "poolExpReward": 2730
     },
     "1025": {
-        "name": "",
+        "name": "Unfettered Abyssal Beast",
         "clearRewardId": 39,
         "scoreRewardGroup": 2245,
         "sPlusRewardId": 1,
@@ -350,7 +350,7 @@
         "poolExpReward": 3030
     },
     "1026": {
-        "name": "",
+        "name": "Beast of the Abyss",
         "clearRewardId": 39,
         "scoreRewardGroup": 2246,
         "sPlusRewardId": 1,
@@ -364,7 +364,7 @@
         "poolExpReward": 2430
     },
     "1027": {
-        "name": "",
+        "name": "True Abyssal Beast",
         "clearRewardId": 39,
         "scoreRewardGroup": 2247,
         "sPlusRewardId": 1,
@@ -378,7 +378,7 @@
         "poolExpReward": 2730
     },
     "1028": {
-        "name": "",
+        "name": "Unfettered Abyssal Beast",
         "clearRewardId": 39,
         "scoreRewardGroup": 2248,
         "sPlusRewardId": 1,
@@ -392,7 +392,7 @@
         "poolExpReward": 3030
     },
     "1029": {
-        "name": "",
+        "name": "Beast of the Abyss",
         "clearRewardId": 39,
         "scoreRewardGroup": 2249,
         "sPlusRewardId": 1,
@@ -406,7 +406,7 @@
         "poolExpReward": 2430
     },
     "1030": {
-        "name": "",
+        "name": "True Abyssal Beast",
         "clearRewardId": 39,
         "scoreRewardGroup": 2250,
         "sPlusRewardId": 1,
@@ -420,7 +420,7 @@
         "poolExpReward": 2730
     },
     "1031": {
-        "name": "",
+        "name": "Unfettered Abyssal Beast",
         "clearRewardId": 39,
         "scoreRewardGroup": 2251,
         "sPlusRewardId": 1,
@@ -434,7 +434,7 @@
         "poolExpReward": 3030
     },
     "1032": {
-        "name": "",
+        "name": "Beast of the Abyss",
         "clearRewardId": 39,
         "scoreRewardGroup": 2252,
         "sPlusRewardId": 1,
@@ -448,7 +448,7 @@
         "poolExpReward": 2430
     },
     "1033": {
-        "name": "",
+        "name": "True Abyssal Beast",
         "clearRewardId": 39,
         "scoreRewardGroup": 2253,
         "sPlusRewardId": 1,
@@ -462,7 +462,7 @@
         "poolExpReward": 2730
     },
     "1034": {
-        "name": "",
+        "name": "Unfettered Abyssal Beast",
         "clearRewardId": 39,
         "scoreRewardGroup": 2254,
         "sPlusRewardId": 1,
@@ -476,7 +476,7 @@
         "poolExpReward": 3030
     },
     "1035": {
-        "name": "",
+        "name": "Beast of the Abyss",
         "clearRewardId": 39,
         "scoreRewardGroup": 2255,
         "sPlusRewardId": 1,
@@ -490,7 +490,7 @@
         "poolExpReward": 2430
     },
     "1036": {
-        "name": "",
+        "name": "True Abyssal Beast",
         "clearRewardId": 39,
         "scoreRewardGroup": 2256,
         "sPlusRewardId": 1,
@@ -504,7 +504,7 @@
         "poolExpReward": 2730
     },
     "1037": {
-        "name": "",
+        "name": "Unfettered Abyssal Beast",
         "clearRewardId": 39,
         "scoreRewardGroup": 2257,
         "sPlusRewardId": 1,
@@ -518,7 +518,7 @@
         "poolExpReward": 3030
     },
     "1038": {
-        "name": "",
+        "name": "Beast of the Abyss",
         "clearRewardId": 39,
         "scoreRewardGroup": 2258,
         "sPlusRewardId": 1,
@@ -532,7 +532,7 @@
         "poolExpReward": 1
     },
     "1039": {
-        "name": "",
+        "name": "True Abyssal Beast",
         "clearRewardId": 59,
         "scoreRewardGroup": 2259,
         "sPlusRewardId": 1,
@@ -546,7 +546,7 @@
         "poolExpReward": 1
     },
     "1040": {
-        "name": "",
+        "name": "Unfettered Abyssal Beast",
         "clearRewardId": 60,
         "scoreRewardGroup": 2260,
         "sPlusRewardId": 1,
@@ -560,7 +560,7 @@
         "poolExpReward": 1
     },
     "2001": {
-        "name": "",
+        "name": "Treasure Zone (Dark)",
         "clearRewardId": 39,
         "scoreRewardGroup": 2101,
         "sPlusRewardId": 1,
@@ -574,7 +574,7 @@
         "poolExpReward": 90
     },
     "2002": {
-        "name": "",
+        "name": "Treasure Zone (Light)",
         "clearRewardId": 39,
         "scoreRewardGroup": 2102,
         "sPlusRewardId": 1,
@@ -588,7 +588,7 @@
         "poolExpReward": 90
     },
     "2003": {
-        "name": "",
+        "name": "Treasure Zone (Wind)",
         "clearRewardId": 39,
         "scoreRewardGroup": 2103,
         "sPlusRewardId": 1,
@@ -602,7 +602,7 @@
         "poolExpReward": 90
     },
     "2004": {
-        "name": "",
+        "name": "Treasure Zone (Thunder)",
         "clearRewardId": 39,
         "scoreRewardGroup": 2104,
         "sPlusRewardId": 1,
@@ -616,7 +616,7 @@
         "poolExpReward": 90
     },
     "2005": {
-        "name": "",
+        "name": "Treasure Zone (Water)",
         "clearRewardId": 39,
         "scoreRewardGroup": 2105,
         "sPlusRewardId": 1,
@@ -630,7 +630,7 @@
         "poolExpReward": 90
     },
     "2006": {
-        "name": "",
+        "name": "Treasure Zone (Fire)",
         "clearRewardId": 39,
         "scoreRewardGroup": 2106,
         "sPlusRewardId": 1,
