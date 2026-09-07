@@ -1,64 +1,59 @@
-# Batch 5D — Routing Rework
+# Starpoint
+A work-in-progress server emulator for the global version of a mobile pinball game.
 
-This overlay replaces the application-level route registration with the current
-module convention and removes the unused legacy route trees.
+## Implemented Features
+* Tutorial
+* Character leveling, uncapping, mana boards, & ex boosting
+* Character stories
+* Quests
+  - All main quests playable
+  - Some event/boss quests playable
+* Gacha
+  - Unit Portals
+  - Armament Portals
+  - Unit/Armament Exchanges
+* Armaments
+  - Awakening
+  - Melting
+* Most shops
+* Party organization
+* Encyclopedia
+* Time travel to past & future events.
 
-## Install on Windows
+For a more in-depth view of the progress completed, visit the [API routes document](/docs/routes.md).
 
-1. Stop the server.
-2. Extract this ZIP over the project root.
-3. From the project root, run:
-
-   ```powershell
-   pnpm routes:cleanup
+## Installation
+1. Install the latest version of [Node.js](https://nodejs.org/en/download/prebuilt-installer).
+2. Clone the repository from the command line.
    ```
-
-4. Verify that only the legacy directory is gone:
-
-   ```powershell
-   Test-Path .\src\routes
-   # Expected: False
+   git clone https://github.com/Duosion/starpoint.git
    ```
+   - If you do not have git installed, click the green "Code" button at the top of the page and select "Download ZIP" to download a ZIP of the repository instead.
+3. Navigate to the directory where the repository was cloned/unzipped to.
+4. Place your copy of the game's CDN into the Starpoint install directory.
+   - It should be named ``.cdn``.
+5. Install mitmproxy from their [downloads page](https://mitmproxy.org/downloads/#10.4.0) [[direct Windows download](https://downloads.mitmproxy.org/10.4.0/mitmproxy-10.4.0-windows-x86_64.zip)].
+   - Extract into the ``.mitmproxy`` folder within the Starpoint install directory.
+6. Follow the guide for your phone or emulator:
+   - [Android (No Root)](/docs/connecting-android.md)
+   - [Android (Root)](/docs/connecting-android-root.md)
+   - [iOS](/docs/connecting-ios.md)
 
-5. Start the server:
+## FAQ
+- **Do I have to host this on my own?**
+  - Yes. I will not be hosting this server myself.
+- **Can I import my save data?**
+  - Yes. Once you have Starpoint installed & running, visit [http://localhost:8000](http://localhost:8000) in your browser and navigate to the players page.
+  - Select a player from the page, select the save file you want to import, and click the "Upload Save" button.
+- **I am getting an 'H404' error**
+  - Receiving this error means that the feature you are trying to interact with has not been implemented yet.
 
-   ```powershell
-   pnpm dev
-   ```
+## Mods
+Follow the [modding guide](/docs/modding.md) to learn more about installing & creating mods.
 
-The cleanup command deletes exactly these directories when present:
+## Contribution
+Interested in contributing to Starpoint? Read the [contribution guide](/docs/contributing.md) to learn more!
 
-- `src/routes/api`
-- `src/routes/web`
-- `src/routes/web_api`
-
-It does not delete `src/modules`, `src/protocol`, `web/pages`, player data, CDN
-content, or database files.
-
-## Install on Linux or macOS
-
-After extracting the overlay over the project root:
-
-```sh
-sh scripts/cleanup-legacy-routes.sh
-pnpm dev
-```
-
-## New convention
-
-- Feature handlers and their relative paths live in `src/modules/<feature>`.
-- Protocol-specific handlers live in `src/protocol/<protocol>`.
-- Public prefixes and compatibility aliases live only in `src/app/routing.ts`.
-- `src/app/create-app.ts` constructs services and supplies feature plugins to the
-  routing composition root.
-- Do not create a new top-level `src/routes` tree.
-
-The obsolete `/rush_event` and `/raid_event` aliases are removed. The supported
-client paths are `/latest/api/index.php/event/rush/*` and
-`/latest/api/index.php/event/raid/*`.
-
-## Verification performed
-
-- `pnpm typecheck`
-- `pnpm test` — 7/7 passed
-- `pnpm build`
+## Special Thanks
+- Special thanks to [wdfp-extractor](https://github.com/ScripterSugar/wdfp-extractor) for providing the assets and knowledge required to create the ``converter.py`` script.
+- Special thanks to the [wfax tool](https://github.com/blead/wfax) for making modding possible.
