@@ -16,6 +16,7 @@ import { JsonQuestCatalog } from "../content/master-data/json-quest-catalog";
 import { JsonShopCatalog } from "../content/master-data/json-shop-catalog";
 import type { Clock } from "../infrastructure/clock/clock";
 import { SystemClock } from "../infrastructure/clock/system-clock";
+import { FixedClock } from "../infrastructure/clock/fixed-clock";
 import { createDatabase, type DatabaseConnection } from "../infrastructure/database/database";
 import { CryptoRandomSource } from "../infrastructure/random/crypto-random-source";
 import { SeasonEconomyPolicy } from "../live/economy/season-economy.policy";
@@ -209,6 +210,9 @@ export async function createApp(
     gameplayEvents.subscribe((event) => missionService.handleGameplayEvent(event));
     const gachaCatalog = new JsonGachaCatalog(config.masterDataDir);
     const gachaRotationConfig = loadGachaRotationConfig(liveContentDir);
+    // Runtime scheduling stays on the real clock. Only wire responses use a time
+    // inside the frozen shell window so the unmodified client keeps Portal open.
+    const clientClock = new FixedClock(new Date(gachaRotationConfig.clientShellTime));
     const seasonalGachaRepository = new SqliteSeasonalGachaRepository(database);
     const seasonalGachaService = new SeasonalGachaService(
         seasonalGachaRepository,
@@ -334,37 +338,37 @@ export async function createApp(
     registerErrorHandler(app);
 
     await registerApplicationRoutes(app, {
-        identity: createIdentityRoutes(identityService, clock),
+        identity: createIdentityRoutes(identityService, clientClock),
         infodesk: infodeskRoutes,
-        bootstrap: createGameBootstrapRoutes(gameBootstrapService, clock),
+        bootstrap: createGameBootstrapRoutes(gameBootstrapService, clientClock),
         playerData: createPlayerDataRoutes(
             playerDataService,
             identityService,
             playerService,
-            clock,
+            clientClock,
             { importEnabled: config.playerDataImportEnabled ?? false },
         ),
-        asset: createAssetRoutes(assetService, clock),
-        tutorial: createTutorialRoutes(tutorialService, clock),
-        option: createOptionRoutes(playerCustomizationService, clock),
-        party: createPartyRoutes(playerCustomizationService, clock),
-        partyGroup: createPartyGroupRoutes(playerCustomizationService, clock),
-        attention: createAttentionRoutes(identityService, playerService, clock),
-        encyclopedia: createEncyclopediaRoutes(identityService, clock),
-        gacha: createGachaRoutes(gachaService, clock),
-        singleBattleQuest: createSingleBattleQuestRoutes(questService, clock),
-        storyQuest: createStoryQuestRoutes(questService, clock),
-        mission: createMissionRoutes(missionService, clock),
-        mail: createMailRoutes(mailService, clock),
-        event: createEventRoutes(eventService, clock),
-        boxGacha: createBoxGachaRoutes(boxGachaService, clock),
-        rushEvent: createRushEventRoutes(rushEventService, clock),
-        rankingEvent: createRankingEventRoutes(rankingEventService, clock),
-        raidEvent: createRaidEventRoutes(raidEventService, clock),
-        multiBattleQuest: createMultiBattleQuestRoutes(identityService, clock),
-        shop: createShopRoutes(shopService, clock),
-        payment: createPaymentRoutes(paymentService, clock),
-        reproduce: createReproduceRoutes(clock),
+        asset: createAssetRoutes(assetService, clientClock),
+        tutorial: createTutorialRoutes(tutorialService, clientClock),
+        option: createOptionRoutes(playerCustomizationService, clientClock),
+        party: createPartyRoutes(playerCustomizationService, clientClock),
+        partyGroup: createPartyGroupRoutes(playerCustomizationService, clientClock),
+        attention: createAttentionRoutes(identityService, playerService, clientClock),
+        encyclopedia: createEncyclopediaRoutes(identityService, clientClock),
+        gacha: createGachaRoutes(gachaService, clientClock),
+        singleBattleQuest: createSingleBattleQuestRoutes(questService, clientClock),
+        storyQuest: createStoryQuestRoutes(questService, clientClock),
+        mission: createMissionRoutes(missionService, clientClock),
+        mail: createMailRoutes(mailService, clientClock),
+        event: createEventRoutes(eventService, clientClock),
+        boxGacha: createBoxGachaRoutes(boxGachaService, clientClock),
+        rushEvent: createRushEventRoutes(rushEventService, clientClock),
+        rankingEvent: createRankingEventRoutes(rankingEventService, clientClock),
+        raidEvent: createRaidEventRoutes(raidEventService, clientClock),
+        multiBattleQuest: createMultiBattleQuestRoutes(identityService, clientClock),
+        shop: createShopRoutes(shopService, clientClock),
+        payment: createPaymentRoutes(paymentService, clientClock),
+        reproduce: createReproduceRoutes(clientClock),
         staticContent: createStaticContentPlugin({ cdnDir: config.cdnDir }),
     });
 

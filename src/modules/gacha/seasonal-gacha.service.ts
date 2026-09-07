@@ -45,6 +45,16 @@ export class SeasonalGachaService {
         private readonly clock: Clock,
     ) {
         this.calendar = new SeasonalGachaCalendar(config);
+        const clientShellTime = new Date(config.clientShellTime).getTime();
+        for (const shellId of Object.values(config.shells)) {
+            const shell = catalog.findById(shellId);
+            if (!shell) throw new InvariantError(`Seasonal gacha shell ${shellId} is missing from gacha.json.`);
+            const startsAt = new Date(`${shell.startDate.replace(" ", "T")}Z`).getTime();
+            const endsAt = new Date(`${shell.endDate.replace(" ", "T")}Z`).getTime();
+            if (clientShellTime < startsAt || clientShellTime > endsAt) {
+                throw new InvariantError(`clientShellTime is outside gacha shell ${shellId}'s master window.`);
+            }
+        }
         this.items.set("character", this.collectItems(GachaType.CHARACTER));
         this.items.set("equipment", this.collectItems(GachaType.WEAPON));
     }

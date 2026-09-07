@@ -17,6 +17,7 @@ export interface GachaRotationConfig {
     bannerLifetimeDays: number;
     freeCampaignId: number;
     dailyResetHourUtc: number;
+    clientShellTime: string;
 }
 
 export function loadGachaRotationConfig(liveContentDir: string): GachaRotationConfig {
@@ -50,6 +51,9 @@ export function loadGachaRotationConfig(liveContentDir: string): GachaRotationCo
     }
     if (!Number.isInteger(config.dailyResetHourUtc) || config.dailyResetHourUtc < 0 || config.dailyResetHourUtc > 23) {
         throw new InvariantError("Gacha rotation dailyResetHourUtc must be between 0 and 23.");
+    }
+    if (Number.isNaN(new Date(config.clientShellTime).getTime())) {
+        throw new InvariantError("Invalid gacha rotation clientShellTime.");
     }
     if (!Number.isInteger(config.cycleDays) || config.cycleDays <= 0) {
         throw new InvariantError("Gacha rotation cycleDays must be a positive integer.");

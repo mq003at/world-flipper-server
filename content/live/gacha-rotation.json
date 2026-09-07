@@ -12,5 +12,6 @@
   "weaponCooldownCycles": 3,
   "bannerLifetimeDays": 9,
   "freeCampaignId": 19,
-  "dailyResetHourUtc": 0
+  "dailyResetHourUtc": 0,
+  "clientShellTime": "2024-06-08T00:00:00Z"
 }

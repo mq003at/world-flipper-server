@@ -3,6 +3,8 @@ import path from "node:path";
 import test from "node:test";
 import { JsonGachaCatalog } from "../src/content/master-data/json-gacha-catalog";
 import { applyGachaPortalState } from "../src/modules/bootstrap/game-bootstrap.service";
+import { FixedClock } from "../src/infrastructure/clock/fixed-clock";
+import { createDataHeaders } from "../src/protocol/worldflipper/data-headers";
 import type { Clock } from "../src/infrastructure/clock/clock";
 import { loadGachaRotationConfig } from "../src/modules/gacha/gacha-rotation.config";
 import { SeasonalGachaCalendar } from "../src/modules/gacha/seasonal-gacha-calendar";
@@ -110,4 +112,16 @@ test("load snapshot advertises all three shells so Portal can open", () => {
     });
     assert.deepEqual(snapshot.gachaInfoList.map((entry: any) => entry.gachaId), [157, 155, 5033]);
     assert.deepEqual(snapshot.gachaCampaignList.map((entry: any) => entry.gachaId), [157, 155]);
+});
+
+test("client-facing server time remains inside the frozen shell window", () => {
+    const headers = createDataHeaders(new FixedClock(new Date(config.clientShellTime)));
+    assert.equal(headers.servertime, 1717804800);
+    const catalog = new JsonGachaCatalog(masterDir);
+    for (const id of [config.shells.new, config.shells.rerun, config.shells.weapon]) {
+        const shell = catalog.findById(id);
+        assert.ok(shell);
+        assert.ok(new Date(config.clientShellTime) >= new Date(`${shell.startDate.replace(" ", "T")}Z`));
+        assert.ok(new Date(config.clientShellTime) <= new Date(`${shell.endDate.replace(" ", "T")}Z`));
+    }
 });
