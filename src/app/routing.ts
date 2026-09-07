@@ -15,6 +15,7 @@ export interface ApplicationRoutes {
     attention: FastifyPluginAsync;
     encyclopedia: FastifyPluginAsync;
     gacha: FastifyPluginAsync;
+    gachaProbability: FastifyPluginAsync;
     singleBattleQuest: FastifyPluginAsync;
     storyQuest: FastifyPluginAsync;
     mission: FastifyPluginAsync;
@@ -29,6 +30,7 @@ export interface ApplicationRoutes {
     payment: FastifyPluginAsync;
     reproduce: FastifyPluginAsync;
     staticContent: FastifyPluginAsync;
+    adminWeb: FastifyPluginAsync;
 }
 
 interface RouteMount {
@@ -60,6 +62,7 @@ export async function registerApplicationRoutes(
         { plugin: routes.attention, prefix: `${api}/attention` },
         { plugin: routes.encyclopedia, prefix: `${api}/encyclopedia` },
         { plugin: routes.gacha, prefix: `${api}/gacha` },
+        { plugin: routes.gachaProbability, prefix: "/web_api/gacha" },
         { plugin: routes.singleBattleQuest, prefix: `${api}/single_battle_quest` },
         { plugin: routes.storyQuest, prefix: `${api}/story_quest` },
         { plugin: routes.mission, prefix: `${api}/mission` },
@@ -74,6 +77,7 @@ export async function registerApplicationRoutes(
         { plugin: routes.payment, prefix: `${api}/payment` },
         { plugin: routes.reproduce, prefix: `${api}/reproduce` },
         { plugin: routes.staticContent },
+        { plugin: routes.adminWeb },
     ];
 
     for (const mount of mounts) {

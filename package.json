@@ -12,7 +12,9 @@
     "test": "node --import tsx --test tests/**/*.test.ts",
     "routes:cleanup": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/cleanup-legacy-routes.ps1",
     "player:export": "tsx tools/player-save.ts export",
-    "player:import": "tsx tools/player-save.ts import"
+    "player:import": "tsx tools/player-save.ts import",
+    "catalog:build": "tsx tools/display-catalog.ts",
+    "gacha:probability": "tsx tools/gacha-probability.ts"
   },
   "engines": {
     "node": ">=20.0.0"

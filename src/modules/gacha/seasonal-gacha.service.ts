@@ -78,6 +78,14 @@ export class SeasonalGachaService {
         return slot ? this.repository.findBanner(position.seasonNumber, position.cycleIndex, slot) : null;
     }
 
+    activeBanners(now = this.clock.now()): RuntimeGachaBanner[] {
+        this.ensureCurrentRotation();
+        const position = this.calendar.position(now);
+        return (["new", "rerun", "weapon"] as const)
+            .map((slot) => this.repository.findBanner(position.seasonNumber, position.cycleIndex, slot))
+            .filter((banner): banner is RuntimeGachaBanner => banner !== null);
+    }
+
     portalState(playerId: number, now = this.clock.now()): SeasonalGachaPortalState {
         this.ensureCurrentRotation();
         const campaign = this.calendar.isMonthEndCampaign(now);

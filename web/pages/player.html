@@ -50,25 +50,48 @@
                 class="mt-5 flex flex-col items-center justify-center p-5 border border-outline-variant bg-surface-container rounded-3xl w-full gap-5">
                 <h3 class="text-xl text-on-background font-semibold mt-2">Download a copy of this player's save data in JSON
                     format.</h3>
-                <a href="/api/player/save?id={{playerId}}"
+                <a href="/web_api/player/{{playerId}}/save"
                     class="text-base bg-primary text-on-primary h-[40px] px-[24px] rounded-full flex items-center justify-center relative before:transition-opacity before:absolute before:w-full before:h-full before:left-0 before:top-0 before:rounded-full before:opacity-0 before:hover:bg-on-primary before:hover:opacity-[0.12] transition-opacity">
                     Download Save
                 </a>
             </section>
-            <form
+            <form id="save-form"
                 class="mt-5 flex flex-col items-center justify-center p-5 border border-outline-variant bg-surface-container rounded-3xl w-full gap-5"
-                method="post" 
-                action="/api/player/save?id={{playerId}}"
-                enctype="multipart/form-data">
+                data-player-id="{{playerId}}">
                 <h3 class="text-xl text-on-background font-semibold mt-2">Upload new save data.</h3>
                 <input id="save-data" name="save-data" type="file" accept=".json,.txt" required/>
-                {{uploadError}}
+                <h3 id="save-status" class="text-xl text-error font-semibold mt-2">{{importDisabled}}</h3>
                 <button
                     type="submit"
                     class="text-base bg-primary text-on-primary h-[40px] px-[24px] rounded-full flex items-center justify-center relative before:transition-opacity before:absolute before:w-full before:h-full before:left-0 before:top-0 before:rounded-full before:opacity-0 before:hover:bg-on-primary before:hover:opacity-[0.12] transition-opacity">
                     Upload Save
                 </button>
             </form>
+            <script>
+                document.getElementById('save-form').addEventListener('submit', async (event) => {
+                    event.preventDefault();
+                    const form = event.currentTarget;
+                    const status = document.getElementById('save-status');
+                    const file = document.getElementById('save-data').files[0];
+                    if (!file) return;
+                    status.textContent = 'Importing...';
+                    try {
+                        const save = JSON.parse(await file.text());
+                        const response = await fetch(`/web_api/player/${form.dataset.playerId}/save`, {
+                            method: 'PUT',
+                            headers: { 'content-type': 'application/json' },
+                            body: JSON.stringify(save)
+                        });
+                        const result = await response.json();
+                        if (!response.ok) throw new Error(result.error || 'Import failed.');
+                        status.classList.remove('text-error');
+                        status.classList.add('text-primary');
+                        status.textContent = `Import complete: ${result.summary.importedRows} rows.`;
+                    } catch (error) {
+                        status.textContent = error instanceof Error ? error.message : String(error);
+                    }
+                });
+            </script>
         </article>
     </div>
 </body>

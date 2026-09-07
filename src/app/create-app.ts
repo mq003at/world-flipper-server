@@ -10,12 +10,14 @@ import { CdnAssetVersionProvider } from "../content/cdn/asset-version";
 import { JsonAssetManifestRepository } from "../content/cdn/json-asset-manifest.repository";
 import { ModRegistry } from "../content/cdn/mod-registry";
 import { JsonCharacterCatalog } from "../content/master-data/json-character-catalog";
+import { JsonDisplayCatalog } from "../content/display/json-display-catalog";
 import { JsonBoxGachaCatalog } from "../content/master-data/json-box-gacha-catalog";
 import { JsonGachaCatalog } from "../content/master-data/json-gacha-catalog";
 import { JsonQuestCatalog } from "../content/master-data/json-quest-catalog";
 import { JsonShopCatalog } from "../content/master-data/json-shop-catalog";
 import type { Clock } from "../infrastructure/clock/clock";
 import { SystemClock } from "../infrastructure/clock/system-clock";
+import { AdjustableSystemClock } from "../infrastructure/clock/adjustable-system-clock";
 import { FixedClock } from "../infrastructure/clock/fixed-clock";
 import { createDatabase, type DatabaseConnection } from "../infrastructure/database/database";
 import { CryptoRandomSource } from "../infrastructure/random/crypto-random-source";
@@ -62,6 +64,8 @@ import { SeasonalGachaAvailabilityPolicy } from "../modules/gacha/gacha-availabi
 import { loadGachaRotationConfig } from "../modules/gacha/gacha-rotation.config";
 import { SqliteSeasonalGachaRepository } from "../modules/gacha/seasonal-gacha.repository.sqlite";
 import { SeasonalGachaService } from "../modules/gacha/seasonal-gacha.service";
+import { createGachaProbabilityRoutes } from "../modules/gacha-probability/gacha-probability.routes";
+import { GachaProbabilityService } from "../modules/gacha-probability/gacha-probability.service";
 import { GameBootstrapService } from "../modules/bootstrap/game-bootstrap.service";
 import { infodeskRoutes } from "../modules/bootstrap/infodesk.routes";
 import { createIdentityRoutes } from "../modules/identity/identity.routes";
@@ -107,6 +111,8 @@ import { SqliteTutorialRepository } from "../modules/tutorial/tutorial.repositor
 import { createTutorialRoutes } from "../modules/tutorial/tutorial.routes";
 import { TutorialService } from "../modules/tutorial/tutorial.service";
 import { createReproduceRoutes } from "../protocol/worldflipper/reproduce.routes";
+import { AdminWebRepository } from "../modules/admin-web/admin-web.repository";
+import { createAdminWebRoutes } from "../modules/admin-web/admin-web.routes";
 
 export interface AppDependencies {
     clock?: Clock;
@@ -123,7 +129,8 @@ export async function createApp(
 
     const ownsDatabase = dependencies.database === undefined;
     const database = dependencies.database ?? createDatabase(config.databasePath);
-    const clock = dependencies.clock ?? new SystemClock();
+    const adjustableClock = dependencies.clock === undefined ? new AdjustableSystemClock() : null;
+    const clock = dependencies.clock ?? adjustableClock ?? new SystemClock();
     const tokens = dependencies.tokens ?? new CryptoTokenGenerator();
     const random = dependencies.random ?? new CryptoRandomSource();
 
@@ -221,6 +228,11 @@ export async function createApp(
         clock,
     );
     seasonalGachaService.ensureCurrentRotation();
+    const displayCatalog = new JsonDisplayCatalog(
+        config.displayContentDir ?? path.resolve(process.cwd(), "content/display"),
+        characterCatalog,
+    );
+    const gachaProbabilityService = new GachaProbabilityService(seasonalGachaService, displayCatalog, clock);
     const tutorialService = new TutorialService(
         identityService,
         playerService,
@@ -356,6 +368,7 @@ export async function createApp(
         attention: createAttentionRoutes(identityService, playerService, clientClock),
         encyclopedia: createEncyclopediaRoutes(identityService, clientClock),
         gacha: createGachaRoutes(gachaService, clientClock),
+        gachaProbability: createGachaProbabilityRoutes(gachaProbabilityService),
         singleBattleQuest: createSingleBattleQuestRoutes(questService, clientClock),
         storyQuest: createStoryQuestRoutes(questService, clientClock),
         mission: createMissionRoutes(missionService, clientClock),
@@ -370,6 +383,16 @@ export async function createApp(
         payment: createPaymentRoutes(paymentService, clientClock),
         reproduce: createReproduceRoutes(clientClock),
         staticContent: createStaticContentPlugin({ cdnDir: config.cdnDir }),
+        adminWeb: createAdminWebRoutes(
+            new AdminWebRepository(database),
+            playerDataService,
+            clock,
+            {
+                webDir: path.resolve(process.cwd(), "web"),
+                importEnabled: config.playerDataImportEnabled ?? false,
+                adjustableClock,
+            },
+        ),
     });
 
     app.get("/live/status", async () => {
