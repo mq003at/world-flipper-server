@@ -74,6 +74,11 @@ export class JsonGachaCatalog implements GachaCatalog {
         return this.gachas?.get(gachaId) ?? null;
     }
 
+    listAll(): readonly GachaDefinition[] {
+        this.ensureLoaded();
+        return [...(this.gachas?.values() ?? [])];
+    }
+
     findCampaignId(gachaId: number): number | null {
         this.ensureLoaded();
         return this.campaigns?.get(gachaId) ?? null;

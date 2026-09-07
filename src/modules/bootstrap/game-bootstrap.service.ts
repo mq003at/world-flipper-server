@@ -19,6 +19,34 @@ export interface MailArrivalReader {
     hasArrivedForPlayer(playerId: number): boolean;
 }
 
+export interface GachaPortalProvider {
+    portalState(playerId: number): {
+        shellGachaIds: number[];
+        freeCampaignId: number;
+        freeCampaignAvailable: boolean;
+    };
+}
+
+export function applyGachaPortalState(
+    snapshot: PlayerSnapshot,
+    portal: ReturnType<GachaPortalProvider["portalState"]>,
+): void {
+    const existingInfo = new Map(snapshot.gachaInfoList.map((info) => [info.gachaId, info]));
+    snapshot.gachaInfoList = portal.shellGachaIds.map((gachaId) => existingInfo.get(gachaId) ?? ({
+        gachaId,
+        isDailyFirst: true,
+        isAccountFirst: true,
+        gachaExchangePoint: 0,
+    }));
+    snapshot.gachaCampaignList = portal.freeCampaignAvailable
+        ? portal.shellGachaIds.slice(0, 2).map((gachaId) => ({
+            gachaId,
+            campaignId: portal.freeCampaignId,
+            count: 1,
+        }))
+        : [];
+}
+
 export class GameBootstrapService {
     constructor(
         private readonly identity: IdentityService,
@@ -26,6 +54,7 @@ export class GameBootstrapService {
         private readonly assetVersions: AssetVersionProvider,
         private readonly gameplayEvents: GameplayEventSink = NOOP_GAMEPLAY_EVENT_SINK,
         private readonly mailArrival?: MailArrivalReader,
+        private readonly gachaPortal?: GachaPortalProvider,
     ) {}
 
     signup(zat: string): SignupResult {
@@ -43,6 +72,8 @@ export class GameBootstrapService {
         this.identity.requireViewer(viewerId, zatSession.accountId);
 
         const snapshot = this.players.loadForAccount(zatSession.accountId);
+        const portal = this.gachaPortal?.portalState(snapshot.player.id);
+        if (portal) applyGachaPortalState(snapshot, portal);
         this.gameplayEvents.publish({ type: "player.login", playerId: snapshot.player.id });
         return {
             viewerId,

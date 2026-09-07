@@ -47,6 +47,11 @@ function isRateUpCharacterGacha(gacha: GachaDefinition): boolean {
 }
 
 function rankWeights(gacha: GachaDefinition, guaranteed: boolean): readonly number[] {
+    if (gacha.rankWeights) {
+        return guaranteed
+            ? [gacha.rankWeights[0], gacha.rankWeights[1] + gacha.rankWeights[2]]
+            : gacha.rankWeights;
+    }
     if (gacha.type === GachaType.WEAPON) {
         return guaranteed ? GUARANTEED_EQUIPMENT_RANK_WEIGHTS : EQUIPMENT_RANK_WEIGHTS;
     }

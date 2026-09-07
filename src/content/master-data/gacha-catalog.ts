@@ -32,10 +32,13 @@ export interface GachaDefinition {
     pool: Readonly<Record<number, readonly GachaPoolItem[]>>;
     movieName?: string;
     guaranteeMovieName?: string;
+    /** Runtime-only rank weights ordered as 5★, 4★, 3★. */
+    rankWeights?: readonly [number, number, number];
 }
 
 export interface GachaCatalog {
     findById(gachaId: number): GachaDefinition | null;
+    listAll(): readonly GachaDefinition[];
     findCampaignId(gachaId: number): number | null;
     getMovieSeeds(movieRank: number, movieType: GachaMovieType, rateUp: boolean): readonly number[];
 }

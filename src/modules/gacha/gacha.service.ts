@@ -25,6 +25,7 @@ import {
 } from "./gacha.models";
 import { drawGachaIds, gachaContainsItem, presentCharacterDraw } from "./gacha.policy";
 import type { GachaRepository } from "./gacha.repository";
+import type { SeasonalGachaService } from "./seasonal-gacha.service";
 
 const EXCHANGE_REQUIRED_POINTS = 250;
 
@@ -70,6 +71,7 @@ export class GachaService {
         private readonly gameplayEvents: GameplayEventSink = NOOP_GAMEPLAY_EVENT_SINK,
         private readonly clock?: Clock,
         private readonly availability?: GachaAvailabilityPolicy,
+        private readonly seasonal?: SeasonalGachaService,
     ) {}
 
     execute(input: ExecuteGachaRequest): ExecuteGachaResult {
@@ -276,6 +278,15 @@ export class GachaService {
 
             case GachaPaymentType.CAMPAIGN: {
                 const isMulti = execType === GachaExecType.CAMPAIGN_MULTI;
+                if (this.seasonal?.resolve(gacha.id)) {
+                    if (!isMulti) throw new InvalidRequestError("Seasonal campaign only supports x10.");
+                    this.seasonal.consumeDailyFree(playerId, gacha.id);
+                    const portal = this.seasonal.portalState(playerId);
+                    for (const gachaId of portal.shellGachaIds.slice(0, 2)) {
+                        campaigns.push({ gachaId, campaignId: portal.freeCampaignId, count: 0 });
+                    }
+                    return { wallet, pullCount: 10, items, campaigns };
+                }
                 const campaignId = this.catalog.findCampaignId(gacha.id);
                 if (campaignId === null) {
                     throw new InvalidRequestError("No gacha campaign assigned to gacha.");
@@ -319,6 +330,8 @@ export class GachaService {
     }
 
     private requireGacha(gachaId: number): GachaDefinition {
+        const runtime = this.seasonal?.resolve(gachaId);
+        if (runtime) return runtime.definition;
         const gacha = this.catalog.findById(gachaId);
         if (!gacha) throw new InvalidRequestError("Gacha doesn't exist.");
         if (this.clock && this.availability) this.availability.assertAvailable(gacha, this.clock.now());

@@ -55,12 +55,12 @@ schedule
 Phase 5 — tools/admin
 save import/export
 CDN management
+season system
 mod management
 server controls
 
 Phase 6 — những thứ Starpoint chưa làm
 co-op
-season system
 proper shop limits
 missions
 public authentication

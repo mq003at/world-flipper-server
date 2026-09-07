@@ -4,6 +4,7 @@ import type { AppConfig } from "./config";
 import { registerErrorHandler } from "./plugins/error-handler";
 import { registerProtocolCodec } from "./plugins/protocol-codec";
 import { createStaticContentPlugin } from "./plugins/static-content";
+import { registerApplicationRoutes } from "./routing";
 import { CdnAvailabilityService } from "../content/cdn/cdn-availability.service";
 import { CdnAssetVersionProvider } from "../content/cdn/asset-version";
 import { JsonAssetManifestRepository } from "../content/cdn/json-asset-manifest.repository";
@@ -57,6 +58,9 @@ import { createGachaRoutes } from "../modules/gacha/gacha.routes";
 import { SqliteGachaRepository } from "../modules/gacha/gacha.repository.sqlite";
 import { GachaService } from "../modules/gacha/gacha.service";
 import { SeasonalGachaAvailabilityPolicy } from "../modules/gacha/gacha-availability.policy";
+import { loadGachaRotationConfig } from "../modules/gacha/gacha-rotation.config";
+import { SqliteSeasonalGachaRepository } from "../modules/gacha/seasonal-gacha.repository.sqlite";
+import { SeasonalGachaService } from "../modules/gacha/seasonal-gacha.service";
 import { GameBootstrapService } from "../modules/bootstrap/game-bootstrap.service";
 import { infodeskRoutes } from "../modules/bootstrap/infodesk.routes";
 import { createIdentityRoutes } from "../modules/identity/identity.routes";
@@ -204,6 +208,15 @@ export async function createApp(
     );
     gameplayEvents.subscribe((event) => missionService.handleGameplayEvent(event));
     const gachaCatalog = new JsonGachaCatalog(config.masterDataDir);
+    const gachaRotationConfig = loadGachaRotationConfig(liveContentDir);
+    const seasonalGachaRepository = new SqliteSeasonalGachaRepository(database);
+    const seasonalGachaService = new SeasonalGachaService(
+        seasonalGachaRepository,
+        gachaCatalog,
+        gachaRotationConfig,
+        clock,
+    );
+    seasonalGachaService.ensureCurrentRotation();
     const tutorialService = new TutorialService(
         identityService,
         playerService,
@@ -226,6 +239,7 @@ export async function createApp(
         gameplayEvents,
         clock,
         gachaAvailability,
+        seasonalGachaService,
     );
     const questCatalog = new JsonQuestCatalog(config.masterDataDir);
     const questRepository = new SqliteQuestRepository(database);
@@ -313,94 +327,46 @@ export async function createApp(
         assetVersionProvider,
         gameplayEvents,
         mailService,
+        seasonalGachaService,
     );
 
     registerProtocolCodec(app);
     registerErrorHandler(app);
 
-    await app.register(createIdentityRoutes(identityService, clock), {
-        prefix: "/openapi/service",
+    await registerApplicationRoutes(app, {
+        identity: createIdentityRoutes(identityService, clock),
+        infodesk: infodeskRoutes,
+        bootstrap: createGameBootstrapRoutes(gameBootstrapService, clock),
+        playerData: createPlayerDataRoutes(
+            playerDataService,
+            identityService,
+            playerService,
+            clock,
+            { importEnabled: config.playerDataImportEnabled ?? false },
+        ),
+        asset: createAssetRoutes(assetService, clock),
+        tutorial: createTutorialRoutes(tutorialService, clock),
+        option: createOptionRoutes(playerCustomizationService, clock),
+        party: createPartyRoutes(playerCustomizationService, clock),
+        partyGroup: createPartyGroupRoutes(playerCustomizationService, clock),
+        attention: createAttentionRoutes(identityService, playerService, clock),
+        encyclopedia: createEncyclopediaRoutes(identityService, clock),
+        gacha: createGachaRoutes(gachaService, clock),
+        singleBattleQuest: createSingleBattleQuestRoutes(questService, clock),
+        storyQuest: createStoryQuestRoutes(questService, clock),
+        mission: createMissionRoutes(missionService, clock),
+        mail: createMailRoutes(mailService, clock),
+        event: createEventRoutes(eventService, clock),
+        boxGacha: createBoxGachaRoutes(boxGachaService, clock),
+        rushEvent: createRushEventRoutes(rushEventService, clock),
+        rankingEvent: createRankingEventRoutes(rankingEventService, clock),
+        raidEvent: createRaidEventRoutes(raidEventService, clock),
+        multiBattleQuest: createMultiBattleQuestRoutes(identityService, clock),
+        shop: createShopRoutes(shopService, clock),
+        payment: createPaymentRoutes(paymentService, clock),
+        reproduce: createReproduceRoutes(clock),
+        staticContent: createStaticContentPlugin({ cdnDir: config.cdnDir }),
     });
-    await app.register(infodeskRoutes, { prefix: "/infodesk" });
-    await app.register(createGameBootstrapRoutes(gameBootstrapService, clock), {
-        prefix: "/latest/api/index.php",
-    });
-    await app.register(
-        createPlayerDataRoutes(playerDataService, identityService, playerService, clock, {
-            importEnabled: config.playerDataImportEnabled ?? false,
-        }),
-        { prefix: "/latest/api/index.php/player_data" },
-    );
-    await app.register(createAssetRoutes(assetService, clock), {
-        prefix: "/latest/api/index.php/asset",
-    });
-    await app.register(createTutorialRoutes(tutorialService, clock), {
-        prefix: "/latest/api/index.php/tutorial",
-    });
-    await app.register(createOptionRoutes(playerCustomizationService, clock), {
-        prefix: "/latest/api/index.php/option",
-    });
-    await app.register(createPartyRoutes(playerCustomizationService, clock), {
-        prefix: "/latest/api/index.php/party",
-    });
-    await app.register(createPartyGroupRoutes(playerCustomizationService, clock), {
-        prefix: "/latest/api/index.php/party_group",
-    });
-    await app.register(createAttentionRoutes(identityService, playerService, clock), {
-        prefix: "/latest/api/index.php/attention",
-    });
-    await app.register(createEncyclopediaRoutes(identityService, clock), {
-        prefix: "/latest/api/index.php/encyclopedia",
-    });
-    await app.register(createGachaRoutes(gachaService, clock), {
-        prefix: "/latest/api/index.php/gacha",
-    });
-    await app.register(createSingleBattleQuestRoutes(questService, clock), {
-        prefix: "/latest/api/index.php/single_battle_quest",
-    });
-    await app.register(createStoryQuestRoutes(questService, clock), {
-        prefix: "/latest/api/index.php/story_quest",
-    });
-    await app.register(createMissionRoutes(missionService, clock), {
-        prefix: "/latest/api/index.php/mission",
-    });
-    await app.register(createMailRoutes(mailService, clock), {
-        prefix: "/latest/api/index.php/mail",
-    });
-    await app.register(createEventRoutes(eventService, clock), {
-        prefix: "/latest/api/index.php/event",
-    });
-    await app.register(createBoxGachaRoutes(boxGachaService, clock), {
-        prefix: "/latest/api/index.php/box_gacha",
-    });
-    await app.register(createRushEventRoutes(rushEventService, clock), {
-        prefix: "/latest/api/index.php/rush_event",
-    });
-    await app.register(createRushEventRoutes(rushEventService, clock), {
-        prefix: "/latest/api/index.php/event/rush",
-    });
-    await app.register(createRankingEventRoutes(rankingEventService, clock), {
-        prefix: "/latest/api/index.php/ranking_event",
-    });
-    await app.register(createRaidEventRoutes(raidEventService, clock), {
-        prefix: "/latest/api/index.php/raid_event",
-    });
-    await app.register(createRaidEventRoutes(raidEventService, clock), {
-        prefix: "/latest/api/index.php/event/raid",
-    });
-    await app.register(createMultiBattleQuestRoutes(identityService, clock), {
-        prefix: "/latest/api/index.php/multi_battle_quest",
-    });
-    await app.register(createShopRoutes(shopService, clock), {
-        prefix: "/latest/api/index.php/shop",
-    });
-    await app.register(createPaymentRoutes(paymentService, clock), {
-        prefix: "/latest/api/index.php/payment",
-    });
-    await app.register(createReproduceRoutes(clock), {
-        prefix: "/latest/api/index.php/reproduce",
-    });
-    await app.register(createStaticContentPlugin({ cdnDir: config.cdnDir }));
 
     app.get("/live/status", async () => {
         const now = clock.now();

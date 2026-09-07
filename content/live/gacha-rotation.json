@@ -1,0 +1,16 @@
+{
+  "epoch": "2026-01-01T00:00:00+07:00",
+  "timezoneOffsetMinutes": 420,
+  "seasonMonths": 3,
+  "cycleDays": 3,
+  "sourceCutoffAt": "2024-07-25T23:59:59Z",
+  "seed": "starpoint-seasonal-gacha-v1",
+  "excludedGachaIds": [900002],
+  "shells": { "new": 157, "rerun": 155, "weapon": 5033 },
+  "featuredCountWeights": [60, 25, 10, 4, 1],
+  "rerunCooldownCycles": 3,
+  "weaponCooldownCycles": 3,
+  "bannerLifetimeDays": 9,
+  "freeCampaignId": 19,
+  "dailyResetHourUtc": 0
+}

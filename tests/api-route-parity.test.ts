@@ -8,15 +8,15 @@ function source(relativePath: string): string {
 }
 
 test("migrated compatibility groups remain mounted at client paths", () => {
-    const app = source("src/app/create-app.ts");
+    const app = source("src/app/routing.ts");
     const requiredRegistrations = [
-        'prefix: "/latest/api/index.php/option"',
-        'prefix: "/latest/api/index.php/party"',
-        'prefix: "/latest/api/index.php/party_group"',
-        'prefix: "/latest/api/index.php/attention"',
-        'prefix: "/latest/api/index.php/encyclopedia"',
-        'prefix: "/latest/api/index.php/event/rush"',
-        'prefix: "/latest/api/index.php/event/raid"',
+        'prefix: `${api}/option`',
+        'prefix: `${api}/party`',
+        'prefix: `${api}/party_group`',
+        'prefix: `${api}/attention`',
+        'prefix: `${api}/encyclopedia`',
+        'prefix: `${api}/event/rush`',
+        'prefix: `${api}/event/raid`',
     ];
 
     for (const registration of requiredRegistrations) {

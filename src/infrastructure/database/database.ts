@@ -9,6 +9,7 @@ import { liveServiceMigration } from "./migrations/005-live-service";
 import { mailEventsMigration } from "./migrations/006-mail-events";
 import { complexEventsLifecycleMigration } from "./migrations/007-complex-events-lifecycle";
 import { tutorialIdempotencyMigration } from "./migrations/008-tutorial-idempotency";
+import { seasonalGachaMigration } from "./migrations/009-seasonal-gacha";
 
 export type DatabaseConnection = BetterSqlite3Database;
 
@@ -27,6 +28,7 @@ const migrations: Migration[] = [
     mailEventsMigration,
     complexEventsLifecycleMigration,
     tutorialIdempotencyMigration,
+    seasonalGachaMigration,
 ];
 
 function ensureParentDirectory(databasePath: string): void {
