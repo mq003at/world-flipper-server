@@ -6,6 +6,7 @@ import type {
     ExecuteGachaResult,
     PlayerGachaCampaignState,
     PlayerGachaInfoState,
+    BaseSelectorResult,
 } from "./gacha.models";
 
 function presentGachaInfo(info: PlayerGachaInfoState): Record<string, unknown> {
@@ -100,6 +101,16 @@ export function presentExchangeEquipment(result: ExchangeEquipmentResult): Recor
     return {
         equipment_list: [presentGrantedEquipment(result.granted, result.viewerId)],
         gacha_info_list: [presentGachaInfo(result.gachaInfo)],
+        encyclopedia_info: [],
+        mail_arrived: false,
+    };
+}
+
+export function presentBaseSelector(result: BaseSelectorResult): Record<string, unknown> {
+    return {
+        season_number: result.seasonNumber,
+        user_info: { free_vmoney: result.wallet.freeVmoney, vmoney: result.wallet.vmoney },
+        character_list: [presentGrantedCharacter(result.granted, result.viewerId)],
         encyclopedia_info: [],
         mail_arrived: false,
     };

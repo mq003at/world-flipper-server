@@ -148,15 +148,15 @@
 
                 <section class="rank-section">
                     <div class="rank-heading"><h3>5★ pool</h3></div>
-                    <div class="pool-scroll"><table class="pool-table"><thead><tr><th>ID</th><th>Name</th><th>Element</th><th>Rate</th><th>Featured</th></tr></thead><tbody id="pool-5">{{rows5}}</tbody></table></div>
+                    <div class="pool-scroll"><table class="pool-table"><thead><tr><th>ID</th><th>Name</th><th>Element</th><th>Stats</th><th>Description</th><th>Rate</th><th>Featured</th></tr></thead><tbody id="pool-5">{{rows5}}</tbody></table></div>
                 </section>
                 <section class="rank-section">
                     <div class="rank-heading"><h3>4★ pool</h3></div>
-                    <div class="pool-scroll"><table class="pool-table"><thead><tr><th>ID</th><th>Name</th><th>Element</th><th>Rate</th><th>Featured</th></tr></thead><tbody id="pool-4">{{rows4}}</tbody></table></div>
+                    <div class="pool-scroll"><table class="pool-table"><thead><tr><th>ID</th><th>Name</th><th>Element</th><th>Stats</th><th>Description</th><th>Rate</th><th>Featured</th></tr></thead><tbody id="pool-4">{{rows4}}</tbody></table></div>
                 </section>
                 <section class="rank-section">
                     <div class="rank-heading"><h3>3★ pool</h3></div>
-                    <div class="pool-scroll"><table class="pool-table"><thead><tr><th>ID</th><th>Name</th><th>Element</th><th>Rate</th><th>Featured</th></tr></thead><tbody id="pool-3">{{rows3}}</tbody></table></div>
+                    <div class="pool-scroll"><table class="pool-table"><thead><tr><th>ID</th><th>Name</th><th>Element</th><th>Stats</th><th>Description</th><th>Rate</th><th>Featured</th></tr></thead><tbody id="pool-3">{{rows3}}</tbody></table></div>
                 </section>
             </section>
             <p id="editor-status" class="status-line"></p>
@@ -296,6 +296,8 @@
                     <td>${entry.id}</td>
                     <td class="pool-name">${escapeHtmlClient(entry.name)}</td>
                     <td>${escapeHtmlClient(entry.elementName)}</td>
+                    <td>${escapeHtmlClient(formatStats(entry.stats))}</td>
+                    <td>${escapeHtmlClient(entry.description || '—')}</td>
                     <td><input class="pool-rate readonly-rate" type="text" value="${formatRate(entry.rate)}%" readonly></td>
                     <td class="featured-cell">${entry.featured ? 'Featured' : '—'}</td>
                 </tr>`).join('');
@@ -306,6 +308,12 @@
             return String(value).replace(/[&<>"']/g, (character) => ({
                 '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
             })[character]);
+        }
+
+        function formatStats(stats) {
+            const base = stats && stats['1'];
+            const max = stats && stats['5'];
+            return base && max ? `HP ${base.hp}→${max.hp} · ATK ${base.attack}→${max.attack}` : '—';
         }
 
         function updateToggle() {

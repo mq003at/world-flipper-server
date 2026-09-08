@@ -34,6 +34,8 @@ export interface GachaDefinition {
     guaranteeMovieName?: string;
     /** Runtime-only rank weights ordered as 5★, 4★, 3★. */
     rankWeights?: readonly [number, number, number];
+    /** Runtime-only optional guarantee configured for a manual Seasonal multi. */
+    multiGuaranteeMinimumRank?: 4 | 5;
 }
 
 export interface GachaCatalog {

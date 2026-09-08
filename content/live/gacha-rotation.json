@@ -1,17 +1,29 @@
 {
   "epoch": "2026-01-01T00:00:00+07:00",
   "timezoneOffsetMinutes": 420,
-  "seasonMonths": 3,
-  "cycleDays": 3,
+  "seasonMonths": 6,
+  "cycleDays": 7,
   "sourceCutoffAt": "2024-07-25T23:59:59Z",
   "seed": "starpoint-seasonal-gacha-v1",
   "excludedGachaIds": [900002],
-  "shells": { "new": 157, "rerun": 155, "weapon": 5033 },
-  "featuredCountWeights": [60, 25, 10, 4, 1],
-  "rerunCooldownCycles": 3,
-  "weaponCooldownCycles": 3,
-  "bannerLifetimeDays": 9,
+  "shells": {
+    "base": 1,
+    "new": 157,
+    "rerun": 155,
+    "elemental": 154,
+    "weapon": 5033,
+    "meteor1": 151,
+    "meteor2": 152,
+    "anniversary": 156
+  },
+  "clientVisibleSlots": ["new", "rerun", "weapon"],
+  "bannerLifetimeDays": 13,
   "freeCampaignId": 19,
   "dailyResetHourUtc": 0,
-  "clientShellTime": "2024-06-08T00:00:00Z"
+  "clientShellTime": "2024-06-08T00:00:00Z",
+  "baseSelectorPrice": 1500,
+  "ratePolicies": {
+    "normal": [5, 25, 70],
+    "meteorFestival": [7.5, 25, 67.5]
+  }
 }

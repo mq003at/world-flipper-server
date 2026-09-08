@@ -102,3 +102,20 @@ Sửa trag admin
 --< Free beads fail, lần khác thử lại. .env có field đó>
 
 ----
+
+## LIVE SERVICE
+### Lifecycle
+- 6 tháng reset content. Beads giữ, nhưng unit bị deleted. Weapon giữ.
+- Banner:
++ 5 banner thường trực: Base Banner, New Faces, Rerun, Elemental, Weapons. Duration 7 ngày reset. Nếu tuần cuối cùng của tháng không đủ 7 ngày thì cộng vào banner trước. Tối đa 13 ngày là reset.
++ Banner phụ nếu có: Seasonal, Meteor Fes, Anniversary. 
++ Banner đặc biệt: Tutorial.
+-> Ngoài ra, để hỗ trợ người chơi mới, có thể mua thẳng 1 unit 5 sao trong shop. Pool được chọn là 15 unit trong Base Banner. 
+-> Những thay đổi phía Banner:
++ Base banner: gacha_id = 1. Không có gì nhiều. 10 roll đầu tiên chắc chắn có 5 sao.
++ New Face Banner: 3 featured unit riêng. Về phía non featured, 5 unit 5 sao mỗi hệ nhưng không featured, 10 unit 4 và 3 sao mỗi hệ nhưng không featured. Không theo banner cũ, hệ thống tự tạo. Có database keep track các unit đã từng vào banner và ngày tháng luôn.
++ Rerun Banner: 3 featured unit mỗi rarity, tổng 9 unit featured. Chỉ láy trong Base và các unit được  Về phía non featured, 5 unit 5 sao mỗi hệ nhưng không featured, 10 unit 4 và 3 sao mỗi hệ nhưng không featured. CHÚ Ý, không bao giờ lấy unit trong banner ngay trước vào đây. Rerun Banner start vào ngày 21 mỗi tháng đầu tiên.
++ Elemental Banner: tương tự nhưng tất cả unit đều cùng 1 hệ. Fix mặc định hệ theo code của hệ thống. 1 là water thì phải.
++ Seasonal Banner: tôi sẽ manually set, ở đây được set rate 5 sao, 4 sao, 3 sao luôn.
++ Meteor Fes: Rate tăng, nhưng chỉ xuất hiện 2 lần vào 2 tuần cuối của tháng. Coi như là 2 cái 7 ngày đấy.
++ Anniversary: 7 ngày cuối mỗi tháng. Đi kèm là event 1 pull mỗi ngày trên banner này. Reroll banner nhưng lần này lấy hết các unit đã release.

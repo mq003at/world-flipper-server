@@ -63,6 +63,8 @@ import { SeasonalGachaAvailabilityPolicy } from "../modules/gacha/gacha-availabi
 import { loadGachaRotationConfig } from "../modules/gacha/gacha-rotation.config";
 import { SqliteSeasonalGachaRepository } from "../modules/gacha/seasonal-gacha.repository.sqlite";
 import { SeasonalGachaService } from "../modules/gacha/seasonal-gacha.service";
+import { SeasonalGachaCalendar } from "../modules/gacha/seasonal-gacha-calendar";
+import { SqliteSeasonRolloverService } from "../modules/gacha/season-rollover.service";
 import { createGachaProbabilityRoutes } from "../modules/gacha-probability/gacha-probability.routes";
 import { GachaProbabilityService } from "../modules/gacha-probability/gacha-probability.service";
 import { GameBootstrapService } from "../modules/bootstrap/game-bootstrap.service";
@@ -134,6 +136,7 @@ export async function createApp(
     const random = dependencies.random ?? new CryptoRandomSource();
 
     const liveContentDir = config.liveContentDir ?? path.resolve(process.cwd(), "content/live");
+    const gachaRotationConfig = loadGachaRotationConfig(liveContentDir);
     const seasonConfig = loadSeasonConfig(liveContentDir, config.seasonStartAtOverride);
     const seasonTimeline = new SeasonTimeline(seasonConfig);
     const lifecycle = new LifecyclePeriods(
@@ -152,7 +155,8 @@ export async function createApp(
     const playerRepository = new SqlitePlayerRepository(database);
     const playerLifecycleRepository = new SqlitePlayerLifecycleRepository(database);
     const playerLifecycleService = new PlayerLifecycleService(playerLifecycleRepository, lifecycle, clock);
-    const playerService = new PlayerService(playerRepository, clock, lifecycle, playerLifecycleService);
+    const seasonRollover = new SqliteSeasonRolloverService(database, new SeasonalGachaCalendar(gachaRotationConfig), clock);
+    const playerService = new PlayerService(playerRepository, clock, lifecycle, playerLifecycleService, seasonRollover);
     const playerCustomizationRepository = new SqlitePlayerCustomizationRepository(database);
     const playerCustomizationService = new PlayerCustomizationService(
         identityService,
@@ -214,7 +218,6 @@ export async function createApp(
     );
     gameplayEvents.subscribe((event) => missionService.handleGameplayEvent(event));
     const gachaCatalog = new JsonGachaCatalog(config.masterDataDir);
-    const gachaRotationConfig = loadGachaRotationConfig(liveContentDir);
     // The final client filters the reusable gacha shells against servertime.
     // Keep only the client protocol clock inside their captured master window;
     // schedules, rotations and transactions continue to use the runtime clock.
@@ -223,6 +226,7 @@ export async function createApp(
     const seasonalGachaService = new SeasonalGachaService(
         seasonalGachaRepository,
         gachaCatalog,
+        characterCatalog,
         gachaRotationConfig,
         clock,
     );

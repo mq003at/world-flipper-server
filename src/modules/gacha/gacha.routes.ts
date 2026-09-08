@@ -5,11 +5,13 @@ import {
     parseExchangeCharacterRequest,
     parseExchangeEquipmentRequest,
     parseExecuteGachaRequest,
+    parseBaseSelectorRequest,
 } from "./gacha.contracts";
 import {
     presentExchangeCharacter,
     presentExchangeEquipment,
     presentExecuteGacha,
+    presentBaseSelector,
 } from "./gacha.presenter";
 import type { GachaService } from "./gacha.service";
 
@@ -43,6 +45,13 @@ export function createGachaRoutes(service: GachaService, clock: Clock): FastifyP
                 data_headers: createDataHeaders(clock, { viewer_id: input.viewerId }),
                 data: presentExchangeEquipment(result),
             };
+        });
+
+        fastify.post("/base_selector", async (request, reply) => {
+            const input = parseBaseSelectorRequest(request.body);
+            const result = service.selectBaseCharacter(input);
+            reply.header("content-type", "application/x-msgpack");
+            return { data_headers: createDataHeaders(clock, { viewer_id: input.viewerId }), data: presentBaseSelector(result) };
         });
     };
 }

@@ -82,3 +82,10 @@ export interface ExchangeEquipmentResult {
     granted: GrantedEquipment;
     gachaInfo: PlayerGachaInfoState;
 }
+
+export interface BaseSelectorResult {
+    viewerId: number;
+    wallet: GachaPlayerWallet;
+    granted: GrantedCharacter;
+    seasonNumber: number;
+}

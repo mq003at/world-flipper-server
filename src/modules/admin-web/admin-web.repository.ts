@@ -124,19 +124,11 @@ export class AdminWebRepository {
               ON o.season_number = b.season_number
              AND o.cycle_index = b.cycle_index
              AND o.slot_type = b.slot_type
-            WHERE b.season_number = (
-                SELECT season_number FROM runtime_gacha_banners
-                WHERE starts_at <= ?
-                ORDER BY starts_at DESC, season_number DESC, cycle_index DESC
-                LIMIT 1
-            )
-              AND b.cycle_index = (
-                SELECT cycle_index FROM runtime_gacha_banners
-                WHERE starts_at <= ?
-                ORDER BY starts_at DESC, season_number DESC, cycle_index DESC
-                LIMIT 1
-            )
-            ORDER BY CASE b.slot_type WHEN 'new' THEN 0 WHEN 'rerun' THEN 1 WHEN 'weapon' THEN 2 ELSE 3 END,
+            WHERE b.starts_at <= ? AND b.ends_at > ?
+            ORDER BY CASE b.slot_type
+                       WHEN 'base' THEN 0 WHEN 'new' THEN 1 WHEN 'elemental' THEN 2
+                       WHEN 'weapon' THEN 3 WHEN 'rerun' THEN 4 WHEN 'meteor-1' THEN 5
+                       WHEN 'meteor-2' THEN 6 WHEN 'anniversary' THEN 7 ELSE 8 END,
                      b.slot_type ASC
         `).all(instant, instant) as AdminGachaRow[]).map(mapGacha);
     }

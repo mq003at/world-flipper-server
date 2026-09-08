@@ -11,6 +11,7 @@ import type { RewardService } from "../reward/reward.service";
 import type {
     ExchangeCharacterRequest,
     ExchangeEquipmentRequest,
+    BaseSelectorRequest,
     ExecuteGachaRequest,
 } from "./gacha.contracts";
 import {
@@ -22,6 +23,7 @@ import {
     type GachaPlayerWallet,
     type PlayerGachaCampaignState,
     type PlayerGachaInfoState,
+    type BaseSelectorResult,
 } from "./gacha.models";
 import { drawGachaIds, gachaContainsItem, presentCharacterDraw } from "./gacha.policy";
 import type { GachaRepository } from "./gacha.repository";
@@ -86,7 +88,9 @@ export class GachaService {
             const payment = this.consumePayment(player.id, gacha, previousInfo, wallet, input);
             wallet = payment.wallet;
 
-            const drawIds = drawGachaIds(this.random, gacha, payment.pullCount);
+            let drawIds = drawGachaIds(this.random, gacha, payment.pullCount);
+            drawIds = this.seasonal?.applyBaseFirstMultiGuarantee(player.id, gacha, drawIds) ?? drawIds;
+            drawIds = this.applyConfiguredMultiGuarantee(gacha, drawIds);
             const drawRewards: Reward[] = drawIds.map((id) =>
                 gacha.type === GachaType.CHARACTER
                     ? { type: RewardType.CHARACTER, id }
@@ -204,6 +208,22 @@ export class GachaService {
         });
     }
 
+    selectBaseCharacter(input: BaseSelectorRequest): BaseSelectorResult {
+        if (!this.seasonal) throw new InvalidRequestError("Seasonal Base selector is not configured.");
+        const player = this.requirePlayer(input.viewerId);
+        return this.repository.transaction(() => {
+            const wallet = this.repository.getWallet(player.id);
+            if (!wallet) throw new InvariantError("No player bound to account.");
+            const selection = this.seasonal!.consumeBaseSelector(player.id, input.characterId);
+            const updatedWallet = consumeMixedBeads(wallet, selection.price);
+            const grant = this.rewardService.grantWithinTransaction(player.id, [{ type: RewardType.CHARACTER, id: input.characterId }]);
+            const granted = grant.characters[0];
+            if (!granted) throw new InvariantError("Base selector character grant failed.");
+            this.repository.setWallet(player.id, updatedWallet);
+            return { viewerId: input.viewerId, wallet: updatedWallet, granted, seasonNumber: selection.seasonNumber };
+        });
+    }
+
     private consumePayment(
         playerId: number,
         gacha: GachaDefinition,
@@ -279,13 +299,13 @@ export class GachaService {
             case GachaPaymentType.CAMPAIGN: {
                 const isMulti = execType === GachaExecType.CAMPAIGN_MULTI;
                 if (this.seasonal?.resolve(gacha.id)) {
-                    if (!isMulti) throw new InvalidRequestError("Seasonal campaign only supports x10.");
-                    this.seasonal.consumeDailyFree(playerId, gacha.id);
+                    if (isMulti) throw new InvalidRequestError("Anniversary campaign is one free single per day.");
+                    this.seasonal.consumeAnniversaryFreeSingle(playerId, gacha.id);
                     const portal = this.seasonal.portalState(playerId);
-                    for (const gachaId of portal.shellGachaIds.slice(0, 2)) {
+                    for (const gachaId of portal.freeCampaignGachaIds ?? []) {
                         campaigns.push({ gachaId, campaignId: portal.freeCampaignId, count: 0 });
                     }
-                    return { wallet, pullCount: 10, items, campaigns };
+                    return { wallet, pullCount: 1, items, campaigns };
                 }
                 const campaignId = this.catalog.findCampaignId(gacha.id);
                 if (campaignId === null) {
@@ -322,6 +342,17 @@ export class GachaService {
             throw new InvalidRequestError("Not enough exchange points.");
         }
         return info;
+    }
+
+    private applyConfiguredMultiGuarantee(gacha: GachaDefinition, drawIds: number[]): number[] {
+        const minimumRank = gacha.multiGuaranteeMinimumRank;
+        if (minimumRank === undefined || drawIds.length < 10) return drawIds;
+        const eligiblePools = minimumRank === 5 ? [gacha.pool[1] ?? []] : [gacha.pool[1] ?? [], gacha.pool[2] ?? []];
+        const eligible = eligiblePools.flat();
+        const eligibleIds = new Set(eligible.map((entry) => entry.id));
+        if (drawIds.some((id) => eligibleIds.has(id)) || eligible.length === 0) return drawIds;
+        const replacement = eligible[this.random.nextInt(0, eligible.length)];
+        return replacement ? [...drawIds.slice(0, -1), replacement.id] : drawIds;
     }
 
     private requirePlayer(viewerId: number): { id: number } {

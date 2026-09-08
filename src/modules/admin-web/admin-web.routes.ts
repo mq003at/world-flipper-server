@@ -23,7 +23,7 @@ export interface AdminWebOptions {
     displayCatalog: DisplayCatalog;
 }
 
-const GACHA_SLOTS = ["new", "rerun", "weapon"] as const;
+const GACHA_SLOTS = ["base", "new", "rerun", "elemental", "weapon", "meteor-1", "meteor-2", "anniversary", "seasonal"] as const;
 const MAX_ARTWORK_BYTES = 8 * 1024 * 1024;
 
 function escapeHtml(value: string): string {
@@ -170,9 +170,15 @@ function parsePoolUpdate(
 }
 
 function slotLabel(slot: RuntimeGachaSlot): string {
+    if (slot === "base") return "BASE";
     if (slot === "new") return "NEW";
     if (slot === "rerun") return "RERUN";
+    if (slot === "elemental") return "ELEMENTAL";
     if (slot === "weapon") return "WEAPON";
+    if (slot === "meteor-1") return "METEOR FES I";
+    if (slot === "meteor-2") return "METEOR FES II";
+    if (slot === "anniversary") return "ANNIVERSARY";
+    if (slot === "seasonal") return "SEASONAL";
     const customId = slot.slice("custom-".length);
     return `CUSTOM ${customId}`;
 }

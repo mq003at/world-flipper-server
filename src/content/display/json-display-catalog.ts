@@ -5,6 +5,7 @@ import type { SeasonalContentType } from "../../modules/gacha/seasonal-gacha.mod
 import type { DisplayCatalog, DisplayCatalogEntry } from "./display-catalog";
 
 type RawEntry = string | Omit<DisplayCatalogEntry, "id">;
+type RawEquipmentEntry = Omit<DisplayCatalogEntry, "id" | "assetPath"> & { asset_path?: string };
 
 function load(filePath: string): Map<number, RawEntry> {
     if (!existsSync(filePath)) return new Map();
@@ -18,18 +19,23 @@ export class JsonDisplayCatalog implements DisplayCatalog {
 
     constructor(displayDir: string, private readonly characterCatalog: CharacterCatalog) {
         this.characters = load(path.join(displayDir, "characters.en.json"));
-        this.equipment = load(path.join(displayDir, "equipment.en.json"));
+        this.equipment = load(path.resolve(displayDir, "..", "master", "equipment.json"));
+        for (const [id, override] of load(path.join(displayDir, "equipment.en.json"))) {
+            const base = this.equipment.get(id);
+            this.equipment.set(id, typeof base === "object" && typeof override === "object" ? { ...base, ...override } : override);
+        }
     }
 
     find(contentType: SeasonalContentType, id: number): DisplayCatalogEntry {
         const raw = (contentType === "character" ? this.characters : this.equipment).get(id);
         const base = contentType === "character" ? this.characterCatalog.findById(id) : null;
-        const supplied = typeof raw === "string" ? { name: raw } : raw;
+        const supplied = typeof raw === "string" ? { name: raw } : raw as RawEquipmentEntry | undefined;
         return {
             id,
             name: supplied?.name?.trim() || base?.name?.trim() || `Unknown ${contentType === "character" ? "Character" : "Equipment"} #${id}`,
             ...(base ? { rarity: base.rarity, element: base.element } : {}),
             ...supplied,
+            ...(supplied?.asset_path ? { assetPath: supplied.asset_path } : {}),
         };
     }
 }

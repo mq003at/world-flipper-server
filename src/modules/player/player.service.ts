@@ -5,6 +5,7 @@ import { InvariantError } from "../../shared/errors/application-error";
 import { PlayerFactory } from "./player.factory";
 import type { Player, PlayerSnapshot } from "./player.models";
 import type { PlayerRepository } from "./player.repository";
+import type { SeasonRolloverCoordinator } from "../gacha/season-rollover.service";
 
 const EXP_POOL_MAX = 100_000;
 
@@ -16,6 +17,7 @@ export class PlayerService {
         private readonly clock: Clock,
         private readonly lifecycle: LifecyclePeriods = new LifecyclePeriods(0, 1),
         private readonly lifecycleCoordinator?: PlayerLifecycleCoordinator,
+        private readonly seasonRollover?: SeasonRolloverCoordinator,
     ) {
         this.factory = new PlayerFactory(clock);
     }
@@ -30,6 +32,7 @@ export class PlayerService {
     requireForAccount(accountId: number): Player {
         const player = this.repository.findByAccountId(accountId);
         if (!player) throw new InvariantError("No player bound to account.");
+        this.seasonRollover?.ensureCurrent(player.id, this.clock.now());
         this.lifecycleCoordinator?.ensureCurrent(player.id, this.clock.now());
         return player;
     }
@@ -39,6 +42,7 @@ export class PlayerService {
         if (!player) throw new InvariantError("No players bound to account.");
 
         const now = this.clock.now();
+        this.seasonRollover?.ensureCurrent(player.id, now);
         this.lifecycleCoordinator?.ensureCurrent(player.id, now);
         this.applyLoginMaintenance(player, now);
 

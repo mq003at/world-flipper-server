@@ -115,6 +115,7 @@ export function applyGachaPoolPolicy(
     current: GachaDefinition,
     selections: readonly GachaPoolSelection[],
     festival: boolean,
+    configuredRankRatesPercent?: readonly [number, number, number],
 ): GachaDefinition {
     const seen = new Set<number>();
     for (const entry of selections) {
@@ -123,7 +124,9 @@ export function applyGachaPoolPolicy(
     }
 
     const profile = gachaProbabilityProfile(festival, selections);
-    const rankWeights = rankWeightsForProfile(profile);
+    const rankWeights = configuredRankRatesPercent
+        ? configuredRankRatesPercent.map((rate) => Math.round(rate * 100)) as [number, number, number]
+        : rankWeightsForProfile(profile);
     const pool: Record<number, GachaPoolItem[]> = { 1: [], 2: [], 3: [] };
 
     for (let index = 0; index < RANKS.length; index += 1) {

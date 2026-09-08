@@ -23,6 +23,8 @@ export interface ExchangeEquipmentRequest {
     viewerId: number;
 }
 
+export interface BaseSelectorRequest { viewerId: number; characterId: number; }
+
 function asRecord(value: unknown): Record<string, unknown> {
     if (typeof value !== "object" || value === null || Array.isArray(value)) {
         throw new InvalidRequestError();
@@ -77,4 +79,9 @@ export function parseExchangeEquipmentRequest(value: unknown): ExchangeEquipment
         gachaId: numberField(body, "gacha_id"),
         viewerId: numberField(body, "viewer_id"),
     };
+}
+
+export function parseBaseSelectorRequest(value: unknown): BaseSelectorRequest {
+    const body = asRecord(value);
+    return { viewerId: numberField(body, "viewer_id"), characterId: numberField(body, "character_id") };
 }
