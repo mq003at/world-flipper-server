@@ -12,6 +12,7 @@ export class SqliteSeasonRolloverService implements SeasonRolloverCoordinator {
         private readonly database: DatabaseConnection,
         private readonly calendar: SeasonalGachaCalendar,
         private readonly clock: Clock,
+        private readonly starSliverSeasonGrant = 2100,
     ) {}
 
     ensureCurrent(playerId: number, now = this.clock.now()): boolean {
@@ -23,6 +24,8 @@ export class SqliteSeasonRolloverService implements SeasonRolloverCoordinator {
             return false;
         }
         if (existing.season_number === seasonNumber) return false;
+        const crossedForwardSeasons = Math.max(0, seasonNumber - existing.season_number);
+        const starSliverGrant = crossedForwardSeasons * this.starSliverSeasonGrant;
 
         this.database.transaction(() => {
             // Children cascade from players_characters, preserving equipment.
@@ -31,7 +34,9 @@ export class SqliteSeasonRolloverService implements SeasonRolloverCoordinator {
                 character_id_1 = 1, character_id_2 = NULL, character_id_3 = NULL,
                 unison_character_1 = NULL, unison_character_2 = NULL, unison_character_3 = NULL
                 WHERE player_id = ?`).run(playerId);
-            this.database.prepare("UPDATE players SET leader_character_id = 1 WHERE id = ?").run(playerId);
+            this.database.prepare(`UPDATE players
+                SET leader_character_id = 1, star_crumb = star_crumb + ?
+                WHERE id = ?`).run(starSliverGrant, playerId);
             this.database.prepare(`INSERT INTO players_characters (
                 id, entry_count, evolution_level, over_limit_step, protection,
                 join_time, update_time, exp, stack, mana_board_index, player_id,

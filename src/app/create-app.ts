@@ -94,6 +94,8 @@ import { SqliteShopRepository } from "../modules/shop/shop.repository.sqlite";
 import { createShopRoutes } from "../modules/shop/shop.routes";
 import { ShopService } from "../modules/shop/shop.service";
 import { SeasonalShopAvailabilityPolicy } from "../modules/shop/seasonal-shop-availability.policy";
+import { StarSliverShopCatalog } from "../modules/shop/star-sliver-shop.catalog";
+import { loadStarSliverShopConfig } from "../modules/shop/star-sliver-shop.config";
 import { SqliteQuestRepository } from "../modules/quest/quest.repository.sqlite";
 import { QuestService } from "../modules/quest/quest.service";
 import { createSingleBattleQuestRoutes } from "../modules/quest/single-battle-quest.routes";
@@ -112,6 +114,7 @@ import { SqliteTutorialRepository } from "../modules/tutorial/tutorial.repositor
 import { createTutorialRoutes } from "../modules/tutorial/tutorial.routes";
 import { TutorialService } from "../modules/tutorial/tutorial.service";
 import { createReproduceRoutes } from "../protocol/worldflipper/reproduce.routes";
+import { createGxShieldRoutes } from "../modules/compatibility/gxshield.routes";
 import { AdminWebRepository } from "../modules/admin-web/admin-web.repository";
 import { createAdminWebRoutes } from "../modules/admin-web/admin-web.routes";
 
@@ -137,6 +140,7 @@ export async function createApp(
 
     const liveContentDir = config.liveContentDir ?? path.resolve(process.cwd(), "content/live");
     const gachaRotationConfig = loadGachaRotationConfig(liveContentDir);
+    const starSliverShopConfig = loadStarSliverShopConfig(liveContentDir);
     const seasonConfig = loadSeasonConfig(liveContentDir, config.seasonStartAtOverride);
     const seasonTimeline = new SeasonTimeline(seasonConfig);
     const lifecycle = new LifecyclePeriods(
@@ -155,8 +159,9 @@ export async function createApp(
     const playerRepository = new SqlitePlayerRepository(database);
     const playerLifecycleRepository = new SqlitePlayerLifecycleRepository(database);
     const playerLifecycleService = new PlayerLifecycleService(playerLifecycleRepository, lifecycle, clock);
-    const seasonRollover = new SqliteSeasonRolloverService(database, new SeasonalGachaCalendar(gachaRotationConfig), clock);
-    const playerService = new PlayerService(playerRepository, clock, lifecycle, playerLifecycleService, seasonRollover);
+    const gachaCalendar = new SeasonalGachaCalendar(gachaRotationConfig);
+    const seasonRollover = new SqliteSeasonRolloverService(database, gachaCalendar, clock, starSliverShopConfig.seasonGrant);
+    const playerService = new PlayerService(playerRepository, clock, lifecycle, playerLifecycleService, seasonRollover, starSliverShopConfig.initialGrant);
     const playerCustomizationRepository = new SqlitePlayerCustomizationRepository(database);
     const playerCustomizationService = new PlayerCustomizationService(
         identityService,
@@ -306,6 +311,7 @@ export async function createApp(
     );
     const shopCatalog = new JsonShopCatalog(config.masterDataDir);
     const shopRepository = new SqliteShopRepository(database);
+    const starSliverCatalog = new StarSliverShopCatalog(database, characterCatalog, gachaCalendar, starSliverShopConfig);
     const shopAvailability = new SeasonalShopAvailabilityPolicy(eventRegistry, seasonalWindows, schedule);
     const shopService = new ShopService(
         identityService,
@@ -317,6 +323,8 @@ export async function createApp(
         gameplayEvents,
         shopAvailability,
         lifecycle,
+        starSliverCatalog,
+        starSliverShopConfig.currencyItemId,
     );
     const paymentRepository = new SqlitePaymentRepository(database);
     const paymentService = new PaymentService(
@@ -383,6 +391,7 @@ export async function createApp(
         shop: createShopRoutes(shopService, clientClock),
         payment: createPaymentRoutes(paymentService, clientClock),
         reproduce: createReproduceRoutes(clientClock),
+        gxshield: createGxShieldRoutes(clientClock),
         staticContent: createStaticContentPlugin({ cdnDir: config.cdnDir }),
         adminWeb: createAdminWebRoutes(
             new AdminWebRepository(database),

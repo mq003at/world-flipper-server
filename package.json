@@ -16,7 +16,10 @@
     "catalog:build": "tsx tools/display-catalog.ts",
     "gacha:probability": "tsx tools/gacha-probability.ts",
     "gacha:rotate": "tsx tools/gacha-rotation.ts",
-    "stamina:max": "tsx tools/max-stamina.ts"
+    "player:reset-tutorial": "tsx tools/reset-player-for-tutorial.ts",
+    "stamina:max": "tsx tools/max-stamina.ts",
+    "star-sliver:add": "tsx tools/add-star-sliver.ts",
+    "star-sliver:build-master": "tsx tools/build-star-sliver-client-master.ts"
   },
   "engines": {
     "node": ">=20.0.0"

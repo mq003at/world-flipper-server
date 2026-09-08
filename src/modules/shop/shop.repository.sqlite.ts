@@ -9,12 +9,13 @@ export class SqliteShopRepository implements ShopRepository {
     getPlayerState(playerId: number): ShopPlayerState | null {
         const row = this.database
             .prepare(`
-                SELECT free_vmoney, free_mana, bond_token, exp_pool, exp_pooled_time
+                SELECT star_crumb, free_vmoney, free_mana, bond_token, exp_pool, exp_pooled_time
                 FROM players
                 WHERE id = ?
             `)
             .get(playerId) as
             | {
+                  star_crumb: number;
                   free_vmoney: number;
                   free_mana: number;
                   bond_token: number;
@@ -24,6 +25,7 @@ export class SqliteShopRepository implements ShopRepository {
             | undefined;
         return row
             ? {
+                  starCrumb: row.star_crumb,
                   freeVmoney: row.free_vmoney,
                   freeMana: row.free_mana,
                   bondToken: row.bond_token,
@@ -37,10 +39,11 @@ export class SqliteShopRepository implements ShopRepository {
         this.database
             .prepare(`
                 UPDATE players
-                SET free_vmoney = ?, free_mana = ?, bond_token = ?, exp_pool = ?, exp_pooled_time = ?
+                SET star_crumb = ?, free_vmoney = ?, free_mana = ?, bond_token = ?, exp_pool = ?, exp_pooled_time = ?
                 WHERE id = ?
             `)
             .run(
+                state.starCrumb,
                 state.freeVmoney,
                 state.freeMana,
                 state.bondToken,

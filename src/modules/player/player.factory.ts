@@ -107,7 +107,7 @@ function createDefaultPartyGroups(): Record<string, PlayerPartyGroup> {
 }
 
 export class PlayerFactory {
-    constructor(private readonly clock: Clock) {}
+    constructor(private readonly clock: Clock, private readonly initialStarCrumb = 2100) {}
 
     createInitialState(): InitialPlayerState {
         const now = this.clock.now();
@@ -126,7 +126,7 @@ export class PlayerFactory {
                 vmoney: 0,
                 freeVmoney: 150,
                 rankPoint: 10,
-                starCrumb: 0,
+                starCrumb: this.initialStarCrumb,
                 bondToken: 0,
                 expPool: 0,
                 expPooledTime: now,

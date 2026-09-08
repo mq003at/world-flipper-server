@@ -2,6 +2,7 @@ import type { ShopItemDefinition, ShopType } from "../../content/master-data/sho
 import type { RewardGrantResult } from "../reward/reward.models";
 
 export interface ShopPlayerState {
+    starCrumb: number;
     freeVmoney: number;
     freeMana: number;
     bondToken: number;

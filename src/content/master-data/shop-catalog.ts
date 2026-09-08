@@ -9,6 +9,7 @@ export enum ShopType {
     BOSS_COIN = 7,
     GENERAL = 8,
     STAR_GRAIN = 9,
+    STAR_SLIVER = 9,
 }
 
 export enum ShopItemRewardType {

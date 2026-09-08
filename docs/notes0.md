@@ -56,6 +56,10 @@ Phase 5 — tools/admin
 save import/export
 CDN management
 season system
+ -- import / export. UI rework
+ -- stamina
+ -- 6 month rotation banner
+ -- Shop - Star sliver
 mod management
 server controls
 
@@ -101,6 +105,12 @@ Tạo 1 chỗ cho probability list
 Sửa trag admin
 --< Free beads fail, lần khác thử lại. .env có field đó>
 
+
+
+
+
+Fix conf Shop
+
 ----
 
 ## LIVE SERVICE
@@ -119,3 +129,33 @@ Sửa trag admin
 + Seasonal Banner: tôi sẽ manually set, ở đây được set rate 5 sao, 4 sao, 3 sao luôn.
 + Meteor Fes: Rate tăng, nhưng chỉ xuất hiện 2 lần vào 2 tuần cuối của tháng. Coi như là 2 cái 7 ngày đấy.
 + Anniversary: 7 ngày cuối mỗi tháng. Đi kèm là event 1 pull mỗi ngày trên banner này. Reroll banner nhưng lần này lấy hết các unit đã release.
+
+#### Sliver shop:
+Catalog:
+- Released ★5 Character: 600
+- Released ★4 Character: 300
+- ★5 Astral Gem: 600
+- ★4 Astral Gem: 300
+
+Removed:
+- All Armaments
+- ★3 Characters
+- Other original Star Sliver items
+
+Character eligibility:
+- Base pool always available
+- Any normal character released in current season becomes available
+- Unreleased characters must never appear
+- Limited/Seasonal/Fes units excluded by default unless explicitly configured
+
+Stock:
+- Characters: unlimited purchase unless existing client/master constraints require otherwise
+- Astral Gems: configurable; default unlimited or monthly-limited depending desired economy
+
+Season behavior:
+- Character catalog rebuilds from current-season release state
+- Currency persists across seasons
+- +2100 grant every season
+
+Configuration:
+- Currently for the 07/26 - 12/26, 

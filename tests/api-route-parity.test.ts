@@ -15,6 +15,7 @@ test("migrated compatibility groups remain mounted at client paths", () => {
         'prefix: `${api}/party_group`',
         'prefix: `${api}/attention`',
         'prefix: `${api}/encyclopedia`',
+        'prefix: `${api}/gxshield`',
         'prefix: `${api}/event/rush`',
         'prefix: `${api}/event/raid`',
     ];
@@ -35,6 +36,7 @@ test("migrated compatibility handlers retain their client route names", () => {
             ],
         ],
         ["src/modules/compatibility/attention.routes.ts", ['fastify.post("/check"']],
+        ["src/modules/compatibility/gxshield.routes.ts", ['fastify.post("/scanrisk"']],
         [
             "src/modules/compatibility/encyclopedia.routes.ts",
             ['fastify.post("/index"', 'fastify.post("/read_keyword"'],

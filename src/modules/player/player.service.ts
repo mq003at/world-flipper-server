@@ -18,8 +18,9 @@ export class PlayerService {
         private readonly lifecycle: LifecyclePeriods = new LifecyclePeriods(0, 1),
         private readonly lifecycleCoordinator?: PlayerLifecycleCoordinator,
         private readonly seasonRollover?: SeasonRolloverCoordinator,
+        initialStarCrumb = 2100,
     ) {
-        this.factory = new PlayerFactory(clock);
+        this.factory = new PlayerFactory(clock, initialStarCrumb);
     }
 
     ensurePlayer(accountId: number): Player {

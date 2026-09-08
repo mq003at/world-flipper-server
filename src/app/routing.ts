@@ -29,6 +29,7 @@ export interface ApplicationRoutes {
     shop: FastifyPluginAsync;
     payment: FastifyPluginAsync;
     reproduce: FastifyPluginAsync;
+    gxshield: FastifyPluginAsync;
     staticContent: FastifyPluginAsync;
     adminWeb: FastifyPluginAsync;
 }
@@ -76,6 +77,7 @@ export async function registerApplicationRoutes(
         { plugin: routes.shop, prefix: `${api}/shop` },
         { plugin: routes.payment, prefix: `${api}/payment` },
         { plugin: routes.reproduce, prefix: `${api}/reproduce` },
+        { plugin: routes.gxshield, prefix: `${api}/gxshield` },
         { plugin: routes.staticContent },
         { plugin: routes.adminWeb },
     ];

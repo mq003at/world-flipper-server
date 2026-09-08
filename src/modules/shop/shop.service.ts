@@ -17,6 +17,7 @@ import type { RewardService } from "../reward/reward.service";
 import type { BuyShopItemRequest, GetSalesListRequest } from "./shop.contracts";
 import type { ShopBuyResult, ShopPlayerState, ShopPurchaseState, ShopSale } from "./shop.models";
 import type { ShopRepository } from "./shop.repository";
+import type { StarSliverShopCatalog } from "./star-sliver-shop.catalog";
 
 function requirePositiveInteger(value: number, message: string): number {
     if (!Number.isSafeInteger(value) || value <= 0) throw new InvalidRequestError(message);
@@ -34,6 +35,8 @@ export class ShopService {
         private readonly gameplayEvents: GameplayEventSink = NOOP_GAMEPLAY_EVENT_SINK,
         private readonly events?: ShopAvailabilityPolicy,
         private readonly lifecycle: LifecyclePeriods = new LifecyclePeriods(0, 1),
+        private readonly starSliverCatalog?: StarSliverShopCatalog,
+        private readonly starSliverCurrencyItemId = 990008,
     ) {}
 
     getSalesList(input: GetSalesListRequest): ShopSale[] {
@@ -42,7 +45,10 @@ export class ShopService {
         const candidates = new Map<string, { shopType: ShopType; item: ShopItemDefinition }>();
 
         for (const shopType of input.shopTypes) {
-            for (const item of this.catalog.getGenericItems(shopType)) {
+            const items = shopType === ShopType.STAR_GRAIN && this.starSliverCatalog
+                ? this.starSliverCatalog.list(now)
+                : this.catalog.getGenericItems(shopType);
+            for (const item of items) {
                 candidates.set(`${shopType}:${item.id}`, { shopType, item });
             }
         }
@@ -94,9 +100,11 @@ export class ShopService {
     buy(input: BuyShopItemRequest): ShopBuyResult {
         const player = this.requirePlayer(input.viewerId);
         const amount = requirePositiveInteger(input.number, "Invalid purchase amount.");
-        const item = this.catalog.findItem(input.shopType, input.shopItemId);
-        if (!item) throw new InvalidRequestError("Shop item with specified id does not exist.");
         const now = this.clock.now();
+        const item = input.shopType === ShopType.STAR_GRAIN && this.starSliverCatalog
+            ? this.starSliverCatalog.find(input.shopItemId, now)
+            : this.catalog.findItem(input.shopType, input.shopItemId);
+        if (!item) throw new InvalidRequestError("Shop item with specified id does not exist.");
         if (this.events?.isItemAvailable && !this.events.isItemAvailable(input.shopType, item, now)) {
             throw new InvalidRequestError("Shop item is not active.");
         }
@@ -123,6 +131,16 @@ export class ShopService {
             const nextState = this.consumeUserCost(before, item, amount);
             const touchedItems: Record<string, number> = {};
             for (const cost of item.costs) {
+                if (input.shopType === ShopType.STAR_GRAIN && cost.id === this.starSliverCurrencyItemId) {
+                    nextState.starCrumb -= cost.amount * amount;
+                    if (nextState.starCrumb < 0) {
+                        throw new InvalidRequestError("Not enough Star Sliver to purchase shop item.");
+                    }
+                    // The final client identifies Star Sliver as item 990008 in shop master,
+                    // while /load stores its authoritative balance in user_info.star_crumb.
+                    touchedItems[String(cost.id)] = nextState.starCrumb;
+                    continue;
+                }
                 const owned = this.repository.getItemAmount(player.id, cost.id);
                 const remaining = owned - cost.amount * amount;
                 if (remaining < 0) {
@@ -134,6 +152,7 @@ export class ShopService {
             }
             this.repository.setPlayerState(player.id, nextState);
             for (const [itemId, remaining] of Object.entries(touchedItems)) {
+                if (input.shopType === ShopType.STAR_GRAIN && Number(itemId) === this.starSliverCurrencyItemId) continue;
                 this.repository.setItemAmount(player.id, Number(itemId), remaining);
             }
 

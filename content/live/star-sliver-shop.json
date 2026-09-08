@@ -1,0 +1,21 @@
+{
+  "initialGrant": 2100,
+  "seasonGrant": 2100,
+  "currencyItemId": 990008,
+  "characterPrices": { "5": 600, "4": 300 },
+  "astralGems": [
+    { "shopItemId": 19900005, "rarity": 5, "itemId": 10003, "price": 600, "stock": -1 },
+    { "shopItemId": 19900004, "rarity": 4, "itemId": 10002, "price": 300, "stock": -1 }
+  ],
+  "allowedReleaseSources": ["base", "new"],
+  "includedSpecialCharacterIds": [700015],
+  "rotation": {
+    "enabled": false,
+    "characterIds": [161007, 111007, 700015, 151005, 141045, 211009, 261005, 261003, 251009, 231005, 251005, 221034, 241001, 241007],
+    "plannedNames": [
+      "Karyl", "Rolf", "Nimbus (Flipperversary)", "Teurgis", "Torietta", "Nevia",
+      "Pythica", "Kyrie", "Liam", "Marianne", "Floretta", "Clarita", "Jay", "Keira",
+      "Faroa", "Evelyn", "Mia", "Lou"
+    ]
+  }
+}

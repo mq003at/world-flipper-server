@@ -31,8 +31,10 @@ test("season rollover wipes characters and party references while preserving bea
         assert.equal(rollover.ensureCurrent(player.id, new Date("2026-07-01T00:00:00+07:00")), true);
         const ids = database.prepare("SELECT id FROM players_characters WHERE player_id = ? ORDER BY id").all(player.id) as Array<{ id: number }>;
         assert.deepEqual(ids.map((row) => row.id), [1]);
-        const state = database.prepare("SELECT free_vmoney, tutorial_step FROM players WHERE id = ?").get(player.id) as { free_vmoney: number; tutorial_step: number };
-        assert.deepEqual(state, { free_vmoney: 4321, tutorial_step: 90 });
+        const state = database.prepare("SELECT free_vmoney, tutorial_step, star_crumb FROM players WHERE id = ?").get(player.id) as { free_vmoney: number; tutorial_step: number; star_crumb: number };
+        assert.deepEqual(state, { free_vmoney: 4321, tutorial_step: 90, star_crumb: 4200 });
+        assert.equal(rollover.ensureCurrent(player.id, new Date("2026-07-02T00:00:00+07:00")), false);
+        assert.equal((database.prepare("SELECT star_crumb FROM players WHERE id = ?").get(player.id) as { star_crumb: number }).star_crumb, 4200);
         assert.equal((database.prepare("SELECT COUNT(*) AS count FROM players_equipment WHERE player_id = ?").get(player.id) as { count: number }).count, 1);
         assert.equal((database.prepare("SELECT COUNT(*) AS count FROM players_quest_progress WHERE player_id = ?").get(player.id) as { count: number }).count, 1);
         assert.equal((database.prepare("SELECT COUNT(*) AS count FROM players_parties WHERE player_id = ? AND character_id_2 IS NOT NULL").get(player.id) as { count: number }).count, 0);

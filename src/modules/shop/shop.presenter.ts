@@ -25,6 +25,7 @@ export function presentSalesList(sales: readonly ShopSale[]): Record<string, unk
 export function presentShopBuy(result: ShopBuyResult): Record<string, unknown> {
     return {
         user_info: {
+            star_crumb: result.state.starCrumb,
             free_mana: result.state.freeMana,
             free_vmoney: result.state.freeVmoney,
             exp_pool: result.state.expPool,
