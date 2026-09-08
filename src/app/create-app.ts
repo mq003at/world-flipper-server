@@ -389,6 +389,9 @@ export async function createApp(
                 webDir: path.resolve(process.cwd(), "web"),
                 importEnabled: config.playerDataImportEnabled ?? false,
                 adjustableClock,
+                characterCatalog,
+                gachaCatalog,
+                displayCatalog,
             },
         ),
     });

@@ -1,0 +1,1262 @@
+{
+    "3010007": {
+        "id": 3010007,
+        "key": "sword_0007",
+        "name": "Cutlass",
+        "rarity": 3,
+        "asset_path": "item/equipment/general/sword_0007",
+        "description": "A well-crafted piece uncovered in the Kaleidoscope, likely from a distant world. A pirate's weapon of choice.",
+        "stats": {
+            "1": {
+                "hp": 182,
+                "attack": 71
+            },
+            "5": {
+                "hp": 272,
+                "attack": 106
+            }
+        }
+    },
+    "3010008": {
+        "id": 3010008,
+        "key": "sword_0008",
+        "name": "Glass Blade",
+        "rarity": 3,
+        "asset_path": "item/equipment/general/sword_0008",
+        "description": "A well-crafted piece uncovered in the Kaleidoscope, likely from a distant world. Made from reinforced glass.",
+        "stats": {
+            "1": {
+                "hp": 187,
+                "attack": 70
+            },
+            "5": {
+                "hp": 280,
+                "attack": 104
+            }
+        }
+    },
+    "3010013": {
+        "id": 3010013,
+        "key": "sword_0013",
+        "name": "Flammenschwert",
+        "rarity": 3,
+        "asset_path": "item/equipment/general/sword_0013",
+        "description": "A well-crafted piece uncovered in the Kaleidoscope, likely from a distant world. Named for its undulating blade, which resembles the twisting and turning of flames.",
+        "stats": {
+            "1": {
+                "hp": 192,
+                "attack": 69
+            },
+            "5": {
+                "hp": 288,
+                "attack": 103
+            }
+        }
+    },
+    "3010027": {
+        "id": 3010027,
+        "key": "sword_0027",
+        "name": "Electric Dagger",
+        "rarity": 3,
+        "asset_path": "item/equipment/general/sword_0027",
+        "description": "A well-crafted piece uncovered in the Kaleidoscope, likely from a distant world. Brimming with electricity, a single touch is enough to paralyze.",
+        "stats": {
+            "1": {
+                "hp": 171,
+                "attack": 73
+            },
+            "5": {
+                "hp": 256,
+                "attack": 109
+            }
+        }
+    },
+    "3010035": {
+        "id": 3010035,
+        "key": "sword_0035",
+        "name": "Heatwave Blade",
+        "rarity": 3,
+        "asset_path": "item/equipment/general/sword_0035",
+        "description": "A well-crafted piece from another world uncovered in the Kaleidoscope. It is said to be able to carbonize objects with a single slice.",
+        "stats": {
+            "1": {
+                "hp": 176,
+                "attack": 72
+            },
+            "5": {
+                "hp": 264,
+                "attack": 108
+            }
+        }
+    },
+    "3010053": {
+        "id": 3010053,
+        "key": "sword_0053",
+        "name": "Camping Knife",
+        "rarity": 3,
+        "asset_path": "item/equipment/general/sword_0053",
+        "description": "A well-crafted piece from another world uncovered in the Kaleidoscope. The blade can be folded into the handle and also sports a bottle opener.",
+        "stats": {
+            "1": {
+                "hp": 171,
+                "attack": 73
+            },
+            "5": {
+                "hp": 256,
+                "attack": 109
+            }
+        }
+    },
+    "3020006": {
+        "id": 3020006,
+        "key": "axe_0006",
+        "name": "War Scythe",
+        "rarity": 3,
+        "asset_path": "item/equipment/general/axe_0006",
+        "description": "A well-crafted uncovered in the Kaleidoscope, likely from a distant world. Can be used for stabbing or slashing attacks above a shield.",
+        "stats": {
+            "1": {
+                "hp": 171,
+                "attack": 73
+            },
+            "5": {
+                "hp": 256,
+                "attack": 109
+            }
+        }
+    },
+    "3020011": {
+        "id": 3020011,
+        "key": "axe_0011",
+        "name": "Viking Axe",
+        "rarity": 3,
+        "asset_path": "item/equipment/general/axe_0011",
+        "description": "A well-crafted piece uncovered in the Kaleidoscope, likely from a distant world. Said to have been wielded by great pirates from the far north.",
+        "stats": {
+            "1": {
+                "hp": 176,
+                "attack": 72
+            },
+            "5": {
+                "hp": 264,
+                "attack": 108
+            }
+        }
+    },
+    "3020012": {
+        "id": 3020012,
+        "key": "axe_0012",
+        "name": "Oxhead Axe",
+        "rarity": 3,
+        "asset_path": "item/equipment/general/axe_0012",
+        "description": "A well-crafted piece uncovered in the Kaleidoscope, likely from a distant world. Almost as tall as a grown man.",
+        "stats": {
+            "1": {
+                "hp": 182,
+                "attack": 71
+            },
+            "5": {
+                "hp": 272,
+                "attack": 106
+            }
+        }
+    },
+    "3030007": {
+        "id": 3030007,
+        "key": "spear_0007",
+        "name": "Pike",
+        "rarity": 3,
+        "asset_path": "item/equipment/general/spear_0007",
+        "description": "A well-crafted piece uncovered in the Kaleidoscope, likely from a distant world. Designed for use by foot soldiers.",
+        "stats": {
+            "1": {
+                "hp": 187,
+                "attack": 70
+            },
+            "5": {
+                "hp": 280,
+                "attack": 104
+            }
+        }
+    },
+    "3030012": {
+        "id": 3030012,
+        "key": "spear_0012",
+        "name": "Couse",
+        "rarity": 3,
+        "asset_path": "item/equipment/general/spear_0012",
+        "description": "A well-crafted piece uncovered in the Kaleidoscope, likely from a distant world. This ornate pole weapon is largely used for ceremonial purposes.",
+        "stats": {
+            "1": {
+                "hp": 176,
+                "attack": 72
+            },
+            "5": {
+                "hp": 264,
+                "attack": 108
+            }
+        }
+    },
+    "3030013": {
+        "id": 3030013,
+        "key": "spear_0013",
+        "name": "Crescent Blade",
+        "rarity": 3,
+        "asset_path": "item/equipment/general/spear_0013",
+        "description": "A well-crafted piece uncovered in the Kaleidoscope, likely from a distant world. Its great curved blade was designed for slashing.",
+        "stats": {
+            "1": {
+                "hp": 182,
+                "attack": 71
+            },
+            "5": {
+                "hp": 272,
+                "attack": 106
+            }
+        }
+    },
+    "3030027": {
+        "id": 3030027,
+        "key": "spear_0027",
+        "name": "Laser Pilum",
+        "rarity": 3,
+        "asset_path": "item/equipment/general/spear_0027",
+        "description": "A well-crafted piece uncovered in the Kaleidoscope, likely from a distant world. A powerful electric current runs through this javelin. ",
+        "stats": {
+            "1": {
+                "hp": 176,
+                "attack": 72
+            },
+            "5": {
+                "hp": 264,
+                "attack": 108
+            }
+        }
+    },
+    "3040003": {
+        "id": 3040003,
+        "key": "bow_0003",
+        "name": "Longbow",
+        "rarity": 3,
+        "asset_path": "item/equipment/general/bow_0003",
+        "description": "A well-crafted piece uncovered in the Kaleidoscope, likely from a distant world. Embedded with a gem.",
+        "stats": {
+            "1": {
+                "hp": 251,
+                "attack": 57
+            },
+            "5": {
+                "hp": 376,
+                "attack": 85
+            }
+        }
+    },
+    "3040006": {
+        "id": 3040006,
+        "key": "bow_0006",
+        "name": "Crossbow",
+        "rarity": 3,
+        "asset_path": "item/equipment/general/bow_0006",
+        "description": "A well-crafted piece uncovered in the Kaleidoscope, likely from a distant world. Mechanical additions make this bow extremely accurate.",
+        "stats": {
+            "1": {
+                "hp": 246,
+                "attack": 58
+            },
+            "5": {
+                "hp": 368,
+                "attack": 87
+            }
+        }
+    },
+    "3040032": {
+        "id": 3040032,
+        "key": "bow_0032",
+        "name": "Wrist-Mounted Catapult",
+        "rarity": 3,
+        "asset_path": "item/equipment/general/bow_0032",
+        "description": "A well-crafted piece uncovered in the Kaleidoscope, likely from a distant world. This compact slingshot features a folding grip and can be worn on the wrist, boasting considerable power for its size.",
+        "stats": {
+            "1": {
+                "hp": 150,
+                "attack": 77
+            },
+            "5": {
+                "hp": 225,
+                "attack": 115
+            }
+        }
+    },
+    "3050002": {
+        "id": 3050002,
+        "key": "book_0002",
+        "name": "Rohonc Codex",
+        "rarity": 3,
+        "asset_path": "item/equipment/general/book_0002",
+        "description": "A well-crafted piece uncovered in the Kaleidoscope, likely from a distant world. This illustrated book is written in an unintelligible language.",
+        "stats": {
+            "1": {
+                "hp": 251,
+                "attack": 57
+            },
+            "5": {
+                "hp": 376,
+                "attack": 85
+            }
+        }
+    },
+    "3050005": {
+        "id": 3050005,
+        "key": "book_0005",
+        "name": "The Book of Lies",
+        "rarity": 3,
+        "asset_path": "item/equipment/general/book_0005",
+        "description": "A well-crafted piece uncovered in the Kaleidoscope, likely from a distant world. This book of rituals appears, at first glance, to be a collection of poems.",
+        "stats": {
+            "1": {
+                "hp": 246,
+                "attack": 58
+            },
+            "5": {
+                "hp": 368,
+                "attack": 87
+            }
+        }
+    },
+    "3050010": {
+        "id": 3050010,
+        "key": "book_0010",
+        "name": "Philebus",
+        "rarity": 3,
+        "asset_path": "item/equipment/general/book_0010",
+        "description": "A well-crafted piece uncovered in the Kaleidoscope, likely from a distant world. This dialogue deals in ethics and hedonism.",
+        "stats": {
+            "1": {
+                "hp": 235,
+                "attack": 60
+            },
+            "5": {
+                "hp": 352,
+                "attack": 90
+            }
+        }
+    },
+    "3060003": {
+        "id": 3060003,
+        "key": "staff_0003",
+        "name": "Priest's Staff",
+        "rarity": 3,
+        "asset_path": "item/equipment/general/staff_0003",
+        "description": "A well-crafted piece uncovered in the Kaleidoscope, likely from a distant world. The gem embedded in the head of this staff bears ritualistic significance.",
+        "stats": {
+            "1": {
+                "hp": 240,
+                "attack": 59
+            },
+            "5": {
+                "hp": 360,
+                "attack": 88
+            }
+        }
+    },
+    "3060007": {
+        "id": 3060007,
+        "key": "staff_0007",
+        "name": "Magic Cane",
+        "rarity": 3,
+        "asset_path": "item/equipment/general/staff_0007",
+        "description": "A well-crafted piece uncovered in the Kaleidoscope, likely from a distant world. Favored by magicians and illusionists.",
+        "stats": {
+            "1": {
+                "hp": 240,
+                "attack": 59
+            },
+            "5": {
+                "hp": 360,
+                "attack": 88
+            }
+        }
+    },
+    "3070006": {
+        "id": 3070006,
+        "key": "fist_0006",
+        "name": "Moonblade Knuckles",
+        "rarity": 3,
+        "asset_path": "item/equipment/general/fist_0006",
+        "description": "A well-crafted piece uncovered in the Kaleidoscope, likely from a distant world. Bears a wicked blade in the shape of a half-moon.",
+        "stats": {
+            "1": {
+                "hp": 235,
+                "attack": 60
+            },
+            "5": {
+                "hp": 352,
+                "attack": 90
+            }
+        }
+    },
+    "3070010": {
+        "id": 3070010,
+        "key": "fist_0010",
+        "name": "Dragonfist",
+        "rarity": 3,
+        "asset_path": "item/equipment/general/fist_0010",
+        "description": "A well-crafted piece uncovered in the Kaleidoscope, likely from a distant world. This glove is as tough as the hide of a dragon.",
+        "stats": {
+            "1": {
+                "hp": 230,
+                "attack": 62
+            },
+            "5": {
+                "hp": 344,
+                "attack": 92
+            }
+        }
+    },
+    "3070018": {
+        "id": 3070018,
+        "key": "fist_0018",
+        "name": "Brass Knuckles",
+        "rarity": 3,
+        "asset_path": "item/equipment/general/fist_0018",
+        "description": "A well-crafted piece uncovered in the Kaleidoscope. Spiked and made of a light alloy.",
+        "stats": {
+            "1": {
+                "hp": 224,
+                "attack": 62
+            },
+            "5": {
+                "hp": 336,
+                "attack": 93
+            }
+        }
+    },
+    "3070022": {
+        "id": 3070022,
+        "key": "fist_0022",
+        "name": "Chaos Knuckles",
+        "rarity": 3,
+        "asset_path": "item/equipment/general/fist_0022",
+        "description": "A well-crafted piece uncovered in the Kaleidoscope, likely from a distant world. A favorite of thugs, thieves, and others up to no good.",
+        "stats": {
+            "1": {
+                "hp": 230,
+                "attack": 62
+            },
+            "5": {
+                "hp": 344,
+                "attack": 92
+            }
+        }
+    },
+    "3080008": {
+        "id": 3080008,
+        "key": "shield_0008",
+        "name": "Lapis Buckler",
+        "rarity": 3,
+        "asset_path": "item/equipment/general/shield_0008",
+        "description": "A well-crafted piece uncovered in the Kaleidoscope, likely from a distant world. Hewn from precious rock.",
+        "stats": {
+            "1": {
+                "hp": 299,
+                "attack": 48
+            },
+            "5": {
+                "hp": 448,
+                "attack": 71
+            }
+        }
+    },
+    "3080009": {
+        "id": 3080009,
+        "key": "shield_0009",
+        "name": "Knight's Shield",
+        "rarity": 3,
+        "asset_path": "item/equipment/general/shield_0009",
+        "description": "A well-crafted piece uncovered in the Kaleidoscope, likely from a distant world. Bears the emblem of a noble family.",
+        "stats": {
+            "1": {
+                "hp": 288,
+                "attack": 50
+            },
+            "5": {
+                "hp": 432,
+                "attack": 74
+            }
+        }
+    },
+    "3080017": {
+        "id": 3080017,
+        "key": "shield_0017",
+        "name": "Wind Aegis",
+        "rarity": 3,
+        "asset_path": "item/equipment/general/shield_0017",
+        "description": "A well-crafted piece unearthed in the Kaleidoscope. It's equipped with a device that converts wind into energy.",
+        "stats": {
+            "1": {
+                "hp": 299,
+                "attack": 48
+            },
+            "5": {
+                "hp": 448,
+                "attack": 71
+            }
+        }
+    },
+    "3090036": {
+        "id": 3090036,
+        "key": "acce_0036",
+        "name": "Polychromatic Earrings",
+        "rarity": 3,
+        "asset_path": "item/equipment/general/acce_0036",
+        "description": "A fine piece from another world unearthed in the Kaleidoscope. These earrings feature crystals linked by chains that change color depending on the humidity.",
+        "stats": {
+            "1": {
+                "hp": 174,
+                "attack": 72
+            },
+            "5": {
+                "hp": 260,
+                "attack": 108
+            }
+        }
+    },
+    "3100007": {
+        "id": 3100007,
+        "key": "gun_0007",
+        "name": "Iris Blaster",
+        "rarity": 3,
+        "asset_path": "item/equipment/general/gun_0007",
+        "description": "A well-crafted piece uncovered in the Kaleidoscope, likely from a distant world. Its smooth grip makes it quite easy to handle.",
+        "stats": {
+            "1": {
+                "hp": 128,
+                "attack": 82
+            },
+            "5": {
+                "hp": 192,
+                "attack": 122
+            }
+        }
+    },
+    "4010010": {
+        "id": 4010010,
+        "key": "sword_0010",
+        "name": "Ilhoon",
+        "rarity": 4,
+        "asset_path": "item/equipment/general/sword_0010",
+        "description": "A fine piece uncovered in the Kaleidoscope, likely from a distant world. A blade with a curiously wide tip.",
+        "stats": {
+            "1": {
+                "hp": 264,
+                "attack": 94
+            },
+            "5": {
+                "hp": 396,
+                "attack": 141
+            }
+        }
+    },
+    "4020007": {
+        "id": 4020007,
+        "key": "axe_0007",
+        "name": "Tomahawk",
+        "rarity": 4,
+        "asset_path": "item/equipment/general/axe_0007",
+        "description": "A fine piece uncovered in the Kaleidoscope, likely from a distant world. Its light and well-balanced body makes it perfect for throwing.",
+        "stats": {
+            "1": {
+                "hp": 242,
+                "attack": 99
+            },
+            "5": {
+                "hp": 363,
+                "attack": 148
+            }
+        }
+    },
+    "4030003": {
+        "id": 4030003,
+        "key": "spear_0003",
+        "name": "Javelin",
+        "rarity": 4,
+        "asset_path": "item/equipment/general/spear_0003",
+        "description": "A fine piece uncovered in the Kaleidoscope, likely from a distant world. Its thin and slender body makes it perfect for throwing.",
+        "stats": {
+            "1": {
+                "hp": 264,
+                "attack": 94
+            },
+            "5": {
+                "hp": 396,
+                "attack": 141
+            }
+        }
+    },
+    "4030004": {
+        "id": 4030004,
+        "key": "spear_0004",
+        "name": "Twisted Lance",
+        "rarity": 4,
+        "asset_path": "item/equipment/general/spear_0004",
+        "description": "A fine piece uncovered in the Kaleidoscope, likely from a distant world. This lance, with its spiral ridges, is often used by mounted soldiers.",
+        "stats": {
+            "1": {
+                "hp": 257,
+                "attack": 96
+            },
+            "5": {
+                "hp": 385,
+                "attack": 143
+            }
+        }
+    },
+    "4030008": {
+        "id": 4030008,
+        "key": "spear_0008",
+        "name": "Partizan",
+        "rarity": 4,
+        "asset_path": "item/equipment/general/spear_0008",
+        "description": "A fine piece uncovered in the Kaleidoscope, likely from a distant world. Its long flat tip makes it suitable for both cutting and thrusting.",
+        "stats": {
+            "1": {
+                "hp": 257,
+                "attack": 96
+            },
+            "5": {
+                "hp": 385,
+                "attack": 143
+            }
+        }
+    },
+    "4030009": {
+        "id": 4030009,
+        "key": "spear_0009",
+        "name": "Coral Spear",
+        "rarity": 4,
+        "asset_path": "item/equipment/general/spear_0009",
+        "description": "A fine piece uncovered in the Kaleidoscope, likely from a distant world. Crafted from coral of exceeding toughness.",
+        "stats": {
+            "1": {
+                "hp": 250,
+                "attack": 98
+            },
+            "5": {
+                "hp": 374,
+                "attack": 146
+            }
+        }
+    },
+    "4030024": {
+        "id": 4030024,
+        "key": "spear_0024",
+        "name": "Wind Chariot",
+        "rarity": 4,
+        "asset_path": "item/equipment/general/spear_0024",
+        "description": "A fine piece unearthed in the Kaleidoscope. Not many warriors can wield this double-bladed weapon.",
+        "stats": {
+            "1": {
+                "hp": 235,
+                "attack": 100
+            },
+            "5": {
+                "hp": 352,
+                "attack": 150
+            }
+        }
+    },
+    "4040007": {
+        "id": 4040007,
+        "key": "bow_0007",
+        "name": "Compound Bow",
+        "rarity": 4,
+        "asset_path": "item/equipment/general/bow_0007",
+        "description": "A fine piece uncovered in the Kaleidoscope, likely from a distant world. The pulley system makes this bow easy to handle.",
+        "stats": {
+            "1": {
+                "hp": 330,
+                "attack": 81
+            },
+            "5": {
+                "hp": 495,
+                "attack": 121
+            }
+        }
+    },
+    "4040008": {
+        "id": 4040008,
+        "key": "bow_0008",
+        "name": "Azusa Bow",
+        "rarity": 4,
+        "asset_path": "item/equipment/general/bow_0008",
+        "description": "A fine piece uncovered in the Kaleidoscope, likely from a distant world. This mystical bow is said to be effective on yokai.",
+        "stats": {
+            "1": {
+                "hp": 323,
+                "attack": 83
+            },
+            "5": {
+                "hp": 484,
+                "attack": 124
+            }
+        }
+    },
+    "4040021": {
+        "id": 4040021,
+        "key": "bow_0021",
+        "name": "Ocean Blue Bow",
+        "rarity": 4,
+        "asset_path": "item/equipment/general/bow_0021",
+        "description": "A fine piece uncovered in the Kaleidoscope, likely from a distant world. Arrows loosed from this bow fly outward in a spiral pattern before piercing their target.",
+        "stats": {
+            "1": {
+                "hp": 308,
+                "attack": 86
+            },
+            "5": {
+                "hp": 462,
+                "attack": 128
+            }
+        }
+    },
+    "4050004": {
+        "id": 4050004,
+        "key": "book_0004",
+        "name": "A Treatise on War",
+        "rarity": 4,
+        "asset_path": "item/equipment/general/book_0004",
+        "description": "A fine piece uncovered in the Kaleidoscope, likely from a distant world. Contains explications of war stratagems by a well-established general.",
+        "stats": {
+            "1": {
+                "hp": 330,
+                "attack": 81
+            },
+            "5": {
+                "hp": 495,
+                "attack": 121
+            }
+        }
+    },
+    "4050007": {
+        "id": 4050007,
+        "key": "book_0007",
+        "name": "Der Nibelunge Liet",
+        "rarity": 4,
+        "asset_path": "item/equipment/general/book_0007",
+        "description": "A fine piece uncovered in the Kaleidoscope, likely from a distant world. This epic recounts the tragic lives of a great warrior and his beloved.",
+        "stats": {
+            "1": {
+                "hp": 345,
+                "attack": 78
+            },
+            "5": {
+                "hp": 517,
+                "attack": 117
+            }
+        }
+    },
+    "4060005": {
+        "id": 4060005,
+        "key": "staff_0005",
+        "name": "Holy Scepter",
+        "rarity": 4,
+        "asset_path": "item/equipment/general/staff_0005",
+        "description": "A fine piece uncovered in the Kaleidoscope, likely from a distant world. Its wings seem ready to bear it off into the heavens.",
+        "stats": {
+            "1": {
+                "hp": 323,
+                "attack": 83
+            },
+            "5": {
+                "hp": 484,
+                "attack": 124
+            }
+        }
+    },
+    "4060022": {
+        "id": 4060022,
+        "key": "staff_0022",
+        "name": "Blood Staff",
+        "rarity": 4,
+        "asset_path": "item/equipment/general/staff_0022",
+        "description": "A fine piece uncovered in the Kaleidoscope, likely from a distant world. A thick, blood-like liquid envelops the entire staff. On rare occasions, it emits an ominous pulse.",
+        "stats": {
+            "1": {
+                "hp": 323,
+                "attack": 83
+            },
+            "5": {
+                "hp": 484,
+                "attack": 124
+            }
+        }
+    },
+    "4060028": {
+        "id": 4060028,
+        "key": "staff_0028",
+        "name": "Lava Scepter",
+        "rarity": 4,
+        "asset_path": "item/equipment/general/staff_0028",
+        "description": "A fine piece from another world uncovered in the Kaleidoscope. This scepter was created from igneous rocks sourced from three separate volcanoes. ",
+        "stats": {
+            "1": {
+                "hp": 301,
+                "attack": 87
+            },
+            "5": {
+                "hp": 451,
+                "attack": 130
+            }
+        }
+    },
+    "4060032": {
+        "id": 4060032,
+        "key": "staff_0032",
+        "name": "Staff of the Enlightened",
+        "rarity": 4,
+        "asset_path": "item/equipment/general/staff_0032",
+        "description": "A fine piece uncovered in the Kaleidoscope, likely from a distant world. This metal staff is said to confer divine revelation to its wielder when held up in prayer to a twilit sky.",
+        "stats": {
+            "1": {
+                "hp": 197,
+                "attack": 114
+            },
+            "5": {
+                "hp": 295,
+                "attack": 171
+            }
+        }
+    },
+    "4060035": {
+        "id": 4060035,
+        "key": "staff_0035",
+        "name": "Protective Parasol",
+        "rarity": 4,
+        "asset_path": "item/equipment/general/staff_0035",
+        "description": "A fine piece from another world unearthed in the Kaleidoscope. This crystal staff features a folding defensive mechanism designed to deflect direct magical attacks.",
+        "stats": {
+            "1": {
+                "hp": 314,
+                "attack": 91
+            },
+            "5": {
+                "hp": 470,
+                "attack": 136
+            }
+        }
+    },
+    "4070004": {
+        "id": 4070004,
+        "key": "fist_0004",
+        "name": "Crimson Orcfist",
+        "rarity": 4,
+        "asset_path": "item/equipment/general/fist_0004",
+        "description": "A fine piece uncovered in the Kaleidoscope, likely from a distant world. Its imposing shape is said to resemble an orc's fist.",
+        "stats": {
+            "1": {
+                "hp": 330,
+                "attack": 81
+            },
+            "5": {
+                "hp": 495,
+                "attack": 121
+            }
+        }
+    },
+    "4070007": {
+        "id": 4070007,
+        "key": "fist_0007",
+        "name": "Force Fist",
+        "rarity": 4,
+        "asset_path": "item/equipment/general/fist_0007",
+        "description": "A fine piece uncovered in the Kaleidoscope, likely from a distant world. This mechanical glove amplifies the force of each blow.",
+        "stats": {
+            "1": {
+                "hp": 330,
+                "attack": 81
+            },
+            "5": {
+                "hp": 495,
+                "attack": 121
+            }
+        }
+    },
+    "4080003": {
+        "id": 4080003,
+        "key": "shield_0003",
+        "name": "Diamond Shield",
+        "rarity": 4,
+        "asset_path": "item/equipment/general/shield_0003",
+        "description": "A fine piece uncovered in the Kaleidoscope, likely from a distant world. Crafted from near indestructible diamond.",
+        "stats": {
+            "1": {
+                "hp": 418,
+                "attack": 64
+            },
+            "5": {
+                "hp": 627,
+                "attack": 95
+            }
+        }
+    },
+    "4080015": {
+        "id": 4080015,
+        "key": "shield_0015",
+        "name": "Lindwurm",
+        "rarity": 4,
+        "asset_path": "item/equipment/general/shield_0015",
+        "description": "A fine piece uncovered in the Kaleidoscope. Adorned with a fearsome serpent's crest.",
+        "stats": {
+            "1": {
+                "hp": 411,
+                "attack": 65
+            },
+            "5": {
+                "hp": 616,
+                "attack": 97
+            }
+        }
+    },
+    "4080019": {
+        "id": 4080019,
+        "key": "shield_0019",
+        "name": "Thundercrest Shield",
+        "rarity": 4,
+        "asset_path": "item/equipment/general/shield_0019",
+        "description": "A fine piece uncovered in the Kaleidoscope, likely from a distant world. It bears the symbol of an indigenous god of thunder.",
+        "stats": {
+            "1": {
+                "hp": 382,
+                "attack": 71
+            },
+            "5": {
+                "hp": 572,
+                "attack": 106
+            }
+        }
+    },
+    "4080021": {
+        "id": 4080021,
+        "key": "shield_0021",
+        "name": "Record Scratcher",
+        "rarity": 4,
+        "asset_path": "item/equipment/general/shield_0021",
+        "description": "A fine piece uncovered in the Kaleidoscope, likely from a different world. The record at the device's center emits a powerful signal capable of acting as a shield for the user.",
+        "stats": {
+            "1": {
+                "hp": 382,
+                "attack": 71
+            },
+            "5": {
+                "hp": 572,
+                "attack": 106
+            }
+        }
+    },
+    "4080027": {
+        "id": 4080027,
+        "key": "shield_0027",
+        "name": "Handheld Bunker",
+        "rarity": 4,
+        "asset_path": "item/equipment/general/shield_0027",
+        "description": "A fine piece uncovered in the Kaleidoscope, likely from a different world. Its sturdy handle and thick padding add to its defensive prowess. ",
+        "stats": {
+            "1": {
+                "hp": 404,
+                "attack": 73
+            },
+            "5": {
+                "hp": 605,
+                "attack": 109
+            }
+        }
+    },
+    "5010028": {
+        "id": 5010028,
+        "key": "sword_0028",
+        "name": "Tyrfing",
+        "rarity": 5,
+        "asset_path": "item/equipment/general/sword_0028",
+        "description": "An exquisite piece uncovered in the Kaleidoscope, likely from a distant world. In exchange for fulfilling its wielder's deepest desire, this cursed sword takes the life of the one dearest to them.",
+        "stats": {
+            "1": {
+                "hp": 310,
+                "attack": 138
+            },
+            "5": {
+                "hp": 465,
+                "attack": 207
+            }
+        }
+    },
+    "5010061": {
+        "id": 5010061,
+        "key": "sword_0061",
+        "name": "First Light",
+        "rarity": 5,
+        "asset_path": "item/equipment/general/sword_0061",
+        "description": "An exquisite piece from another world unearthed in the Kaleidoscope. This crystal sword is said to cleave space itself as the flash of its dew-drenched blade melts into the light.",
+        "stats": {
+            "1": {
+                "hp": 560,
+                "attack": 102
+            },
+            "5": {
+                "hp": 840,
+                "attack": 152
+            }
+        }
+    },
+    "5020008": {
+        "id": 5020008,
+        "key": "axe_0008",
+        "name": "Ukonvasara",
+        "rarity": 5,
+        "asset_path": "item/equipment/general/axe_0008",
+        "description": "An exquisite piece uncovered in the Kaleidoscope, likely from a distant world. It's rumored that nothing can stand against this mighty weapon.",
+        "stats": {
+            "1": {
+                "hp": 330,
+                "attack": 134
+            },
+            "5": {
+                "hp": 495,
+                "attack": 201
+            }
+        }
+    },
+    "5020010": {
+        "id": 5020010,
+        "key": "axe_0010",
+        "name": "Death's Sickle",
+        "rarity": 5,
+        "asset_path": "item/equipment/general/axe_0010",
+        "description": "An exquisite piece uncovered in the Kaleidoscope, likely from a distant world. Bears an uncanny resemblance to the choice weapon of the Grim Reaper.",
+        "stats": {
+            "1": {
+                "hp": 320,
+                "attack": 136
+            },
+            "5": {
+                "hp": 480,
+                "attack": 204
+            }
+        }
+    },
+    "5020030": {
+        "id": 5020030,
+        "key": "axe_0030",
+        "name": "Infernal Axe",
+        "rarity": 5,
+        "asset_path": "item/equipment/general/axe_0030",
+        "description": "An exquisite piece from another world uncovered in the Kaleidoscope. This hatchet is said to have been wielded by a renowned commander beloved by his subordinates.",
+        "stats": {
+            "1": {
+                "hp": 330,
+                "attack": 134
+            },
+            "5": {
+                "hp": 495,
+                "attack": 201
+            }
+        }
+    },
+    "5020037": {
+        "id": 5020037,
+        "key": "axe_0037",
+        "name": "Grim Scythe",
+        "rarity": 5,
+        "asset_path": "item/equipment/general/axe_0037",
+        "description": "An exquisite piece from another world uncovered in the Kaleidoscope. The blade's thick back easily deflects attacks, allowing the wielder to mow down their staggered opponents.",
+        "stats": {
+            "1": {
+                "hp": 277,
+                "attack": 158
+            },
+            "5": {
+                "hp": 415,
+                "attack": 237
+            }
+        }
+    },
+    "5030025": {
+        "id": 5030025,
+        "key": "spear_0025",
+        "name": "Storm Trident",
+        "rarity": 5,
+        "asset_path": "item/equipment/general/spear_0025",
+        "description": "An exquisite piece uncovered in the Kaleidoscope, likely from a distant world. Bearing traces of lightning in its tips, it is capable of piercing any fish.",
+        "stats": {
+            "1": {
+                "hp": 310,
+                "attack": 138
+            },
+            "5": {
+                "hp": 465,
+                "attack": 207
+            }
+        }
+    },
+    "5040010": {
+        "id": 5040010,
+        "key": "bow_0010",
+        "name": "Meteora",
+        "rarity": 5,
+        "asset_path": "item/equipment/general/bow_0010",
+        "description": "An exquisite piece uncovered in the Kaleidoscope, likely from a distant world. Arrows shot from this bow streak down from the sky like meteors.",
+        "stats": {
+            "1": {
+                "hp": 450,
+                "attack": 110
+            },
+            "5": {
+                "hp": 675,
+                "attack": 165
+            }
+        }
+    },
+    "5040016": {
+        "id": 5040016,
+        "key": "bow_0016",
+        "name": "Predator",
+        "rarity": 5,
+        "asset_path": "item/equipment/general/bow_0016",
+        "description": "An exquisite piece uncovered in the Kaleidoscope. The second string helps this enchanted bow shoot arrows at an incredible speed.",
+        "stats": {
+            "1": {
+                "hp": 440,
+                "attack": 112
+            },
+            "5": {
+                "hp": 660,
+                "attack": 168
+            }
+        }
+    },
+    "5050009": {
+        "id": 5050009,
+        "key": "book_0009",
+        "name": "Senji Ryakketsu",
+        "rarity": 5,
+        "asset_path": "item/equipment/general/book_0009",
+        "description": "An exquisite piece uncovered in the Kaleidoscope, likely from a distant world. Said to be written by a legendary diviner.",
+        "stats": {
+            "1": {
+                "hp": 440,
+                "attack": 112
+            },
+            "5": {
+                "hp": 660,
+                "attack": 168
+            }
+        }
+    },
+    "5060009": {
+        "id": 5060009,
+        "key": "staff_0009",
+        "name": "Astrolabe Staff",
+        "rarity": 5,
+        "asset_path": "item/equipment/general/staff_0009",
+        "description": "An exquisite piece uncovered in the Kaleidoscope, likely from a distant world. The orbs floating about it are said to reflect the positions of stars in space.",
+        "stats": {
+            "1": {
+                "hp": 450,
+                "attack": 110
+            },
+            "5": {
+                "hp": 675,
+                "attack": 165
+            }
+        }
+    },
+    "5060025": {
+        "id": 5060025,
+        "key": "staff_0025",
+        "name": "Blaugandr",
+        "rarity": 5,
+        "asset_path": "item/equipment/general/staff_0025",
+        "description": "An exquisite piece uncovered in the Kaleidoscope, likely from a distant world. The sound of running water echoes from within the crystal embedded in the staff.",
+        "stats": {
+            "1": {
+                "hp": 460,
+                "attack": 108
+            },
+            "5": {
+                "hp": 690,
+                "attack": 162
+            }
+        }
+    },
+    "5070023": {
+        "id": 5070023,
+        "key": "fist_0023",
+        "name": "Totemic Cestus",
+        "rarity": 5,
+        "asset_path": "item/equipment/general/fist_0023",
+        "description": "An exquisite piece uncovered in the Kaleidoscope, likely from a distant world. These gauntlets are inscribed with glyphs of a certain guardian deity.",
+        "stats": {
+            "1": {
+                "hp": 410,
+                "attack": 118
+            },
+            "5": {
+                "hp": 615,
+                "attack": 177
+            }
+        }
+    },
+    "5070036": {
+        "id": 5070036,
+        "key": "fist_0036",
+        "name": "Noblesse Oblige",
+        "rarity": 5,
+        "asset_path": "item/equipment/general/fist_0036",
+        "description": "An exquisite piece uncovered in the Kaleidoscope, likely from a distant world. This resplendent bracelet features an anecdote given by a person of exceptional virtue.",
+        "stats": {
+            "1": {
+                "hp": 600,
+                "attack": 94
+            },
+            "5": {
+                "hp": 900,
+                "attack": 140
+            }
+        }
+    },
+    "5080007": {
+        "id": 5080007,
+        "key": "shield_0007",
+        "name": "Amanoiwa Shield",
+        "rarity": 5,
+        "asset_path": "item/equipment/general/shield_0007",
+        "description": "An exquisite piece uncovered in the Kaleidoscope, likely from a distant world. Appears ancient, but sturdy.",
+        "stats": {
+            "1": {
+                "hp": 550,
+                "attack": 90
+            },
+            "5": {
+                "hp": 825,
+                "attack": 135
+            }
+        }
+    },
+    "5100002": {
+        "id": 5100002,
+        "key": "gun_0002",
+        "name": "Warship 343",
+        "rarity": 5,
+        "asset_path": "item/equipment/general/gun_0002",
+        "description": "An exquisite piece unearthed in the Kaleidoscope. It's equipped with bullets that can pierce through tanks and warships.",
+        "stats": {
+            "1": {
+                "hp": 240,
+                "attack": 152
+            },
+            "5": {
+                "hp": 360,
+                "attack": 228
+            }
+        }
+    }
+}

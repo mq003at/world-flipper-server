@@ -17,4 +17,5 @@ export interface CharacterDefinition {
 
 export interface CharacterCatalog {
     findById(characterId: number): CharacterDefinition | null;
+    listAll(): readonly CharacterDefinition[];
 }

@@ -8,6 +8,10 @@ export interface DisplayCatalogEntry {
     element?: Element;
     title?: string;
     iconPath?: string;
+    key?: string;
+    assetPath?: string;
+    description?: string;
+    stats?: Record<string, { hp: number; attack: number }>;
 }
 
 export interface DisplayCatalog {

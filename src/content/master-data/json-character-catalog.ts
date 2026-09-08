@@ -42,4 +42,8 @@ export class JsonCharacterCatalog implements CharacterCatalog {
     findById(characterId: number): CharacterDefinition | null {
         return this.characters.get(characterId) ?? null;
     }
+
+    listAll(): readonly CharacterDefinition[] {
+        return [...this.characters.values()];
+    }
 }

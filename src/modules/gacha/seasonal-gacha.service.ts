@@ -1,5 +1,6 @@
 import { createHash } from "node:crypto";
 import { GachaType, type GachaCatalog, type GachaDefinition, type GachaPoolItem } from "../../content/master-data/gacha-catalog";
+import { applyGachaPoolPolicy, type GachaPoolSelection } from "./gacha-pool-policy";
 import type { Clock } from "../../infrastructure/clock/clock";
 import { InvalidRequestError, InvariantError } from "../../shared/errors/application-error";
 import type { GachaRotationConfig } from "./gacha-rotation.config";
@@ -8,7 +9,6 @@ import type { RuntimeGachaBanner, SeasonalContentType, SeasonalGachaPortalState,
 import type { SeasonalGachaRepository } from "./seasonal-gacha.repository";
 
 const DAY_MS = 86_400_000;
-const FEATURED_RATES = [0, 150, 100, 70, 50, 40] as const;
 
 interface CatalogItem extends GachaPoolItem { firstSeen: string; }
 
@@ -191,29 +191,20 @@ export class SeasonalGachaService {
         if (!shell) throw new InvariantError(`Seasonal gacha shell ${shellId} is missing from gacha.json.`);
         const type: SeasonalContentType = slot === "weapon" ? "equipment" : "character";
         const released = new Set(this.repository.listReleased(type));
-        const source = [...(this.items.get(type)?.values() ?? [])].filter((item) => released.has(item.id));
-        const totalFive = festival && type === "character" ? 750 : (type === "character" ? 500 : 500);
-        const featuredEach = FEATURED_RATES[featured.length] ?? 40;
-        const featuredTotal = featuredEach * featured.length;
-        const byRank: Record<number, GachaPoolItem[]> = { 1: [], 2: [], 3: [] };
-        for (const rank of [5, 4, 3]) {
-            const key = 6 - rank;
-            const items = source.filter((item) => item.rank === rank);
-            const featuredAtRank = rank === 5 ? items.filter((item) => featured.includes(item.id)) : [];
-            const off = items.filter((item) => !featured.includes(item.id));
-            const rankBudget = rank === 5 ? totalFive : (rank === 4 ? 2500 : (festival && type === "character" ? 6750 : 7000));
-            const offBudget = Math.max(1, rankBudget - (rank === 5 ? featuredTotal : 0));
-            byRank[key] = [
-                ...featuredAtRank.map((item) => ({ ...item, isRateUp: true, odds: featuredEach, weight: featuredEach * 10_000 })),
-                ...off.map((item) => ({ ...item, isRateUp: false, odds: offBudget / Math.max(1, off.length), weight: Math.max(1, Math.round(offBudget * 10_000 / Math.max(1, off.length))) })),
-            ];
-            if (byRank[key].length === 0) throw new InvariantError(`Runtime ${slot} pool has no rank ${rank} content.`);
-        }
-        return {
-            ...shell, startDate: start.toISOString(), endDate: end.toISOString(), pool: byRank,
-            rankWeights: festival && type === "character" ? [750, 2500, 6750] : [500, 2500, 7000],
+        const selections: GachaPoolSelection[] = [...(this.items.get(type)?.values() ?? [])]
+            .filter((item) => released.has(item.id) && (item.rank === 5 || item.rank === 4 || item.rank === 3))
+            .map((item) => ({
+                id: item.id,
+                rank: item.rank as 5 | 4 | 3,
+                featured: featured.includes(item.id),
+            }));
+        const base: GachaDefinition = {
+            ...shell,
+            startDate: start.toISOString(),
+            endDate: end.toISOString(),
             ...(festival ? { movieName: "fes", guaranteeMovieName: "fes_guarantee" } : {}),
         };
+        return applyGachaPoolPolicy(base, selections, festival && type === "character");
     }
 
     private collectItems(type: GachaType): Map<number, CatalogItem> {

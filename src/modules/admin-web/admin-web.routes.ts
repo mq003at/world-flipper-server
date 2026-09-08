@@ -2,11 +2,14 @@ import fastifyStatic from "@fastify/static";
 import type { FastifyPluginAsync } from "fastify";
 import { existsSync, mkdirSync, readFileSync, unlinkSync, writeFileSync } from "node:fs";
 import path from "node:path";
-import type { GachaDefinition, GachaPoolItem } from "../../content/master-data/gacha-catalog";
+import type { DisplayCatalog } from "../../content/display/display-catalog";
+import type { CharacterCatalog } from "../../content/master-data/character-catalog";
+import { GachaType, type GachaCatalog, type GachaDefinition } from "../../content/master-data/gacha-catalog";
 import type { Clock } from "../../infrastructure/clock/clock";
 import type { AdjustableSystemClock } from "../../infrastructure/clock/adjustable-system-clock";
 import type { GachaProbabilityService } from "../gacha-probability/gacha-probability.service";
-import type { SeasonalGachaSlot } from "../gacha/seasonal-gacha.models";
+import { applyGachaPoolPolicy, gachaProbabilityProfile, type GachaPoolSelection } from "../gacha/gacha-pool-policy";
+import type { RuntimeGachaSlot } from "../gacha/seasonal-gacha.models";
 import type { PlayerDataService } from "../player-data/player-data.service";
 import type { AdminGachaBanner, AdminWebRepository } from "./admin-web.repository";
 import type { BeadCurrency, BeadOperation } from "./admin-web.repository";
@@ -15,11 +18,13 @@ export interface AdminWebOptions {
     webDir: string;
     importEnabled: boolean;
     adjustableClock: AdjustableSystemClock | null;
+    characterCatalog: CharacterCatalog;
+    gachaCatalog: GachaCatalog;
+    displayCatalog: DisplayCatalog;
 }
 
 const GACHA_SLOTS = ["new", "rerun", "weapon"] as const;
 const MAX_ARTWORK_BYTES = 8 * 1024 * 1024;
-const RATE_TOLERANCE = 0.02;
 
 function escapeHtml(value: string): string {
     return value.replace(/[&<>"']/g, (character) => ({
@@ -42,8 +47,9 @@ function parseNonNegativeInt(raw: string): number | null {
     return Number.isSafeInteger(value) && value >= 0 ? value : null;
 }
 
-function parseGachaSlot(raw: string): SeasonalGachaSlot | null {
-    return (GACHA_SLOTS as readonly string[]).includes(raw) ? raw as SeasonalGachaSlot : null;
+function parseGachaSlot(raw: string): RuntimeGachaSlot | null {
+    if ((GACHA_SLOTS as readonly string[]).includes(raw)) return raw as RuntimeGachaSlot;
+    return /^custom-[1-9]\d*$/.test(raw) ? raw as RuntimeGachaSlot : null;
 }
 
 function parseBeadUpdate(value: unknown): {
@@ -64,93 +70,121 @@ function parseBeadUpdate(value: unknown): {
     return { currency, operation, amount };
 }
 
-interface AdminPoolEntryInput {
-    id: number;
-    rarity: 5 | 4 | 3;
-    ratePercent: number;
-    featured: boolean;
-}
-
 interface ParsedPoolUpdate {
     definition: GachaDefinition;
     featuredIds: number[];
 }
 
-function parsePoolUpdate(value: unknown, current: GachaDefinition): ParsedPoolUpdate | null {
+interface AdminPoolCatalogItem {
+    id: number;
+    name: string;
+    rarity: 5 | 4 | 3;
+    element: number | null;
+    elementName: string;
+}
+
+const ELEMENT_NAMES = ["Fire", "Water", "Thunder", "Wind", "Light", "Dark"] as const;
+
+function safeJson(value: unknown): string {
+    return JSON.stringify(value)
+        .replace(/</g, "\\u003c")
+        .replace(/>/g, "\\u003e")
+        .replace(/&/g, "\\u0026")
+        .replace(/\u2028/g, "\\u2028")
+        .replace(/\u2029/g, "\\u2029");
+}
+
+function poolCatalogFor(
+    current: GachaDefinition,
+    characterCatalog: CharacterCatalog,
+    gachaCatalog: GachaCatalog,
+    displayCatalog: DisplayCatalog,
+): AdminPoolCatalogItem[] {
+    if (current.type === GachaType.CHARACTER) {
+        return characterCatalog.listAll()
+            .filter((entry) => entry.rarity === 5 || entry.rarity === 4 || entry.rarity === 3)
+            .map((entry) => ({
+                id: entry.id,
+                name: displayCatalog.find("character", entry.id).name,
+                rarity: entry.rarity as 5 | 4 | 3,
+                element: entry.element,
+                elementName: ELEMENT_NAMES[entry.element] ?? `Element ${entry.element}`,
+            }))
+            .sort((a, b) => b.rarity - a.rarity || a.element - b.element || a.id - b.id);
+    }
+
+    const items = new Map<number, 5 | 4 | 3>();
+    for (const definition of gachaCatalog.listAll()) {
+        if (definition.type !== GachaType.WEAPON) continue;
+        for (const item of Object.values(definition.pool).flat()) {
+            if (item.rank === 5 || item.rank === 4 || item.rank === 3) {
+                items.set(item.id, item.rank as 5 | 4 | 3);
+            }
+        }
+    }
+    return [...items.entries()]
+        .map(([id, rarity]) => ({
+            id,
+            name: displayCatalog.find("equipment", id).name,
+            rarity,
+            element: null,
+            elementName: "—",
+        }))
+        .sort((a, b) => b.rarity - a.rarity || a.id - b.id);
+}
+
+function parsePoolUpdate(
+    value: unknown,
+    current: GachaDefinition,
+    festival: boolean,
+    catalog: readonly AdminPoolCatalogItem[],
+): ParsedPoolUpdate | null {
     if (typeof value !== "object" || value === null || Array.isArray(value)) return null;
-    const body = value as Record<string, unknown>;
-    const rawRankRates = body.rankRatesPercent;
-    const rawEntries = body.entries;
-    if (typeof rawRankRates !== "object" || rawRankRates === null || Array.isArray(rawRankRates)
-        || !Array.isArray(rawEntries) || rawEntries.length === 0 || rawEntries.length > 2_000) return null;
+    const rawEntries = (value as Record<string, unknown>).entries;
+    if (!Array.isArray(rawEntries) || rawEntries.length === 0 || rawEntries.length > 2_000) return null;
 
-    const rankRateObject = rawRankRates as Record<string, unknown>;
-    const rate5 = rankRateObject["5"];
-    const rate4 = rankRateObject["4"];
-    const rate3 = rankRateObject["3"];
-    if (![rate5, rate4, rate3].every((rate) => typeof rate === "number" && Number.isFinite(rate) && rate > 0)) return null;
-    const rankRates = [rate5 as number, rate4 as number, rate3 as number] as const;
-    if (Math.abs(rankRates.reduce((sum, rate) => sum + rate, 0) - 100) > RATE_TOLERANCE) return null;
-
-    const entries: AdminPoolEntryInput[] = [];
+    const catalogById = new Map(catalog.map((entry) => [entry.id, entry]));
+    const selections: GachaPoolSelection[] = [];
     const ids = new Set<number>();
     for (const rawEntry of rawEntries) {
         if (typeof rawEntry !== "object" || rawEntry === null || Array.isArray(rawEntry)) return null;
         const entry = rawEntry as Record<string, unknown>;
         const id = entry.id;
-        const rarity = entry.rarity;
-        const ratePercent = entry.ratePercent;
         const featured = entry.featured;
         if (typeof id !== "number" || !Number.isSafeInteger(id) || id <= 0
-            || (rarity !== 5 && rarity !== 4 && rarity !== 3)
-            || typeof ratePercent !== "number" || !Number.isFinite(ratePercent) || ratePercent <= 0
             || typeof featured !== "boolean" || ids.has(id)) return null;
+        const metadata = catalogById.get(id);
+        if (!metadata) return null;
         ids.add(id);
-        entries.push({ id, rarity, ratePercent, featured });
+        selections.push({ id, rank: metadata.rarity, featured });
     }
 
-    for (const [index, rarity] of ([5, 4, 3] as const).entries()) {
-        const rankEntries = entries.filter((entry) => entry.rarity === rarity);
-        if (rankEntries.length === 0) return null;
-        const total = rankEntries.reduce((sum, entry) => sum + entry.ratePercent, 0);
-        if (Math.abs(total - rankRates[index]) > RATE_TOLERANCE) return null;
-    }
-
-    const firstWeight = Math.round(rankRates[0] * 100);
-    const secondWeight = Math.round(rankRates[1] * 100);
-    const thirdWeight = 10_000 - firstWeight - secondWeight;
-    if (firstWeight <= 0 || secondWeight <= 0 || thirdWeight <= 0) return null;
-
-    const pool: Record<number, GachaPoolItem[]> = { 1: [], 2: [], 3: [] };
-    for (const entry of entries) {
-        const poolKey = 6 - entry.rarity;
-        pool[poolKey]?.push({
-            id: entry.id,
-            rank: entry.rarity,
-            odds: Math.round(entry.ratePercent * 100_000) / 1_000,
-            isRateUp: entry.featured,
-            weight: Math.max(1, Math.round(entry.ratePercent * 1_000_000)),
-        });
+    if (([5, 4, 3] as const).some((rarity) => !selections.some((entry) => entry.rank === rarity))) {
+        return null;
     }
 
     return {
-        definition: {
-            ...current,
-            pool,
-            rankWeights: [firstWeight, secondWeight, thirdWeight],
-        },
-        featuredIds: entries.filter((entry) => entry.featured).map((entry) => entry.id),
+        definition: applyGachaPoolPolicy(current, selections, festival && current.type === GachaType.CHARACTER),
+        featuredIds: selections.filter((entry) => entry.featured).map((entry) => entry.id),
     };
 }
 
-function slotLabel(slot: SeasonalGachaSlot): string {
+function slotLabel(slot: RuntimeGachaSlot): string {
     if (slot === "new") return "NEW";
     if (slot === "rerun") return "RERUN";
-    return "WEAPON";
+    if (slot === "weapon") return "WEAPON";
+    const customId = slot.slice("custom-".length);
+    return `CUSTOM ${customId}`;
 }
 
 function formatRate(value: number): string {
     return value.toFixed(6).replace(/0+$/, "").replace(/\.$/, "");
+}
+
+function profileLabel(profile: ReturnType<typeof gachaProbabilityProfile>): string {
+    if (profile === "meteor-festival") return "Meteor Festival";
+    if (profile === "featured") return "Featured Banner";
+    return "Normal Banner";
 }
 
 function renderArtwork(banner: AdminGachaBanner): string {
@@ -222,6 +256,10 @@ export function createAdminWebRoutes(
                     const featured = featuredNames.length > 0
                         ? featuredNames.map(escapeHtml).join(", ")
                         : "None";
+                    const profile = gachaProbabilityProfile(
+                        banner.festival,
+                        probability.entries.map((entry) => ({ featured: entry.featured })),
+                    );
                     const state = banner.enabled ? "Active" : "Disabled";
                     const action = banner.enabled
                         ? `<button type="button" class="secondary-button delete-gacha" data-season="${banner.seasonNumber}" data-cycle="${banner.cycleIndex}" data-slot="${banner.slot}">Delete</button>`
@@ -234,7 +272,7 @@ export function createAdminWebRoutes(
                                     <p class="eyebrow">${escapeHtml(slotLabel(banner.slot))} · Gacha #${banner.shellGachaId}</p>
                                     <h3>${escapeHtml(slotLabel(banner.slot))} Pool</h3>
                                 </div>
-                                <span class="state-pill">${state}</span>
+                                <span class="state-pill">${escapeHtml(profileLabel(profile))} · ${state}</span>
                             </div>
                             <p class="muted">Season ${banner.seasonNumber}, cycle ${banner.cycleIndex} · ${escapeHtml(banner.startsAt.toISOString())} → ${escapeHtml(banner.endsAt.toISOString())}</p>
                             <div class="rate-strip">
@@ -272,16 +310,32 @@ export function createAdminWebRoutes(
                 const banner = repository.findGacha(season, cycle, slot);
                 if (!banner) return reply.redirect("/gacha");
                 const probability = gachaProbability.presentBanner(banner);
+                const catalog = poolCatalogFor(
+                    banner.definition,
+                    options.characterCatalog,
+                    options.gachaCatalog,
+                    options.displayCatalog,
+                );
+                const catalogById = new Map(catalog.map((entry) => [entry.id, entry]));
+                const selections: GachaPoolSelection[] = probability.entries.map((entry) => ({
+                    id: entry.id,
+                    rank: entry.rarity as 5 | 4 | 3,
+                    featured: entry.featured,
+                }));
+                const profile = gachaProbabilityProfile(banner.festival, selections);
                 const rows = (rarity: 5 | 4 | 3): string => probability.entries
                     .filter((entry) => entry.rarity === rarity)
                     .sort((a, b) => Number(b.featured) - Number(a.featured) || b.ratePercent - a.ratePercent || a.id - b.id)
-                    .map((entry) => `<tr class="pool-row" data-rarity="${rarity}">
-                        <td><input class="pool-id" type="number" min="1" step="1" value="${entry.id}" required></td>
-                        <td class="pool-name">${escapeHtml(entry.name)}</td>
-                        <td><input class="pool-rate" type="number" min="0.000001" step="0.000001" value="${formatRate(entry.ratePercent)}" required></td>
-                        <td class="featured-cell"><input class="pool-featured" type="checkbox" ${entry.featured ? "checked" : ""}></td>
-                        <td><button type="button" class="row-delete">Remove</button></td>
-                    </tr>`).join("");
+                    .map((entry) => {
+                        const metadata = catalogById.get(entry.id);
+                        return `<tr class="pool-row" data-id="${entry.id}" data-rarity="${rarity}" data-featured="${entry.featured}">
+                            <td>${entry.id}</td>
+                            <td class="pool-name">${escapeHtml(entry.name)}</td>
+                            <td>${escapeHtml(metadata?.elementName ?? "—")}</td>
+                            <td><input class="pool-rate readonly-rate" type="text" value="${formatRate(entry.ratePercent)}%" readonly></td>
+                            <td class="featured-cell">${entry.featured ? "Featured" : "—"}</td>
+                        </tr>`;
+                    }).join("");
                 const html = page("gacha-detail.html")
                     .replace(/{{seasonNumber}}/g, String(banner.seasonNumber))
                     .replace(/{{cycleIndex}}/g, String(banner.cycleIndex))
@@ -290,13 +344,17 @@ export function createAdminWebRoutes(
                     .replace(/{{shellGachaId}}/g, String(banner.shellGachaId))
                     .replace("{{state}}", banner.enabled ? "Active" : "Disabled")
                     .replace("{{enabled}}", String(banner.enabled))
+                    .replace("{{festival}}", String(banner.festival))
+                    .replace("{{profileLabel}}", profileLabel(profile))
                     .replace("{{artwork}}", renderArtwork(banner))
                     .replace("{{rate5}}", formatRate(probability.rarityRatesPercent["5"] ?? 0))
                     .replace("{{rate4}}", formatRate(probability.rarityRatesPercent["4"] ?? 0))
                     .replace("{{rate3}}", formatRate(probability.rarityRatesPercent["3"] ?? 0))
                     .replace("{{rows5}}", rows(5))
                     .replace("{{rows4}}", rows(4))
-                    .replace("{{rows3}}", rows(3));
+                    .replace("{{rows3}}", rows(3))
+                    .replace("{{catalogJson}}", safeJson(catalog))
+                    .replace("{{selectionJson}}", safeJson(selections));
                 return reply.type("text/html; charset=utf-8").send(html);
             },
         );
@@ -360,10 +418,16 @@ export function createAdminWebRoutes(
                 if (season === null || cycle === null || slot === null) return reply.code(400).send({ error: "Invalid gacha key." });
                 const banner = repository.findGacha(season, cycle, slot);
                 if (!banner) return reply.code(404).send({ error: "Gacha not found." });
-                const update = parsePoolUpdate(request.body, banner.definition);
+                const catalog = poolCatalogFor(
+                    banner.definition,
+                    options.characterCatalog,
+                    options.gachaCatalog,
+                    options.displayCatalog,
+                );
+                const update = parsePoolUpdate(request.body, banner.definition, banner.festival, catalog);
                 if (!update) {
                     return reply.code(400).send({
-                        error: "Invalid pool. Rank rates must total 100%, every rank needs entries, and per-item rates must total that rank's rate.",
+                        error: "Invalid pool. Select valid content and keep at least one 5★, 4★, and 3★ item. Rates are calculated automatically.",
                     });
                 }
                 const updated = repository.updateGachaDefinition(season, cycle, slot, update.definition, update.featuredIds);

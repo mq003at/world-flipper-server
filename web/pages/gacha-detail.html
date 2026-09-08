@@ -11,15 +11,17 @@
         .heading-row h2 { font-size: 2.25rem; line-height: 2.5rem; font-weight: 700; }
         .muted { color: var(--md-sys-color-on-surface-variant); }
         .eyebrow { font-size: .78rem; letter-spacing: .08em; font-weight: 700; color: var(--md-sys-color-on-surface-variant); }
-        .primary-button, .secondary-button, .danger-button, .row-delete {
+        .primary-button, .secondary-button, .danger-button, .feature-button {
             min-height: 40px; padding: 0 20px; border-radius: 9999px; display: inline-flex; align-items: center;
             justify-content: center; cursor: pointer; font-size: 1rem; text-decoration: none; border: 1px solid transparent;
         }
         .primary-button { background: var(--md-sys-color-primary); color: var(--md-sys-color-on-primary); }
         .secondary-button { background: transparent; color: var(--md-sys-color-on-surface); border-color: var(--md-sys-color-outline-variant); }
-        .danger-button, .row-delete { background: transparent; color: var(--md-sys-color-error); border-color: var(--md-sys-color-error); }
-        .row-delete { min-height: 32px; padding: 0 12px; font-size: .85rem; }
-        .state-pill { padding: 5px 12px; border-radius: 9999px; background: var(--md-sys-color-surface-container-highest); font-weight: 600; }
+        .danger-button { background: transparent; color: var(--md-sys-color-error); border-color: var(--md-sys-color-error); }
+        .feature-button { min-height: 32px; padding: 0 12px; font-size: .85rem; background: transparent; color: var(--md-sys-color-on-surface); border-color: var(--md-sys-color-outline-variant); }
+        .feature-button.active { background: var(--md-sys-color-primary); color: var(--md-sys-color-on-primary); border-color: var(--md-sys-color-primary); }
+        .state-pill, .profile-pill { padding: 5px 12px; border-radius: 9999px; background: var(--md-sys-color-surface-container-highest); font-weight: 600; }
+        .profile-line { margin-top: 10px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
         .panel { padding: 22px; border: 1px solid var(--md-sys-color-outline-variant); border-radius: 28px; background: var(--md-sys-color-surface-container); }
         .artwork-layout { display: grid; grid-template-columns: minmax(260px, 420px) 1fr; gap: 22px; align-items: stretch; }
         .artwork-frame { min-height: 230px; border-radius: 20px; overflow: hidden; background: var(--md-sys-color-surface-container-high); }
@@ -29,21 +31,51 @@
         .action-row { display: flex; flex-wrap: wrap; gap: 10px; }
         .rank-rates { display: grid; grid-template-columns: repeat(3, minmax(120px, 1fr)); gap: 12px; margin-top: 16px; }
         .rank-rates label { display: flex; flex-direction: column; gap: 6px; }
-        input[type="number"], input[type="file"] { max-width: 100%; }
-        .rank-rates input, .pool-table input[type="number"] { padding: 9px 10px; border-radius: 10px; background: var(--md-sys-color-surface-container-high); border: 1px solid var(--md-sys-color-outline-variant); }
+        input[type="file"] { max-width: 100%; }
+        .rank-rates input, .readonly-rate, .modal-control {
+            padding: 9px 10px; border-radius: 10px; background: var(--md-sys-color-surface-container-high);
+            border: 1px solid var(--md-sys-color-outline-variant); color: var(--md-sys-color-on-surface);
+        }
+        .rank-rates input[readonly], .readonly-rate[readonly] { opacity: .82; cursor: not-allowed; }
         .rank-section { margin-top: 22px; }
         .rank-heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 10px; }
         .rank-heading h3 { font-size: 1.25rem; font-weight: 700; }
         .pool-scroll { overflow-x: auto; }
-        .pool-table { width: 100%; border-collapse: collapse; min-width: 720px; }
+        .pool-table { width: 100%; border-collapse: collapse; min-width: 760px; }
         .pool-table th, .pool-table td { padding: 9px 8px; text-align: left; border-bottom: 1px solid var(--md-sys-color-outline-variant); vertical-align: middle; }
         .pool-table th { color: var(--md-sys-color-on-surface-variant); font-size: .85rem; }
-        .pool-table .pool-id { width: 130px; }
-        .pool-table .pool-rate { width: 140px; }
-        .pool-name { min-width: 200px; }
+        .pool-table .pool-rate { width: 150px; }
+        .pool-name { min-width: 220px; }
         .featured-cell { text-align: center !important; }
         .status-line { min-height: 24px; color: var(--md-sys-color-on-surface-variant); font-weight: 600; }
-        @media (max-width: 900px) { .artwork-layout { grid-template-columns: 1fr; } .rank-rates { grid-template-columns: 1fr; } }
+
+        .modal-backdrop { position: fixed; inset: 0; z-index: 100; display: flex; align-items: center; justify-content: center; padding: 24px; background: rgba(0, 0, 0, .48); }
+        .modal-backdrop.hidden { display: none; }
+        .pool-modal { width: min(1100px, 96vw); max-height: 90vh; display: flex; flex-direction: column; overflow: hidden; border-radius: 28px; border: 1px solid var(--md-sys-color-outline-variant); background: var(--md-sys-color-surface); box-shadow: 0 24px 70px rgba(0, 0, 0, .3); }
+        .modal-header, .modal-footer { padding: 20px 24px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+        .modal-header { border-bottom: 1px solid var(--md-sys-color-outline-variant); }
+        .modal-footer { border-top: 1px solid var(--md-sys-color-outline-variant); }
+        .modal-header h3 { font-size: 1.5rem; font-weight: 700; }
+        .modal-filters { padding: 14px 24px; display: grid; grid-template-columns: minmax(240px, 1fr) 160px 180px; gap: 10px; border-bottom: 1px solid var(--md-sys-color-outline-variant); }
+        .modal-table-wrap { overflow: auto; min-height: 260px; }
+        .catalog-table { width: 100%; border-collapse: collapse; }
+        .catalog-table th { position: sticky; top: 0; z-index: 1; background: var(--md-sys-color-surface-container); color: var(--md-sys-color-on-surface-variant); font-size: .84rem; }
+        .catalog-table th, .catalog-table td { padding: 10px 14px; text-align: left; border-bottom: 1px solid var(--md-sys-color-outline-variant); }
+        .catalog-row { cursor: pointer; }
+        .catalog-row:hover { background: var(--md-sys-color-surface-container-low); }
+        .catalog-row.selected { background: var(--md-sys-color-surface-container); }
+        .catalog-state { font-weight: 700; }
+        .modal-summary { color: var(--md-sys-color-on-surface-variant); font-weight: 600; }
+        .modal-error { color: var(--md-sys-color-error); min-height: 22px; }
+        body.modal-open { overflow: hidden; }
+
+        @media (max-width: 900px) {
+            .artwork-layout { grid-template-columns: 1fr; }
+            .rank-rates { grid-template-columns: 1fr; }
+            .modal-filters { grid-template-columns: 1fr; }
+            .modal-backdrop { padding: 8px; }
+            .pool-modal { width: 100%; max-height: 96vh; }
+        }
     </style>
 </head>
 
@@ -67,7 +99,7 @@
                 <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" class="fill-on-surface"><path d="M320-240 80-480l240-240 57 57-184 184 183 183-56 56Zm320 0-57-57 184-184-183-183 56-56 240 240-240 240Z"/></svg>Source Code
             </a>
         </nav>
-        <main id="gacha-editor" class="page-stack" data-season="{{seasonNumber}}" data-cycle="{{cycleIndex}}" data-slot="{{slot}}" data-enabled="{{enabled}}">
+        <main id="gacha-editor" class="page-stack" data-season="{{seasonNumber}}" data-cycle="{{cycleIndex}}" data-slot="{{slot}}" data-enabled="{{enabled}}" data-festival="{{festival}}">
             <section class="heading-row">
                 <div>
                     <p class="eyebrow">{{slotLabel}} · Gacha #{{shellGachaId}}</p>
@@ -97,31 +129,84 @@
                 <div class="heading-row">
                     <div>
                         <h3 class="text-xl font-semibold">Pool probabilities</h3>
-                        <p class="muted">Rank rates must total 100%. Item rates inside each rarity must total that rarity's rate.</p>
+                        <div class="profile-line">
+                            <span class="muted">Probability profile</span>
+                            <span id="probability-profile" class="profile-pill">{{profileLabel}}</span>
+                        </div>
+                        <p class="muted" style="margin-top:8px">Rank and item rates are fixed by banner type. Edit membership/featured status; Starpoint recalculates every rate automatically.</p>
                     </div>
-                    <button id="save-pool" type="button" class="primary-button">Save pool</button>
+                    <div class="action-row">
+                        <button id="edit-pool" type="button" class="secondary-button">Edit pool</button>
+                        <button id="save-pool" type="button" class="primary-button">Save pool</button>
+                    </div>
                 </div>
                 <div class="rank-rates">
-                    <label>5★ total rate (%)<input id="rank-rate-5" type="number" min="0.01" max="99.98" step="0.01" value="{{rate5}}"></label>
-                    <label>4★ total rate (%)<input id="rank-rate-4" type="number" min="0.01" max="99.98" step="0.01" value="{{rate4}}"></label>
-                    <label>3★ total rate (%)<input id="rank-rate-3" type="number" min="0.01" max="99.98" step="0.01" value="{{rate3}}"></label>
+                    <label>5★ total rate (%)<input id="rank-rate-5" type="text" value="{{rate5}}" readonly></label>
+                    <label>4★ total rate (%)<input id="rank-rate-4" type="text" value="{{rate4}}" readonly></label>
+                    <label>3★ total rate (%)<input id="rank-rate-3" type="text" value="{{rate3}}" readonly></label>
                 </div>
 
                 <section class="rank-section">
-                    <div class="rank-heading"><h3>5★ pool</h3><button type="button" class="secondary-button add-row" data-rarity="5">Add item</button></div>
-                    <div class="pool-scroll"><table class="pool-table"><thead><tr><th>ID</th><th>Name</th><th>Rate (%)</th><th>Featured</th><th></th></tr></thead><tbody id="pool-5">{{rows5}}</tbody></table></div>
+                    <div class="rank-heading"><h3>5★ pool</h3></div>
+                    <div class="pool-scroll"><table class="pool-table"><thead><tr><th>ID</th><th>Name</th><th>Element</th><th>Rate</th><th>Featured</th></tr></thead><tbody id="pool-5">{{rows5}}</tbody></table></div>
                 </section>
                 <section class="rank-section">
-                    <div class="rank-heading"><h3>4★ pool</h3><button type="button" class="secondary-button add-row" data-rarity="4">Add item</button></div>
-                    <div class="pool-scroll"><table class="pool-table"><thead><tr><th>ID</th><th>Name</th><th>Rate (%)</th><th>Featured</th><th></th></tr></thead><tbody id="pool-4">{{rows4}}</tbody></table></div>
+                    <div class="rank-heading"><h3>4★ pool</h3></div>
+                    <div class="pool-scroll"><table class="pool-table"><thead><tr><th>ID</th><th>Name</th><th>Element</th><th>Rate</th><th>Featured</th></tr></thead><tbody id="pool-4">{{rows4}}</tbody></table></div>
                 </section>
                 <section class="rank-section">
-                    <div class="rank-heading"><h3>3★ pool</h3><button type="button" class="secondary-button add-row" data-rarity="3">Add item</button></div>
-                    <div class="pool-scroll"><table class="pool-table"><thead><tr><th>ID</th><th>Name</th><th>Rate (%)</th><th>Featured</th><th></th></tr></thead><tbody id="pool-3">{{rows3}}</tbody></table></div>
+                    <div class="rank-heading"><h3>3★ pool</h3></div>
+                    <div class="pool-scroll"><table class="pool-table"><thead><tr><th>ID</th><th>Name</th><th>Element</th><th>Rate</th><th>Featured</th></tr></thead><tbody id="pool-3">{{rows3}}</tbody></table></div>
                 </section>
             </section>
             <p id="editor-status" class="status-line"></p>
         </main>
+    </div>
+
+    <div id="pool-modal-backdrop" class="modal-backdrop hidden" aria-hidden="true">
+        <section class="pool-modal" role="dialog" aria-modal="true" aria-labelledby="pool-modal-title">
+            <header class="modal-header">
+                <div>
+                    <h3 id="pool-modal-title">Edit pool</h3>
+                    <p class="muted">Click a row to add/remove it. Featured is independent and has no unit-count limit.</p>
+                </div>
+                <button id="close-pool-modal" type="button" class="secondary-button">Close</button>
+            </header>
+            <div class="modal-filters">
+                <input id="catalog-search" class="modal-control" type="search" placeholder="Search ID or name...">
+                <select id="catalog-rarity" class="modal-control">
+                    <option value="">All stars</option>
+                    <option value="5">5★</option>
+                    <option value="4">4★</option>
+                    <option value="3">3★</option>
+                </select>
+                <select id="catalog-element" class="modal-control">
+                    <option value="">All elements</option>
+                    <option value="Fire">Fire</option>
+                    <option value="Water">Water</option>
+                    <option value="Thunder">Thunder</option>
+                    <option value="Wind">Wind</option>
+                    <option value="Light">Light</option>
+                    <option value="Dark">Dark</option>
+                </select>
+            </div>
+            <div class="modal-table-wrap">
+                <table class="catalog-table">
+                    <thead><tr><th>ID</th><th>Name</th><th>Element</th><th>Stars</th><th>Pool</th><th>Featured</th></tr></thead>
+                    <tbody id="catalog-body"></tbody>
+                </table>
+            </div>
+            <footer class="modal-footer">
+                <div>
+                    <div id="modal-summary" class="modal-summary"></div>
+                    <div id="modal-error" class="modal-error"></div>
+                </div>
+                <div class="action-row">
+                    <button id="cancel-pool" type="button" class="secondary-button">Cancel</button>
+                    <button id="apply-pool" type="button" class="primary-button">Apply pool selection</button>
+                </div>
+            </footer>
+        </section>
     </div>
 
     <script>
@@ -129,6 +214,99 @@
         const status = document.getElementById('editor-status');
         const key = `${editor.dataset.season}/${editor.dataset.cycle}/${editor.dataset.slot}`;
         const toggle = document.getElementById('toggle-banner');
+        const festival = editor.dataset.festival === 'true';
+        const catalog = {{catalogJson}};
+        const catalogById = new Map(catalog.map((entry) => [entry.id, entry]));
+        let selected = new Map({{selectionJson}}.map((entry) => [entry.id, { featured: entry.featured }]));
+        let draftSelected = new Map();
+
+        const modalBackdrop = document.getElementById('pool-modal-backdrop');
+        const catalogBody = document.getElementById('catalog-body');
+        const modalError = document.getElementById('modal-error');
+
+        function formatRate(value) {
+            return Number(value).toFixed(6).replace(/0+$/, '').replace(/\.$/, '');
+        }
+
+        function rankRate(rank) {
+            if (festival) return rank === 5 ? 7.5 : (rank === 4 ? 25 : 67.5);
+            return rank === 5 ? 5 : (rank === 4 ? 25 : 70);
+        }
+
+        function featuredRatePerItem(rank, count, rankTotal) {
+            if (count <= 0) return 0;
+            if (rank === 5) {
+                if (count === 1) return 1.5;
+                if (count === 2) return 1;
+                if (count === 3) return 0.7;
+                return 2 / count;
+            }
+            if (rank === 4) {
+                if (count === 1) return 2.5;
+                if (count === 2) return 2;
+                if (count === 3) return 1.7;
+                return 10 / count;
+            }
+            if (count === 1) return 3.5;
+            if (count === 2) return 3;
+            return (rankTotal * 0.4) / count;
+        }
+
+        function ratesForRank(rank, source = selected) {
+            const entries = [...source.entries()]
+                .map(([id, state]) => ({ ...catalogById.get(id), id, featured: state.featured }))
+                .filter((entry) => entry.rarity === rank);
+            const result = new Map();
+            if (entries.length === 0) return result;
+            const total = rankRate(rank);
+            const featured = entries.filter((entry) => entry.featured);
+            const normal = entries.filter((entry) => !entry.featured);
+            if (featured.length === 0 || normal.length === 0) {
+                const each = total / entries.length;
+                entries.forEach((entry) => result.set(entry.id, each));
+                return result;
+            }
+            const requestedFeaturedEach = featuredRatePerItem(rank, featured.length, total);
+            const featuredTotal = Math.min(requestedFeaturedEach * featured.length, total * 0.95);
+            const featuredEach = featuredTotal / featured.length;
+            const normalEach = (total - featuredTotal) / normal.length;
+            featured.forEach((entry) => result.set(entry.id, featuredEach));
+            normal.forEach((entry) => result.set(entry.id, normalEach));
+            return result;
+        }
+
+        function profileName(source = selected) {
+            if (festival) return 'Meteor Festival';
+            return [...source.values()].some((entry) => entry.featured) ? 'Featured Banner' : 'Normal Banner';
+        }
+
+        function renderPools() {
+            document.getElementById('rank-rate-5').value = formatRate(rankRate(5));
+            document.getElementById('rank-rate-4').value = formatRate(rankRate(4));
+            document.getElementById('rank-rate-3').value = formatRate(rankRate(3));
+            document.getElementById('probability-profile').textContent = profileName();
+
+            [5, 4, 3].forEach((rank) => {
+                const rates = ratesForRank(rank);
+                const entries = [...selected.entries()]
+                    .map(([id, state]) => ({ ...catalogById.get(id), id, featured: state.featured, rate: rates.get(id) || 0 }))
+                    .filter((entry) => entry.rarity === rank)
+                    .sort((a, b) => Number(b.featured) - Number(a.featured) || b.rate - a.rate || a.id - b.id);
+                document.getElementById(`pool-${rank}`).innerHTML = entries.map((entry) => `<tr class="pool-row" data-id="${entry.id}" data-rarity="${rank}" data-featured="${entry.featured}">
+                    <td>${entry.id}</td>
+                    <td class="pool-name">${escapeHtmlClient(entry.name)}</td>
+                    <td>${escapeHtmlClient(entry.elementName)}</td>
+                    <td><input class="pool-rate readonly-rate" type="text" value="${formatRate(entry.rate)}%" readonly></td>
+                    <td class="featured-cell">${entry.featured ? 'Featured' : '—'}</td>
+                </tr>`).join('');
+            });
+        }
+
+        function escapeHtmlClient(value) {
+            return String(value).replace(/[&<>"']/g, (character) => ({
+                '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+            })[character]);
+        }
 
         function updateToggle() {
             const enabled = editor.dataset.enabled === 'true';
@@ -137,40 +315,101 @@
             document.getElementById('banner-state').textContent = enabled ? 'Active' : 'Disabled';
         }
         updateToggle();
+        renderPools();
 
-        function bindRemove(button) { button.addEventListener('click', () => button.closest('tr').remove()); }
-        document.querySelectorAll('.row-delete').forEach(bindRemove);
+        function cloneSelection(source) {
+            return new Map([...source.entries()].map(([id, state]) => [id, { featured: state.featured }]));
+        }
 
-        document.querySelectorAll('.add-row').forEach((button) => button.addEventListener('click', () => {
-            const rarity = Number(button.dataset.rarity);
-            const row = document.createElement('tr');
-            row.className = 'pool-row';
-            row.dataset.rarity = String(rarity);
-            row.innerHTML = `<td><input class="pool-id" type="number" min="1" step="1" required></td>
-                <td class="pool-name">New item</td>
-                <td><input class="pool-rate" type="number" min="0.000001" step="0.000001" required></td>
-                <td class="featured-cell"><input class="pool-featured" type="checkbox"></td>
-                <td><button type="button" class="row-delete">Remove</button></td>`;
-            bindRemove(row.querySelector('.row-delete'));
-            document.getElementById(`pool-${rarity}`).appendChild(row);
-        }));
+        function renderCatalog() {
+            const query = document.getElementById('catalog-search').value.trim().toLowerCase();
+            const rarity = document.getElementById('catalog-rarity').value;
+            const element = document.getElementById('catalog-element').value;
+            const filtered = catalog.filter((entry) => {
+                const matchesQuery = !query || String(entry.id).includes(query) || entry.name.toLowerCase().includes(query);
+                const matchesRarity = !rarity || String(entry.rarity) === rarity;
+                const matchesElement = !element || entry.elementName === element;
+                return matchesQuery && matchesRarity && matchesElement;
+            });
+            catalogBody.innerHTML = filtered.map((entry) => {
+                const state = draftSelected.get(entry.id);
+                return `<tr class="catalog-row ${state ? 'selected' : ''}" data-id="${entry.id}">
+                    <td>${entry.id}</td>
+                    <td>${escapeHtmlClient(entry.name)}</td>
+                    <td>${escapeHtmlClient(entry.elementName)}</td>
+                    <td>${entry.rarity}★</td>
+                    <td class="catalog-state">${state ? 'In pool' : '—'}</td>
+                    <td><button type="button" class="feature-button ${state?.featured ? 'active' : ''}" data-feature-id="${entry.id}">${state?.featured ? 'Featured' : 'Set featured'}</button></td>
+                </tr>`;
+            }).join('');
+
+            catalogBody.querySelectorAll('.catalog-row').forEach((row) => row.addEventListener('click', () => {
+                const id = Number(row.dataset.id);
+                if (draftSelected.has(id)) draftSelected.delete(id);
+                else draftSelected.set(id, { featured: false });
+                modalError.textContent = '';
+                renderCatalog();
+            }));
+            catalogBody.querySelectorAll('.feature-button').forEach((button) => button.addEventListener('click', (event) => {
+                event.stopPropagation();
+                const id = Number(button.dataset.featureId);
+                const state = draftSelected.get(id);
+                draftSelected.set(id, { featured: !(state?.featured ?? false) });
+                modalError.textContent = '';
+                renderCatalog();
+            }));
+
+            const counts = [5, 4, 3].map((rank) => [...draftSelected.keys()].filter((id) => catalogById.get(id)?.rarity === rank).length);
+            const featuredCount = [...draftSelected.values()].filter((entry) => entry.featured).length;
+            document.getElementById('modal-summary').textContent = `${draftSelected.size} selected · ${counts[0]}×5★ / ${counts[1]}×4★ / ${counts[2]}×3★ · ${featuredCount} featured`;
+        }
+
+        function openPoolModal() {
+            draftSelected = cloneSelection(selected);
+            modalError.textContent = '';
+            modalBackdrop.classList.remove('hidden');
+            modalBackdrop.setAttribute('aria-hidden', 'false');
+            document.body.classList.add('modal-open');
+            renderCatalog();
+            document.getElementById('catalog-search').focus();
+        }
+
+        function closePoolModal() {
+            modalBackdrop.classList.add('hidden');
+            modalBackdrop.setAttribute('aria-hidden', 'true');
+            document.body.classList.remove('modal-open');
+        }
+
+        document.getElementById('edit-pool').addEventListener('click', openPoolModal);
+        document.getElementById('close-pool-modal').addEventListener('click', closePoolModal);
+        document.getElementById('cancel-pool').addEventListener('click', closePoolModal);
+        modalBackdrop.addEventListener('click', (event) => { if (event.target === modalBackdrop) closePoolModal(); });
+        document.addEventListener('keydown', (event) => { if (event.key === 'Escape' && !modalBackdrop.classList.contains('hidden')) closePoolModal(); });
+        ['catalog-search', 'catalog-rarity', 'catalog-element'].forEach((id) => document.getElementById(id).addEventListener(id === 'catalog-search' ? 'input' : 'change', renderCatalog));
+
+        document.getElementById('apply-pool').addEventListener('click', () => {
+            const missing = [5, 4, 3].filter((rank) => ![...draftSelected.keys()].some((id) => catalogById.get(id)?.rarity === rank));
+            if (missing.length > 0) {
+                modalError.textContent = `Pool needs at least one item for: ${missing.map((rank) => `${rank}★`).join(', ')}.`;
+                return;
+            }
+            selected = cloneSelection(draftSelected);
+            renderPools();
+            closePoolModal();
+            status.textContent = 'Pool selection changed. Click Save pool to persist it.';
+        });
 
         document.getElementById('save-pool').addEventListener('click', async () => {
-            const entries = [...document.querySelectorAll('.pool-row')].map((row) => ({
-                id: Number(row.querySelector('.pool-id').value),
-                rarity: Number(row.dataset.rarity),
-                ratePercent: Number(row.querySelector('.pool-rate').value),
-                featured: row.querySelector('.pool-featured').checked
-            }));
-            const rankRatesPercent = {
-                5: Number(document.getElementById('rank-rate-5').value),
-                4: Number(document.getElementById('rank-rate-4').value),
-                3: Number(document.getElementById('rank-rate-3').value)
-            };
+            const missing = [5, 4, 3].filter((rank) => ![...selected.keys()].some((id) => catalogById.get(id)?.rarity === rank));
+            if (missing.length > 0) {
+                status.textContent = `Pool needs at least one item for: ${missing.map((rank) => `${rank}★`).join(', ')}.`;
+                return;
+            }
+            const entries = [...selected.entries()].map(([id, state]) => ({ id, featured: state.featured }));
             status.textContent = 'Saving pool...';
             try {
                 const response = await fetch(`/web_api/gacha/${key}/pool`, {
-                    method: 'PUT', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ rankRatesPercent, entries })
+                    method: 'PUT', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ entries })
                 });
                 const result = await response.json();
                 if (!response.ok) throw new Error(result.error || 'Pool update failed.');

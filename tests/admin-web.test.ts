@@ -57,9 +57,26 @@ function createFixture(importEnabled = true) {
             ],
         }),
     } as any;
+    const characterCatalog = {
+        findById: (id: number) => ({
+            151006: { id: 151006, name: "Featured Unit", rarity: 5, element: 0, skillCount: 6 },
+            241001: { id: 241001, name: "Four Star", rarity: 4, element: 3, skillCount: 6 },
+            341001: { id: 341001, name: "Three Star", rarity: 3, element: 1, skillCount: 6 },
+        } as Record<number, any>)[id] ?? null,
+        listAll: () => [
+            { id: 151006, name: "Featured Unit", rarity: 5, element: 0, skillCount: 6 },
+            { id: 241001, name: "Four Star", rarity: 4, element: 3, skillCount: 6 },
+            { id: 341001, name: "Three Star", rarity: 3, element: 1, skillCount: 6 },
+        ],
+    } as any;
+    const displayCatalog = {
+        find: (_type: string, id: number) => ({ id, name: characterCatalog.findById(id)?.name ?? `Item ${id}` }),
+    } as any;
+    const gachaCatalog = { listAll: () => [], findById: () => null } as any;
     const app = Fastify();
     return { app, clock, plugin: createAdminWebRoutes(repository, playerData, gachaProbability, clock, {
         webDir: path.resolve("web"), importEnabled, adjustableClock: clock,
+        characterCatalog, displayCatalog, gachaCatalog,
     }) };
 }
 
@@ -132,6 +149,10 @@ test("admin gacha page renders probability list and pool editor", async () => {
     assert.match(detail.body, /NEW probability list/);
     assert.match(detail.body, /Featured Unit/);
     assert.match(detail.body, /Attach artwork/);
+    assert.match(detail.body, /Edit pool/);
+    assert.match(detail.body, /readonly/);
+    assert.match(detail.body, /Fire/);
+    assert.doesNotMatch(detail.body, /Add item/);
     await app.close();
 });
 
