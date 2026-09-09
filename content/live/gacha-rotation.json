@@ -16,7 +16,17 @@
     "meteor2": 152,
     "anniversary": 156
   },
-  "clientVisibleSlots": ["new", "rerun", "weapon"],
+  "clientVisibleSlots": [
+    "base",
+    "new",
+    "rerun",
+    "elemental",
+    "weapon",
+    "meteor-1",
+    "meteor-2",
+    "anniversary",
+    "seasonal"
+  ],
   "bannerLifetimeDays": 13,
   "freeCampaignId": 19,
   "dailyResetHourUtc": 0,
